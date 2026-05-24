@@ -35,5 +35,14 @@
     <ClInclude Include="Admin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Book.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandling.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Library.dat" />
   </ItemGroup>
 </Project>

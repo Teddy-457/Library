@@ -1,5 +1,13 @@
 #include "Client.hpp"
 
+void Client::serialize() const {
+
+}
+
+void Client::deserialize() {
+
+}
+
 void Client::logout() const {
 
 }

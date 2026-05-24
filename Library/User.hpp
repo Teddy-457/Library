@@ -10,6 +10,9 @@ protected:
     User(std::string username, std::string password, bool admin) : m_username(username), m_password(password), m_admin(admin) {}
 
 public:
+    void virtual serialize() const = 0;
+    void virtual deserialize() = 0;
+
     void virtual logout() const = 0;
     void virtual booksAll() const = 0;
     void virtual booksFind() const = 0;

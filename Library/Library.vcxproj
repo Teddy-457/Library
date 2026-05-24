@@ -129,8 +129,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.hpp" />
+    <ClInclude Include="Book.hpp" />
     <ClInclude Include="Client.hpp" />
+    <ClInclude Include="FileHandling.hpp" />
     <ClInclude Include="User.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Library.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
