@@ -7,9 +7,10 @@ void Client::serialize(std::string filename) const {
     ///FileHandler::checkIfOpen(file);
     ///Check if it already exists before writing
     
-    std::ofstream file(filename, std::ios::out);
+    std::ofstream file(filename, std::ios::app);
     FileHandler::checkIfOpen(file);
-    //file << 
+    file << m_username << '\n' << m_password << '\n' << m_admin << '\n';
+    file.close();
 }
 
 void Client::deserialize(std::string filename) {

@@ -16,6 +16,10 @@ int main() {
         users.push_back(admin);
         users.push_back(client);
 
+        for (const auto* u : users) {
+            u->serialize("Library.dat");
+        }
+
         delete client;
         delete admin;
     //}
