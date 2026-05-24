@@ -6,14 +6,14 @@ class User {
 protected:
     std::string m_username;
     std::string m_password;
-    bool admin;
+    bool m_admin;
 
 public:
-    void logout() const;
-    void booksAll() const;
-    void booksFind() const;
-    void booksSort() const;
-    void booksView() const;
+    void virtual logout() const = 0;
+    void virtual booksAll() const = 0;
+    void virtual booksFind() const = 0;
+    void virtual booksSort() const = 0;
+    void virtual booksView() const = 0;
 
     void virtual booksAdd() const = 0;
     void virtual booksRemove() const = 0;
