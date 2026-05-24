@@ -1,18 +1,19 @@
 #pragma once
-
 #include <string>
 #include "User.hpp"
 
 class Client : public User {
-public:
-    //Client(std::string, std::string, bool);
-    Client::Client(std::string username, std::string password, bool admin) : m_username(username), m_password(password), m_admin(admin) {}
+protected:
+    Client(std::string username, std::string password, bool) : User(username, password, true) {}
 
-    void virtual logout() const override;
-    void virtual booksAll() const override;
-    void virtual booksFind() const override;
-    void virtual booksSort() const override;
-    void virtual booksView() const override;
+public:
+    Client(std::string username, std::string password) : User(username, password, false) {}
+    
+    void virtual logout() const final;
+    void virtual booksAll() const final;
+    void virtual booksFind() const final;
+    void virtual booksSort() const final;
+    void virtual booksView() const final;
 
     void virtual booksAdd() const override;
     void virtual booksRemove() const override;
