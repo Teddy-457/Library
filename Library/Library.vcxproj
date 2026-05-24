@@ -125,13 +125,14 @@
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.hpp" />
     <ClInclude Include="Book.hpp" />
     <ClInclude Include="Client.hpp" />
-    <ClInclude Include="FileHandling.hpp" />
+    <ClInclude Include="FileHandler.hpp" />
     <ClInclude Include="User.hpp" />
   </ItemGroup>
   <ItemGroup>

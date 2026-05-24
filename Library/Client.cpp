@@ -1,10 +1,18 @@
+#include <fstream>
+#include "FileHandler.hpp"
 #include "Client.hpp"
 
-void Client::serialize() const {
-
+void Client::serialize(std::string filename) const {
+    ///std::ifstream file(filename, std::ios::in);
+    ///FileHandler::checkIfOpen(file);
+    ///Check if it already exists before writing
+    
+    std::ofstream file(filename, std::ios::out);
+    FileHandler::checkIfOpen(file);
+    //file << 
 }
 
-void Client::deserialize() {
+void Client::deserialize(std::string filename) {
 
 }
 

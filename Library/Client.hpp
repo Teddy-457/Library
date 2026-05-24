@@ -9,8 +9,8 @@ protected:
 public:
     Client(std::string username, std::string password) : User(username, password, false) {}
     
-    void virtual serialize() const override;
-    void virtual deserialize() override;
+    void virtual serialize(std::string) const final;
+    void virtual deserialize(std::string) final;
 
     void virtual logout() const final;
     void virtual booksAll() const final;

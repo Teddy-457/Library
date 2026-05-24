@@ -1,3 +1,4 @@
+#include <vector>
 #include "Admin.hpp"
 
 ///Бонус:
@@ -7,8 +8,16 @@
 
 
 int main() {
-    Admin admin{ "admin", "i<3c++" };
-    Client client{ "client", "bbb" };
+    //while (true) {
+        Admin* admin = new Admin{ "admin", "i<3c++" };
+        Client* client = new Client{ "client", "bbb" };
 
+        std::vector<User*> users;
+        users.push_back(admin);
+        users.push_back(client);
+
+        delete client;
+        delete admin;
+    //}
     return 0;
 }
