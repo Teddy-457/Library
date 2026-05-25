@@ -1,7 +1,5 @@
 #include <vector>
 #include "Library.hpp"
-//#include "Admin.hpp"
-//#include "Book.hpp"
 
 ///Бонус:
 ///при въвеждане на паролата на екрана да се изписва  символа * вместо реалния символ
@@ -10,9 +8,8 @@
 
 
 int main() {
-    while (true) {
+    //while (true) {
         Library lib;
-
         lib.usersAdd(new Client{ "client", "bbb" });
 
         //for (const auto* u : users) {
@@ -23,6 +20,6 @@ int main() {
         //User* copy_of_client = User::deserialize("Library.dat", 1);
         //delete copy_of_client;
         //delete copy_of_admin;
-    }
+    //}
     return 0;
 }
