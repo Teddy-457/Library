@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="main.cpp" />

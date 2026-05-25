@@ -10,7 +10,7 @@ User* User::deserialize(std::string filename, unsigned line) {
     std::ifstream file(filename, std::ios::in);
     Utilities::checkIfOpen(file);
 
-    for (int i = 0; i < line; ++i) {
+    for (unsigned i = 0; i < line; ++i) {
         file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
