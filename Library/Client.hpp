@@ -10,6 +10,6 @@ public:
     Client() = delete; //Client() : User("", "", false) {}
     Client(std::string username, std::string password) : User(username, password, false) {}
 
-    void virtual serialize(std::string) const final;
+    void serialize(std::string) const final;
     static Client* deserialize(std::ifstream&);
 };

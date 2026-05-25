@@ -12,7 +12,7 @@ protected:
     User(std::string username, std::string password, bool admin) : m_username(username), m_password(password), m_admin(admin) {}
 
 public:
-    void virtual serialize(std::string) const = 0;
+    virtual void serialize(std::string) const = 0;
     static User* deserialize(std::string, unsigned);
 
     virtual ~User() = default;

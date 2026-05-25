@@ -3,7 +3,7 @@
 #include <string>
 
 struct Utilities {
-	void static checkIfOpen(const std::ifstream&);
-	void static checkIfOpen(const std::ofstream&);
+	static void checkIfOpen(const std::ifstream&);
+	static void checkIfOpen(const std::ofstream&);
 	static void logAndThrow(std::string);
 };
