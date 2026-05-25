@@ -31,8 +31,11 @@ public:
 	void logout();
 	void usersAdd(User*);
 	void usersRemove(std::string);
+
+	void booksAdd(Book*);
+	void booksRemove(unsigned long);
 	void booksAll() const;
-	void booksInfo(unsigned) const;
+	void booksInfo(unsigned long) const;
 	void booksFind() const;
 	void booksSort();
 };

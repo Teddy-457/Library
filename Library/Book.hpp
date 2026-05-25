@@ -13,12 +13,12 @@ private:
 	signed m_year; //support for dates BC
 	Tags_t m_tags;
 	double m_rating;
-	unsigned m_isbn;
+	unsigned long m_isbn;
 
 public:
 	Book(std::string author, std::string title, std::string genre,
 		std::string description, signed year, Tags_t tags,
-		double rating, unsigned isbn)
+		double rating, unsigned long isbn)
 		: m_author(author), m_title(title), m_genre(genre)
 		, m_description(description), m_year(year)
 		, m_rating(rating), m_isbn(isbn)
@@ -43,4 +43,11 @@ public:
 
 	void serialize(std::string) const;
 	///static Book* deserialize(std::string, unsigned);
+
+	std::string getTitle() const;
+	std::string getGenre() const;
+	std::string getAuthor() const;
+	const Tags_t& getTags() const;
+	unsigned long getISBN() const;
+	void print() const;
 };

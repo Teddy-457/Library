@@ -33,3 +33,7 @@ User* User::deserialize(std::string filename, unsigned line) {
         Utilities::logAndThrow("Tried to deserialize a book in place of a user");
     }
 }
+
+std::string User::getUsername() const {
+    return m_username;
+}

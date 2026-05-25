@@ -15,5 +15,7 @@ public:
     virtual void serialize(std::string) const = 0;
     static User* deserialize(std::string, unsigned);
 
+    std::string getUsername() const;
+
     virtual ~User() = default;
 };
