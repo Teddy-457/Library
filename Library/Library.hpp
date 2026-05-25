@@ -4,7 +4,7 @@
 #include "User.hpp"
 #include "Admin.hpp"
 #include "Book.hpp"
-#include <iostream>////////////////
+//#include <iostream>////////////////
 
 class Library {
 private:
@@ -22,10 +22,7 @@ public:
 	Library();
 	Library(const Library&) = delete;				///
 	Library& operator=(const Library&) = delete;	///
-	~Library() {
-		std::cout << "destructor called\n";
-		free();
-	}
+	~Library();
 
 	void serialize() const;
 	void deserialize();
