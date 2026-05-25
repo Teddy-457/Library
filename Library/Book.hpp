@@ -2,20 +2,22 @@
 #include <string>
 #include <vector>
 
+using Tags_t = std::vector<const char*>;
+
 class Book {
 private:
 	std::string m_author;
 	std::string m_title;
 	std::string m_genre;
 	std::string m_description;
-	signed int m_year; //support for dates BC
-	std::vector<const char*> m_tags;
+	signed m_year; //support for dates BC
+	Tags_t m_tags;
 	double m_rating;
 	unsigned m_isbn;
 
 public:
 	Book(std::string author, std::string title, std::string genre,
-		std::string description, signed year, std::vector<const char*> tags,
+		std::string description, signed year, Tags_t tags,
 		double rating, unsigned isbn)
 		: m_author(author), m_title(title), m_genre(genre)
 		, m_description(description), m_year(year)

@@ -1,6 +1,7 @@
 #include <vector>
-#include "Admin.hpp"
-#include "Book.hpp"
+#include "Library.hpp"
+//#include "Admin.hpp"
+//#include "Book.hpp"
 
 ///Бонус:
 ///при въвеждане на паролата на екрана да се изписва  символа * вместо реалния символ
@@ -9,30 +10,19 @@
 
 
 int main() {
-    //while (true) {
-        std::vector<User*> users;
-        std::vector<Book> books;
+    while (true) {
+        Library lib;
 
-        Admin* admin = new Admin{ "admin", "i<3c++" };
-        Client* client = new Client{ "client", "bbb" };
-
-        users.push_back(admin);
-        users.push_back(client);
+        lib.usersAdd(new Client{ "client", "bbb" });
 
         //for (const auto* u : users) {
         //    u->serialize("Library.dat");
         //}
 
-        User* copy_of_admin = User::deserialize("Library.dat", 0);
-        User* copy_of_client = User::deserialize("Library.dat", 1);
-
-        users.push_back(copy_of_client);
-        users.push_back(copy_of_admin);
-
-        delete copy_of_client;
-        delete copy_of_admin;
-        delete client;
-        delete admin;
-    //}
+        //User* copy_of_admin = User::deserialize("Library.dat", 0);
+        //User* copy_of_client = User::deserialize("Library.dat", 1);
+        //delete copy_of_client;
+        //delete copy_of_admin;
+    }
     return 0;
 }

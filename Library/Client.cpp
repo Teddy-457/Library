@@ -7,6 +7,8 @@ void Client::serialize(std::string filename) const {
     ///std::ifstream file(filename, std::ios::in);
     ///FileHandler::checkIfOpen(file);
     ///Check if it already exists before writing
+    /// 
+    /// check at Library level for duplicates instead !!
 
     std::ofstream file(filename, std::ios::app);
     Utilities::checkIfOpen(file);
