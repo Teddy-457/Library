@@ -1,4 +1,5 @@
 #include <fstream>
+#include <string>
 #include "Utilities.hpp"
 #include "Client.hpp"
 
@@ -13,28 +14,23 @@ void Client::serialize(std::string filename) const {
     file.close();
 }
 
-///code from W2 HW
-///char buf[128];
-///const char* buf_ptr{ buf };
-///while (file.getline(buf, 128)) {
-///    int copy_cnt{};
-///    while (*buf_ptr != ',') {
-///        temp.group[current_group].first[copy_cnt++] = *buf_ptr;
-///        ++buf_ptr;
-///    } copy_cnt = 0; ++buf_ptr;
-///
-///    while (*buf_ptr != ',') {
-///        temp.group[current_group].last[copy_cnt++] = *buf_ptr;
-///        ++buf_ptr;
-///    } copy_cnt = 0; ++buf_ptr;
-
 Client* Client::deserialize(std::ifstream& file) {
-    file.ignore(1);
-    Client client;
-    file >> client.m_username;
+    std::string username;
+    std::string password;
 
+    char c = file.get();
+    while (c!='$' && c != '\n') {
+        username.push_back(c);
+        c = file.get();
+    }
+    c = file.get();
+    while (c != '\n') {
+        password.push_back(c);
+        c = file.get();
+    }
     file.close();
-    return new Client(client);///
+
+    return new Client{username, password};
 }
 
 void Client::logout() const {

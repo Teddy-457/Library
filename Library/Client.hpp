@@ -7,7 +7,7 @@ protected:
     Client(std::string username, std::string password, bool) : User(username, password, true) {}
 
 public:
-    Client() : User("", "", false) {}
+    //Client() : User("", "", false) {}
     Client(std::string username, std::string password) : User(username, password, false) {}
 
     void virtual serialize(std::string) const final;

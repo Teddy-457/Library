@@ -1,7 +1,6 @@
 #include <string>
 #include <fstream>
 #include <limits>
-#include <iostream>/////////////////////////
 #include "User.hpp"
 #include "Client.hpp"
 #include "Admin.hpp"
@@ -13,12 +12,12 @@ User* User::deserialize(std::string filename, unsigned line) {
 
     for (int i = 0; i < line; ++i) {
         file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "skipped line " << i << '\n';
     }
 
     char check = file.get();
     if (check == '$') {
         char type = file.get();
+        file.ignore(1);
         switch (type) {
             case '0':
                 return Client::deserialize(file);
