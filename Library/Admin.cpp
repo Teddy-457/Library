@@ -1,13 +1,9 @@
 #include <fstream>
 #include "Admin.hpp"
 
-//void Admin::serialize() const {
-//
-//}
-//
-//void Admin::deserialize() {
-//
-//}
+Admin* Admin::deserialize(std::string filename, unsigned line) {
+
+}
 
 void Admin::booksAdd() const {
 

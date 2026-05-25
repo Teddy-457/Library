@@ -1,4 +1,7 @@
 #include <fstream>
+#include <limits>
+#include <stdexcept>
+#include <iostream>/////////////////////////////////
 #include "FileHandler.hpp"
 #include "Client.hpp"
 
@@ -9,12 +12,25 @@ void Client::serialize(std::string filename) const {
     
     std::ofstream file(filename, std::ios::app);
     FileHandler::checkIfOpen(file);
-    file << m_username << '\n' << m_password << '\n' << m_admin << '\n';
+    file << '$' << m_admin << '$' << m_username << '$' << m_password << '\n';
     file.close();
 }
 
-void Client::deserialize(std::string filename) {
-
+Client* Client::deserialize(std::string filename, unsigned line) {
+    std::ifstream file(filename, std::ios::in);
+    FileHandler::checkIfOpen(file);
+    for (int i = 0; i < line; ++i) {
+        file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "skipped line " << i << '\n';
+    }
+    char check = file.get();
+    if (check == '$') {
+        //file >> m_username;
+    }
+    else {
+        std::cout << "Tried to deserialize a book in place of a user";
+        throw std::runtime_error("Tried to deserialize a book in place of a user");
+    }
 }
 
 void Client::logout() const {

@@ -16,9 +16,15 @@ int main() {
         users.push_back(admin);
         users.push_back(client);
 
-        for (const auto* u : users) {
-            u->serialize("Library.dat");
-        }
+        //for (const auto* u : users) {
+        //    u->serialize("Library.dat");
+        //}
+
+        //check if client or admin first
+        User* copy_of_admin = User::deserialize("Library.dat", 0);
+
+        //copy_of_admin->deserialize("Library.dat", 0);
+        delete copy_of_admin;
 
         delete client;
         delete admin;

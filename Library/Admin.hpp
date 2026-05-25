@@ -3,10 +3,10 @@
 
 class Admin : public Client {
 public:
+    Admin() : Client("", "") {}
     Admin(std::string username, std::string password) : Client(username, password, true) {}
 
-    //void virtual serialize() const final;
-    //void virtual deserialize() final;
+    static Admin* deserialize(std::string, unsigned);
 
     void virtual booksAdd() const final;
     void virtual booksRemove() const final;
