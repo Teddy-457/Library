@@ -24,7 +24,7 @@
     <ClCompile Include="Admin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileHandler.cpp">
+    <ClCompile Include="Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
@@ -44,7 +44,7 @@
     <ClInclude Include="Book.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileHandler.hpp">
+    <ClInclude Include="Utilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

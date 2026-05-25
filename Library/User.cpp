@@ -1,13 +1,36 @@
 #include <string>
 #include <fstream>
+#include <limits>
+#include <iostream>/////////////////////////
 #include "User.hpp"
 #include "Client.hpp"
 #include "Admin.hpp"
-#include "FileHandler.hpp"
+#include "Utilities.hpp"
 
 User* User::deserialize(std::string filename, unsigned line) {
     std::ifstream file(filename, std::ios::in);
-    FileHandler::checkIfOpen(file);
+    Utilities::checkIfOpen(file);
 
+    for (int i = 0; i < line; ++i) {
+        file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "skipped line " << i << '\n';
+    }
 
+    char check = file.get();
+    if (check == '$') {
+        char type = file.get();
+        switch (type) {
+            case '0':
+                return Client::deserialize(file);
+            case '1':
+                return Admin::deserialize(file);
+            default:
+                file.close();
+                Utilities::logAndThrow("Invalid file format");
+        }
+    }
+    else {
+        file.close();
+        Utilities::logAndThrow("Tried to deserialize a book in place of a user");
+    }
 }

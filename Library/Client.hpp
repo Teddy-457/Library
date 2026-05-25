@@ -11,8 +11,7 @@ public:
     Client(std::string username, std::string password) : User(username, password, false) {}
 
     void virtual serialize(std::string) const final;
-    //void virtual deserialize(std::string, unsigned) final;
-    static Client* deserialize(std::string, unsigned);
+    static Client* deserialize(std::ifstream&);
 
     void virtual logout() const final;
     void virtual booksAll() const final;

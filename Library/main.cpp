@@ -9,10 +9,11 @@
 
 int main() {
     //while (true) {
+        std::vector<User*> users;
+
         Admin* admin = new Admin{ "admin", "i<3c++" };
         Client* client = new Client{ "client", "bbb" };
 
-        std::vector<User*> users;
         users.push_back(admin);
         users.push_back(client);
 
@@ -20,12 +21,14 @@ int main() {
         //    u->serialize("Library.dat");
         //}
 
-        //check if client or admin first
         User* copy_of_admin = User::deserialize("Library.dat", 0);
+        User* copy_of_client = User::deserialize("Library.dat", 1);
 
-        //copy_of_admin->deserialize("Library.dat", 0);
+        users.push_back(copy_of_client);
+        users.push_back(copy_of_admin);
+
+        delete copy_of_client;
         delete copy_of_admin;
-
         delete client;
         delete admin;
     //}

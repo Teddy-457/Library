@@ -1,8 +1,5 @@
 #include <fstream>
-#include <limits>
-#include <stdexcept>
-#include <iostream>/////////////////////////////////
-#include "FileHandler.hpp"
+#include "Utilities.hpp"
 #include "Client.hpp"
 
 void Client::serialize(std::string filename) const {
@@ -11,26 +8,33 @@ void Client::serialize(std::string filename) const {
     ///Check if it already exists before writing
     
     std::ofstream file(filename, std::ios::app);
-    FileHandler::checkIfOpen(file);
+    Utilities::checkIfOpen(file);
     file << '$' << m_admin << '$' << m_username << '$' << m_password << '\n';
     file.close();
 }
 
-Client* Client::deserialize(std::string filename, unsigned line) {
-    std::ifstream file(filename, std::ios::in);
-    FileHandler::checkIfOpen(file);
-    for (int i = 0; i < line; ++i) {
-        file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "skipped line " << i << '\n';
-    }
-    char check = file.get();
-    if (check == '$') {
-        //file >> m_username;
-    }
-    else {
-        std::cout << "Tried to deserialize a book in place of a user";
-        throw std::runtime_error("Tried to deserialize a book in place of a user");
-    }
+///code from W2 HW
+///char buf[128];
+///const char* buf_ptr{ buf };
+///while (file.getline(buf, 128)) {
+///    int copy_cnt{};
+///    while (*buf_ptr != ',') {
+///        temp.group[current_group].first[copy_cnt++] = *buf_ptr;
+///        ++buf_ptr;
+///    } copy_cnt = 0; ++buf_ptr;
+///
+///    while (*buf_ptr != ',') {
+///        temp.group[current_group].last[copy_cnt++] = *buf_ptr;
+///        ++buf_ptr;
+///    } copy_cnt = 0; ++buf_ptr;
+
+Client* Client::deserialize(std::ifstream& file) {
+    file.ignore(1);
+    Client client;
+    file >> client.m_username;
+
+    file.close();
+    return new Client(client);///
 }
 
 void Client::logout() const {

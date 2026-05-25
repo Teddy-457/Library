@@ -6,7 +6,7 @@ public:
     Admin() : Client("", "") {}
     Admin(std::string username, std::string password) : Client(username, password, true) {}
 
-    static Admin* deserialize(std::string, unsigned);
+    static Admin* deserialize(std::ifstream&);
 
     void virtual booksAdd() const final;
     void virtual booksRemove() const final;

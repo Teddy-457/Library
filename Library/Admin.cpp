@@ -1,8 +1,12 @@
 #include <fstream>
 #include "Admin.hpp"
 
-Admin* Admin::deserialize(std::string filename, unsigned line) {
+Admin* Admin::deserialize(std::ifstream& file) {
+    file.ignore(1);
 
+
+    file.close();
+    return new Admin;///
 }
 
 void Admin::booksAdd() const {
