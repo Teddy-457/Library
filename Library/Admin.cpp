@@ -7,7 +7,7 @@ Admin* Admin::deserialize(std::ifstream& file) {
     std::string password;
 
     char c = file.get();
-    while (c != '$' && c != '\n') {
+    while (c != m_DELIMITER && c != '\n') {
         username.push_back(c);
         c = file.get();
     }
@@ -18,7 +18,7 @@ Admin* Admin::deserialize(std::ifstream& file) {
     }
     file.close();
 
-    return new Admin{username,password};
+    return new Admin{ username,password };
 }
 
 void Admin::booksAdd() const {

@@ -15,7 +15,7 @@ User* User::deserialize(std::string filename, unsigned line) {
     }
 
     char check = file.get();
-    if (check == '$') {
+    if (check == m_DELIMITER) {
         char type = file.get();
         file.ignore(1);
         switch (type) {

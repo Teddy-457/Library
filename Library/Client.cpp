@@ -7,10 +7,10 @@ void Client::serialize(std::string filename) const {
     ///std::ifstream file(filename, std::ios::in);
     ///FileHandler::checkIfOpen(file);
     ///Check if it already exists before writing
-    
+
     std::ofstream file(filename, std::ios::app);
     Utilities::checkIfOpen(file);
-    file << '$' << m_admin << '$' << m_username << '$' << m_password << '\n';
+    file << m_DELIMITER << m_admin << m_DELIMITER << m_username << m_DELIMITER << m_password << '\n';
     file.close();
 }
 
@@ -19,7 +19,7 @@ Client* Client::deserialize(std::ifstream& file) {
     std::string password;
 
     char c = file.get();
-    while (c!='$' && c != '\n') {
+    while (c != m_DELIMITER && c != '\n') {
         username.push_back(c);
         c = file.get();
     }
@@ -30,7 +30,7 @@ Client* Client::deserialize(std::ifstream& file) {
     }
     file.close();
 
-    return new Client{username, password};
+    return new Client{ username, password };
 }
 
 void Client::logout() const {

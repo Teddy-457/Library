@@ -1,5 +1,6 @@
 #include <vector>
 #include "Admin.hpp"
+#include "Book.hpp"
 
 ///Бонус:
 ///при въвеждане на паролата на екрана да се изписва  символа * вместо реалния символ
@@ -10,6 +11,7 @@
 int main() {
     //while (true) {
         std::vector<User*> users;
+        std::vector<Book> books;
 
         Admin* admin = new Admin{ "admin", "i<3c++" };
         Client* client = new Client{ "client", "bbb" };

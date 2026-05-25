@@ -7,6 +7,7 @@ protected:
     Client(std::string username, std::string password, bool) : User(username, password, true) {}
 
 public:
+    Client() = delete;
     //Client() : User("", "", false) {}
     Client(std::string username, std::string password) : User(username, password, false) {}
 
