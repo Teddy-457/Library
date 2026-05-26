@@ -15,34 +15,19 @@ private:
 	double m_rating;
 	unsigned long m_isbn;
 
+    static constexpr char m_DELIMITER{ '%' };
+
 public:
-	Book(std::string author, std::string title, std::string genre,
-		std::string description, signed year, Tags_t tags,
-		double rating, unsigned long isbn)
-		: m_author(author), m_title(title), m_genre(genre)
-		, m_description(description), m_year(year)
-		, m_rating(rating), m_isbn(isbn)
-	{
-		for (const char* t : tags) {
-			std::size_t size{ strlen(t) };
-			char* tag = new char[size + 1];
-			strcpy_s(tag, size+1, t);
-			m_tags.push_back(tag);
-		}
-	}
+	Book(std::string, std::string, std::string, std::string, signed, Tags_t,
+		 double, unsigned long);
 
 	Book() = delete;
 	Book(const Book&) = delete;
 	Book& operator=(const Book&) = delete;
-
-	~Book() {
-		for (const char* t : m_tags) {
-			delete[] t;
-		}
-	}
+	~Book();
 
 	void serialize(std::string) const;
-	///static Book* deserialize(std::string, unsigned);
+	static Book* deserialize(std::string, unsigned);
 
 	std::string getTitle() const;
 	std::string getGenre() const;

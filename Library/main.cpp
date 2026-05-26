@@ -24,8 +24,22 @@ int main() {
                               Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"},
                               4.54,
                               0441172717});
+        
+        //Book b{"Frank Herbert",
+        //                      "Dune",
+        //                      "Science Fiction",
+        //                      "A mythic and emotionally charged hero's journey set on the desert planet Arrakis.",
+        //                      1965,
+        //                      Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"},
+        //                      4.54,
+        //                      0441172717};
 
-       //lib.usersRemove("client");
+        Book *copy_of_b = Book::deserialize("Library.dat", 2);
+        delete copy_of_b;
+        //b.serialize("Library.dat");
+        
+
+        // lib.usersRemove("client");
 
         //lib.booksInfo(0441172717);
         //lib.booksAll();

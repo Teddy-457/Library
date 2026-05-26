@@ -84,7 +84,7 @@ void Library::booksRemove(unsigned long isbn) {
 			return;
 		}
 	}
-	std::cout << "No book with that title exists.\n";
+	std::cout << "No book with that isbn exists.\n";
 }
 
 void Library::booksAll() const {

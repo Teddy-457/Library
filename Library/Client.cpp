@@ -4,12 +4,6 @@
 #include "Client.hpp"
 
 void Client::serialize(std::string filename) const {
-    ///std::ifstream file(filename, std::ios::in);
-    ///FileHandler::checkIfOpen(file);
-    ///Check if it already exists before writing
-    /// 
-    /// check at Library level for duplicates instead !!
-
     std::ofstream file(filename, std::ios::app);
     Utilities::checkIfOpen(file);
     file << m_DELIMITER << m_admin << m_DELIMITER << m_username << m_DELIMITER << m_password << '\n';
@@ -21,7 +15,7 @@ Client* Client::deserialize(std::ifstream& file) {
     std::string password;
 
     char c = file.get();
-    while (c != m_DELIMITER && c != '\n') {
+    while (c != m_DELIMITER) {
         username.push_back(c);
         c = file.get();
     }

@@ -1,6 +1,5 @@
 #include <string>
 #include <fstream>
-#include <limits>
 #include "User.hpp"
 #include "Client.hpp"
 #include "Admin.hpp"
@@ -9,10 +8,8 @@
 User* User::deserialize(std::string filename, unsigned line) {
     std::ifstream file(filename, std::ios::in);
     Utilities::checkIfOpen(file);
-
-    for (unsigned i = 0; i < line; ++i) {
-        file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
+    
+    Utilities::skipLines(file, line);
 
     char check = file.get();
     if (check == m_DELIMITER) {

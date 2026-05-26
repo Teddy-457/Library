@@ -7,7 +7,7 @@ Admin* Admin::deserialize(std::ifstream& file) {
     std::string password;
 
     char c = file.get();
-    while (c != m_DELIMITER && c != '\n') {
+    while (c != m_DELIMITER) {
         username.push_back(c);
         c = file.get();
     }

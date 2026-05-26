@@ -1,6 +1,7 @@
 #include "Utilities.hpp"
 #include <iostream>
 #include <string>
+#include <limits>
 #include <fstream>
 #include <stdexcept>
 
@@ -19,4 +20,10 @@ void Utilities::checkIfOpen(const std::ofstream& file) {
 void Utilities::logAndThrow(std::string message) {
 	std::cerr << message;
 	throw std::runtime_error(message);
+}
+
+void Utilities::skipLines(std::ifstream& file, unsigned lines) {
+	for (unsigned i = 0; i < lines; ++i) {
+        file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 }
