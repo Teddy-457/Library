@@ -142,5 +142,4 @@ void Book::print() const {
 	for(const char* t : m_tags) {
 		std::cout << t << '|';
 	}
-	std::cout << '\n';
 }

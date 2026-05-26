@@ -4,6 +4,8 @@
 #include "Client.hpp"
 
 void Client::serialize(std::string filename) const {
+    if(m_username == "admin") { return; }
+
     std::ofstream file(filename, std::ios::app);
     Utilities::checkIfOpen(file);
     file << m_DELIMITER << m_admin << m_DELIMITER << m_username << m_DELIMITER << m_password << '\n';

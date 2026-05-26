@@ -4,7 +4,6 @@
 #include "User.hpp"
 #include "Admin.hpp"
 #include "Book.hpp"
-//#include <iostream>////////////////
 
 class Library {
 private:
@@ -12,9 +11,9 @@ private:
 	std::vector<Book*> m_books;
 	std::string m_active_user;
 
-	void copyFrom() {
-		///
-	}
+	///void copyFrom() {
+	///	///
+	///}
 
 	void free();
 
