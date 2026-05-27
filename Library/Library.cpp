@@ -27,18 +27,26 @@ Library::~Library() {
 
 void Library::open() {
     ///
+	///
+	///
 }
 
 void Library::close() {
     ///
+	///
+	///
 }
 
 void Library::save() {
     ///
+	///
+	///
 }
 
 void Library::saveas() {
     ///
+	///
+	///
 }
 
 void Library::serialize(const std::string& filename) const {
@@ -78,7 +86,6 @@ void Library::deserialize(const std::string& filename) {
 	Utilities::skipLines(file, users+1);
 	int books; file >> books; file.close();
 	for (int i = users + 2; i <= books + users + 1; ++i) {
-		std::cout << i << '\n';
 		Book* book = Book::deserialize(filename, i);
 		m_books.push_back(book);
 	}
@@ -111,13 +118,13 @@ void Library::login(const std::string& username, const std::string& password) {
 
 void Library::logout() {
 	if(m_active_user == "") {
-		std::cout << "You are already logged out.\n";
+		if (Utilities::VERBOSE) { std::cout << "You are already logged out.\n"; }
 		return;
 	}
 
 	m_active_user = "";
 	m_admin_logged_in = false;
-	std::cout << "Logged out.\n";
+	if (Utilities::VERBOSE) { std::cout << "Logged out.\n"; }
 }
 
 bool Library::loggedIn() const {
@@ -138,10 +145,10 @@ void Library::usersAdd(User* user) {
 	}
 	m_users.push_back(user);
 	if(user->isAdmin()) {
-		std::cout << "Added admin " << username << '.' << '\n';
+		if (Utilities::VERBOSE) { std::cout << "Added admin " << username << '.' << '\n'; }
 	}
 	else {
-		std::cout << "Added user " << username << '.' << '\n';
+		if (Utilities::VERBOSE) { std::cout << "Added user " << username << '.' << '\n'; }
 	}
 }
 
@@ -155,7 +162,7 @@ void Library::usersRemove(const std::string& username) {
 		if(m_users[i]->getUsername() == username) {
 			m_users.erase(m_users.begin() + i);
 			if (m_active_user == username) { logout(); }
-			std::cout << "Deleted user " << username << '.' << '\n';
+			if (Utilities::VERBOSE) { std::cout << "Deleted user " << username << '.' << '\n'; }
 			return;
 		}
 	}
@@ -170,13 +177,13 @@ void Library::booksAdd(Book* book) {
 		}
 	}
 	m_books.push_back(book);
-	std::cout << "Added " << book->getTitle() << ".\n";
+	if (Utilities::VERBOSE) { std::cout << "Added " << book->getTitle() << ".\n"; }
 }
 
 void Library::booksRemove(unsigned long isbn) {
 	for (int i = 0; i < m_books.size(); ++i) {
 		if(m_books[i]->getISBN() == isbn) {
-			std::cout << "Removed " << m_books[i]->getTitle() << ".\n";
+			if (Utilities::VERBOSE) { std::cout << "Removed " << m_books[i]->getTitle() << ".\n"; }
 			m_books.erase(m_books.begin() + i);
 			return;
 		}

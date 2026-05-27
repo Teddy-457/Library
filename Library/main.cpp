@@ -1,11 +1,6 @@
 ﻿#include "Library.hpp"
 #include "Menu.hpp"
 
-///commands with no prototypes:
-///open, close, save, saveas
-
-//verboseness toggle
-
 int main() {
     Library lib;
     lib.usersAdd(new Client{ "client", "bbb" });

@@ -17,9 +17,8 @@ private:
 
     const std::string m_default_admin_password{ "i<3c++" };
 	
-	public:////////////////////////////////////////
-	void serialize(const std::string&) const;//////
-	void deserialize(const std::string&);//////////
+	void serialize(const std::string&) const;
+	void deserialize(const std::string&);
 	
 	void free();
 
