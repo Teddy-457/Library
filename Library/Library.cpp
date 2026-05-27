@@ -1,6 +1,8 @@
 #include <string>
+#include <fstream>
 #include <iostream>
 #include "Library.hpp"
+#include "Utilities.hpp"
 
 Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) { m_users.push_back(new Admin{"admin", m_default_admin_password}); }
 
@@ -8,11 +10,13 @@ void Library::free() {
 	for (const User* u : m_users) {
 		delete u;
 	}
-	
+	m_users.clear();
 	for (const Book* b : m_books) {
 		delete b;
 	}
+	m_books.clear();
 
+	m_filename = "";
 	m_active_user = "";
 	m_admin_logged_in = false;
 }
@@ -37,12 +41,47 @@ void Library::saveas() {
     ///
 }
 
-void Library::serialize() const {
+void Library::serialize(const std::string& filename) const {
+    std::ofstream file(filename, std::ios::out);
+    Utilities::checkIfOpen(file);
+
+	file << m_users.size() - 1 << '\n'; file.close(); //default admin user doesn't exist in the file
+	for(const User* u : m_users) {
+		u->serialize(filename);
+	}
 	
+	file.open(filename, std::ios::app);
+    Utilities::checkIfOpen(file);
+
+	file << m_books.size() << '\n'; file.close();
+	for(const Book* b : m_books) {
+		b->serialize(filename);
+	}
 }
 
-void Library::deserialize() {
-	
+void Library::deserialize(const std::string& filename) {
+	free();
+	m_users.push_back(new Admin{"admin", m_default_admin_password});
+
+	std::ifstream file(filename, std::ios::in);
+    Utilities::checkIfOpen(file);
+
+	int users; file >> users; file.close();
+	for (int i = 1; i <= users; ++i) {
+		User* user = User::deserialize(filename, i);
+		m_users.push_back(user);
+	}
+
+	file.open(filename, std::ios::in);
+	Utilities::checkIfOpen(file);
+
+	//Utilities::skipLines(file, users); //offset untested!
+	//int books; file >> books; file.close();
+	//std::cout << "books: " << books << '\n';
+	//for (int i = users; i <= books; ++i) { //offset untested!
+	//	Book* book = Book::deserialize(filename, i);
+	//	m_books.push_back(book);
+	//}
 }
 
 void Library::login() {
@@ -114,7 +153,12 @@ void Library::usersAdd(User* user) {
 		}
 	}
 	m_users.push_back(user);
-	std::cout << "Added user " << username << '.' << '\n';
+	if(user->isAdmin()) {
+		std::cout << "Added admin " << username << '.' << '\n';
+	}
+	else {
+		std::cout << "Added user " << username << '.' << '\n';
+	}
 }
 
 void Library::usersRemove(const std::string& username) {

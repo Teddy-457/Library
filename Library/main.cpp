@@ -127,37 +127,16 @@ void menu(Library& library) {
 int main() {
     Library lib;
     lib.usersAdd(new Client{ "client", "bbb" });
+    lib.usersAdd(new Admin{ "johhny bravo", "aaa" });
     lib.booksAdd(new Book{"Frank Herbert", "Dune", "Science Fiction",
                           "A mythic and emotionally charged hero's journey set on the desert planet Arrakis.",
                           1965, Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"}, 4.54, 441172717});
 
-    menu(lib);
+    //menu(lib);
 
-    // Book b{"Frank Herbert",
-    //                       "Dune",
-    //                       "Science Fiction"u,
-    //                       "A mythic and emotionally charged hero's journey set on the desert planet Arrakis.",
-    //                       1965,
-    //                       Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"},
-    //                       4.54,
-    //                       0441172717};
+    //lib.serialize("Library.dat");
+    Library lib_duplicate;
+    lib_duplicate.deserialize("Library.dat");
 
-    // Book *copy_of_b = Book::deserialize("Library.dat", 2);
-    // delete copy_of_b;
-    // b.serialize("Library.dat");
-
-    // lib.usersRemove("client");
-
-    // lib.booksInfo(0441172717);
-    // lib.booksAll();
-
-    // for (const auto* u : users) {
-    //     u->serialize("Library.dat");
-    // }
-
-    // User* copy_of_admin = User::deserialize("Library.dat", 0);
-    // User* copy_of_client = User::deserialize("Library.dat", 1);
-    // delete copy_of_client;
-    // delete copy_of_admin;
-    //return 0;
+    return 0;
 }

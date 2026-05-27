@@ -16,9 +16,10 @@ private:
 	bool m_admin_logged_in;
 
     const std::string m_default_admin_password{ "i<3c++" };
-
-	void serialize() const;
-	void deserialize();
+	
+	public:////////////////////////////////////////
+	void serialize(const std::string&) const;//////
+	void deserialize(const std::string&);//////////
 	
 	void free();
 

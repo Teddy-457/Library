@@ -32,8 +32,7 @@ void Book::serialize(const std::string& filename) const {
 	for(const char* t : m_tags) {
 		file << t << m_DELIMITER;
 	}
-	file << '\n';
-	file.close();
+	file << '\n'; file.close();
 }
 
 Book* Book::deserialize(const std::string& filename, unsigned line) {
