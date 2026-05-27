@@ -56,8 +56,11 @@ void menu(Library& library) {
         else if(command == "login") {
             ///
         }
+        if(!library.loggedIn()) {
+            std::cout << "You need to be logged in to use this command / the command doesn't exist\n";
+        }
         else if(command == "logout") {
-            ///
+            library.logout();
         }
         else if(command == "books") {
             std::cin >> command;
@@ -65,7 +68,12 @@ void menu(Library& library) {
                 library.booksAll();
             }
             else if(command == "info" || command == "view") {
-                ///
+                unsigned long isbn;
+                std::cin >> isbn;
+                ///error handling
+
+                library.booksInfo(isbn);
+                std::cout << '\n';
             }
             else if(command == "find") {
                 ///
@@ -77,25 +85,39 @@ void menu(Library& library) {
                 ///
             }
             else if(command == "remove") {
-                ///
+                unsigned long isbn;
+                std::cin >> isbn;
+                ///error handling
+
+                library.booksRemove(isbn);
             }
             else {
-                std::cout << "Command doesn't exist.\n";
+                std::cout << "Command doesn't exist.1\n";
             }
         }
         else if(command == "users") {
+            std::cin >> command;
             if(command == "add") {
-                ///
+                //std::string username;
+                //std::string password;
+                //std::cin >> username >> password;
+                /////error handling
+                //
+                //library.usersAdd()
             }
             else if(command == "remove") {
-                ///
+                std::string username;
+                std::cin >> username;
+                ///error handling
+
+                library.usersRemove(username);
             }
             else {
-                std::cout << "Command doesn't exist.\n";
+                std::cout << "Command doesn't exist2.\n";
             }
         }
         else {
-            std::cout << "Command doesn't exist.\n";
+            std::cout << "Command doesn't exist3.\n";
         }
     }
 }
@@ -105,13 +127,13 @@ int main() {
     lib.usersAdd(new Client{ "client", "bbb" });
     lib.booksAdd(new Book{"Frank Herbert", "Dune", "Science Fiction",
                           "A mythic and emotionally charged hero's journey set on the desert planet Arrakis.",
-                          1965, Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"}, 4.54, 0441172717});
+                          1965, Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"}, 4.54, 441172717});
 
     menu(lib);
     
     // Book b{"Frank Herbert",
     //                       "Dune",
-    //                       "Science Fiction",
+    //                       "Science Fiction"u,
     //                       "A mythic and emotionally charged hero's journey set on the desert planet Arrakis.",
     //                       1965,
     //                       Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"},

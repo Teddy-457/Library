@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Library.hpp"
 
-Library::Library() : m_active_user() { m_users.push_back(new Admin{"admin", "i<3c++"}); }
+Library::Library() : m_active_user(""), m_admin_logged_in(false) { m_users.push_back(new Admin{"admin", "i<3c++"}); }
 
 void Library::free() {
 	for (const User* u : m_users) {
@@ -14,6 +14,7 @@ void Library::free() {
 	}
 
 	m_active_user = "";
+	m_admin_logged_in = false;
 }
 
 Library::~Library() {
@@ -36,16 +37,27 @@ void Library::login() {
 ///в програмата, се извежда съобщение “Welcome, <username>!”, където <username>
 ///съответства на  потребителското име. В противен случай се извежда съобщение 
 ///за грешно име или парола. При повторен опит за login, се изкарва съобщение “You are already logged in.”
+
+// m_admin_logged_in=;
 }
 
 void Library::logout() {
 	m_active_user = "";
+	m_admin_logged_in = false;
 	std::cout << "Logged out.\n";
+}
+
+bool Library::loggedIn() const {
+	return m_active_user != "";
+}
+
+bool Library::loggedInAsAdmin() const {
+	return m_admin_logged_in;
 }
 
 void Library::usersAdd(User* user) {
 	std::string username{user->getUsername()};
-	for (User* u : m_users) {
+	for (const User* u : m_users) {
 		if(u->getUsername() == username) {
 			std::cout << "A user with that username already exists.\n";
 			return;
@@ -111,10 +123,15 @@ void Library::booksInfo(unsigned long isbn) const {
 	}
 }
 
-void Library::booksFind() const {
+void Library::booksFind(const Book::Option& option, std::string option_string) const {
 ///Търсене на книга по зададен критерий да игнорира регистъра на буквите (малки или големи)
 }
 
-void Library::booksSort() {
+enum class Library::Sort {
+	ASCENDING,
+	DESCENDING,
+};
+
+void Library::booksSort(const Book::Option&, const Sort& sort) {
 ///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от пряка селекция и метода на мехурчето
 }

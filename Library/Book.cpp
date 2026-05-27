@@ -130,6 +130,14 @@ unsigned long Book::getISBN() const {
 		return m_isbn;
 }
 
+enum class Book::Option {
+	TITLE,
+	AUTHOR,
+	TAG,
+	YEAR,
+	RATING,
+};
+
 void Book::print() const {
 	std::cout << m_title << '\n'
 			  << m_author << '\n'

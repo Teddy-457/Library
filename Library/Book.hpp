@@ -34,5 +34,6 @@ public:
 	std::string getAuthor() const;
 	const Tags_t& getTags() const;
 	unsigned long getISBN() const;
+	enum class Option;
 	void print() const;
 };
