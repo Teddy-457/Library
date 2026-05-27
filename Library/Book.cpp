@@ -25,7 +25,7 @@ Book::~Book() {
 	}
 }
 
-void Book::serialize(std::string filename) const {
+void Book::serialize(const std::string& filename) const {
 	std::ofstream file(filename, std::ios::app);
 	Utilities::checkIfOpen(file);
 	file << m_DELIMITER << m_isbn << m_DELIMITER << m_rating << m_DELIMITER << m_year << m_DELIMITER << m_description << m_DELIMITER << m_genre << m_DELIMITER << m_title << m_DELIMITER << m_author << m_DELIMITER;
@@ -36,7 +36,7 @@ void Book::serialize(std::string filename) const {
 	file.close();
 }
 
-Book* Book::deserialize(std::string filename, unsigned line) {
+Book* Book::deserialize(const std::string& filename, unsigned line) {
 	std::ifstream file(filename, std::ios::in);
 	Utilities::checkIfOpen(file);
 

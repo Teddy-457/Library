@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-struct Utilities {
+struct /*namespace*/ Utilities {
 	static void checkIfOpen(const std::ifstream&);
 	static void checkIfOpen(const std::ofstream&);
 	static void logAndThrow(std::string);

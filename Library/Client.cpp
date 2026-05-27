@@ -3,7 +3,10 @@
 #include "Utilities.hpp"
 #include "Client.hpp"
 
-void Client::serialize(std::string filename) const {
+Client::Client(std::string username, std::string password, bool) : User(username, password, true) {} //protected
+Client::Client(std::string username, std::string password) : User(username, password, false) {}      //public
+
+void Client::serialize(const std::string& filename) const {
     if(m_username == "admin") { return; }
 
     std::ofstream file(filename, std::ios::app);

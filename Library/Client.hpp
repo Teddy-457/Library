@@ -4,12 +4,12 @@
 
 class Client : public User {
 protected:
-    Client(std::string username, std::string password, bool) : User(username, password, true) {}
+    Client(std::string, std::string, bool);
 
 public:
-    Client() = delete; //Client() : User("", "", false) {}
-    Client(std::string username, std::string password) : User(username, password, false) {}
+    Client() = delete;
+    Client(std::string, std::string);
 
-    void serialize(std::string) const final;
+    void serialize(const std::string&) const final;
     static Client* deserialize(std::ifstream&);
 };

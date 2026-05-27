@@ -26,8 +26,8 @@ public:
 	Book& operator=(const Book&) = delete;
 	~Book();
 
-	void serialize(std::string) const;
-	static Book* deserialize(std::string, unsigned);
+	void serialize(const std::string&) const;
+	static Book* deserialize(const std::string&, unsigned);
 
 	std::string getTitle() const;
 	std::string getGenre() const;

@@ -32,33 +32,35 @@ void menu(Library& library) {
         }
         else if(command == "help") {
             std::cout << "The following commands are supported:\n"
-                      << "open <file>				opens <file>\n"
-                      << "close					closes currently opened file\n"
-                      << "save					saves the currently open file\n"
-                      << "saveas <file>				saves the currently open file in <file>\n"
-                      << "help					prints this information\n"
-                      << "exit					exists the program\n\n"
-                      << "login <username> <password>		logs in\n"
-                      << "logout					logs out\n\n"
+                         "open <file>				opens <file>\n"
+                         "close					closes currently opened file\n"
+                         "save					saves the currently open file\n"
+                         "saveas <file>				saves the currently open file in <file>\n"
+                         "help					prints this information\n"
+                         "exit					exists the program\n\n"
+                         "login <username> <password>		logs in as <username>\n"
+                         "logout					logs out current user\n\n"
                          "books all				prints information about all books\n"
-                      << "      info/view <isbn_value>		prints detailed information about a book\n"
-                      << "      find <option> <option_string> 	<option> can be title, author, or tag\n"
-                      << "      sort <option> [asc | desc] 	<option> can be title, author, or tag\n"
-                      << "      add 	 adds book\n"      ////////////////////////////////////
-                      << "      remove 	 removes book\n\n" ////////////////////////////////
-                      << "users add <user> <password>		adds user\n"
-                      << "      remove <user>			removes user\n";
+                         "      info/view <isbn_value>		prints detailed information about a book\n"
+                         "      find <option> <option_string> 	<option> can be title, author, or tag\n"
+                         "      sort <option> [asc | desc] 	<option> can be title, author, or tag\n"
+                         "      add <title> <author> <genre> 	adds book\n"
+                         "      <description> <year> <rating>\n"
+                         "      <isbn> <tags>\n"
+                         "      remove <isbn_value>	  	removes book with <isbn_value>\n\n"
+                         "users add <user> <password>		adds user <username>\n"
+                         "      remove <user>			removes user <username>\n";
         }
         else if(command == "exit") {
             std::cout << "Exiting the program...\n";
             return;
         }
         else if(command == "login") {
-            ///
+            library.login();
         }
-        if(!library.loggedIn()) {
-            std::cout << "You need to be logged in to use this command / the command doesn't exist\n";
-        }
+        //if(!library.loggedIn()) {
+        //    std::cout << "You need to be logged in to use this command / the command doesn't exist\n";
+        //}
         else if(command == "logout") {
             library.logout();
         }
@@ -130,7 +132,7 @@ int main() {
                           1965, Tags_t{"Sci-Fi", "Classic", "Space Opera", "Politics"}, 4.54, 441172717});
 
     menu(lib);
-    
+
     // Book b{"Frank Herbert",
     //                       "Dune",
     //                       "Science Fiction"u,

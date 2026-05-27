@@ -9,13 +9,15 @@ protected:
 
     static constexpr char m_DELIMITER{ '$' };
 
-    User(std::string username, std::string password, bool admin) : m_username(username), m_password(password), m_admin(admin) {}
+    User(std::string, std::string, bool);
 
 public:
-    virtual void serialize(std::string) const = 0;
-    static User* deserialize(std::string, unsigned);
+    virtual void serialize(const std::string&) const = 0;
+    static User* deserialize(const std::string&, unsigned);
 
     std::string getUsername() const;
+    std::string getPassword() const;
+    bool isAdmin() const;
 
     virtual ~User() = default;
 };

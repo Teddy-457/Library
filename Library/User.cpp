@@ -5,7 +5,9 @@
 #include "Admin.hpp"
 #include "Utilities.hpp"
 
-User* User::deserialize(std::string filename, unsigned line) {
+User::User(std::string username, std::string password, bool admin) : m_username(username), m_password(password), m_admin(admin) {}
+
+User* User::deserialize(const std::string& filename, unsigned line) {
     std::ifstream file(filename, std::ios::in);
     Utilities::checkIfOpen(file);
     
@@ -33,4 +35,12 @@ User* User::deserialize(std::string filename, unsigned line) {
 
 std::string User::getUsername() const {
     return m_username;
+}
+
+std::string User::getPassword() const {
+    return m_password;
+}
+
+bool User::isAdmin() const {
+    return m_admin;
 }

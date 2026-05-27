@@ -2,6 +2,8 @@
 #include <string>
 #include "Admin.hpp"
 
+Admin::Admin(std::string username, std::string password) : Client(username, password, true) {}
+
 Admin* Admin::deserialize(std::ifstream& file) {
     std::string username;
     std::string password;

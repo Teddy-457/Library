@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Library.hpp"
 
-Library::Library() : m_active_user(""), m_admin_logged_in(false) { m_users.push_back(new Admin{"admin", "i<3c++"}); }
+Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) { m_users.push_back(new Admin{"admin", m_default_admin_password}); }
 
 void Library::free() {
 	for (const User* u : m_users) {
@@ -21,6 +21,22 @@ Library::~Library() {
 	free();
 }
 
+void Library::open() {
+    ///
+}
+
+void Library::close() {
+    ///
+}
+
+void Library::save() {
+    ///
+}
+
+void Library::saveas() {
+    ///
+}
+
 void Library::serialize() const {
 	
 }
@@ -30,30 +46,64 @@ void Library::deserialize() {
 }
 
 void Library::login() {
-///при въвеждане на паролата на екрана да се изписва символа * вместо реалния символ
+	///при въвеждане на паролата на екрана да се изписва символа * вместо реалния символ
+	
+	if(m_active_user != "") {
+		std::cout << "You are already logged in.\n";
+		return;
+	}
 
-///След въвеждането на командата потребителят последователно е питан 
-///за потребителско име и парола. Ако потребител с посочените данни съществува 
-///в програмата, се извежда съобщение “Welcome, <username>!”, където <username>
-///съответства на  потребителското име. В противен случай се извежда съобщение 
-///за грешно име или парола. При повторен опит за login, се изкарва съобщение “You are already logged in.”
+	std::string username;
+	std::string password;
+	std::cout << "Enter your username: ";
+	std::cin >> username;
+	///error handling
+	std::cout << "Enter your password: ";
+	std::cin >> password;
+	///error handling
 
-// m_admin_logged_in=;
+	if(username == "admin") {
+		if(password == m_default_admin_password) {
+			m_active_user = "admin";
+			m_admin_logged_in = true;
+			std::cout << "Welcome, admin!\n";
+			return;
+		}
+		std::cout << "Wrong username/password.\n";
+		return;
+	}
+
+	for(const User* u : m_users) {
+		if(u->getUsername() == username) {
+			if(password == u->getPassword()) {
+				m_active_user = username;
+				m_admin_logged_in = u->isAdmin();
+				std::cout << "Welcome, " << username <<"!\n";
+				return;
+			}
+		}
+	}
+	std::cout << "Wrong username/password.\n";
 }
 
 void Library::logout() {
+	if(m_active_user == "") {
+		std::cout << "You are already logged out.\n";
+		return;
+	}
+
 	m_active_user = "";
 	m_admin_logged_in = false;
 	std::cout << "Logged out.\n";
 }
 
-bool Library::loggedIn() const {
-	return m_active_user != "";
-}
-
-bool Library::loggedInAsAdmin() const {
-	return m_admin_logged_in;
-}
+//bool Library::loggedIn() const {
+//	return m_active_user != "";
+//}
+//
+//bool Library::loggedInAsAdmin() const {
+//	return m_admin_logged_in;
+//}
 
 void Library::usersAdd(User* user) {
 	std::string username{user->getUsername()};
@@ -67,7 +117,7 @@ void Library::usersAdd(User* user) {
 	std::cout << "Added user " << username << '.' << '\n';
 }
 
-void Library::usersRemove(std::string username) {
+void Library::usersRemove(const std::string& username) {
 	if(username=="admin") {
 		std::cout << "Can't delete default admin user.\n";
 		return;
@@ -124,7 +174,16 @@ void Library::booksInfo(unsigned long isbn) const {
 }
 
 void Library::booksFind(const Book::Option& option, std::string option_string) const {
-///Търсене на книга по зададен критерий да игнорира регистъра на буквите (малки или големи)
+	///Търсене на книга по зададен критерий да игнорира регистъра на буквите (малки или големи)
+	
+	auto to_lowercase = [](std::string &str) -> void {
+		for (char& c : str) { c = std::tolower(c); }
+	};
+	to_lowercase(option_string);
+	
+	///
+	///
+	///
 }
 
 enum class Library::Sort {
@@ -133,5 +192,9 @@ enum class Library::Sort {
 };
 
 void Library::booksSort(const Book::Option&, const Sort& sort) {
-///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от пряка селекция и метода на мехурчето
+	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от пряка селекция и метода на мехурчето
+	
+	///
+	///
+	///
 }
