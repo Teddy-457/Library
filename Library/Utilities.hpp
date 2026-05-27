@@ -7,4 +7,5 @@ struct /*namespace*/ Utilities {
 	static void checkIfOpen(const std::ofstream&);
 	static void logAndThrow(std::string);
 	static void skipLines(std::ifstream&, unsigned);
+	static void clearCin();
 };

@@ -27,3 +27,8 @@ void Utilities::skipLines(std::ifstream& file, unsigned lines) {
         file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
+
+void Utilities::clearCin() {
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}

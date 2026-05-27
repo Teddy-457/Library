@@ -34,10 +34,10 @@ public:
     void save();
     void saveas();
 
-	void login();
+	void login(const std::string&, const std::string&);
 	void logout();
-	//bool loggedIn() const;
-	//bool loggedInAsAdmin() const;
+	bool loggedIn() const;
+	bool loggedInAsAdmin() const;
 	void usersAdd(User*);
 	void usersRemove(const std::string&);
 

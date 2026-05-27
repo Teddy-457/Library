@@ -84,23 +84,7 @@ void Library::deserialize(const std::string& filename) {
 	}
 }
 
-void Library::login() {
-	///при въвеждане на паролата на екрана да се изписва символа * вместо реалния символ
-	
-	if(m_active_user != "") {
-		std::cout << "You are already logged in.\n";
-		return;
-	}
-
-	std::string username;
-	std::string password;
-	std::cout << "Enter your username: ";
-	std::cin >> username;
-	///error handling
-	std::cout << "Enter your password: ";
-	std::cin >> password;
-	///error handling
-
+void Library::login(const std::string& username, const std::string& password) {
 	if(username == "admin") {
 		if(password == m_default_admin_password) {
 			m_active_user = "admin";
@@ -136,13 +120,13 @@ void Library::logout() {
 	std::cout << "Logged out.\n";
 }
 
-//bool Library::loggedIn() const {
-//	return m_active_user != "";
-//}
-//
-//bool Library::loggedInAsAdmin() const {
-//	return m_admin_logged_in;
-//}
+bool Library::loggedIn() const {
+	return m_active_user != "";
+}
+
+bool Library::loggedInAsAdmin() const {
+	return m_admin_logged_in;
+}
 
 void Library::usersAdd(User* user) {
 	std::string username{user->getUsername()};
@@ -170,6 +154,7 @@ void Library::usersRemove(const std::string& username) {
 	for (int i = 0; i < m_users.size(); ++i) {
 		if(m_users[i]->getUsername() == username) {
 			m_users.erase(m_users.begin() + i);
+			if (m_active_user == username) { logout(); }
 			std::cout << "Deleted user " << username << '.' << '\n';
 			return;
 		}
