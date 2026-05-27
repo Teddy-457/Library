@@ -45,7 +45,7 @@ void Library::serialize(const std::string& filename) const {
     std::ofstream file(filename, std::ios::out);
     Utilities::checkIfOpen(file);
 
-	file << m_users.size() - 1 << '\n'; file.close(); //default admin user doesn't exist in the file
+	file << m_users.size() - 1 << '\n'; file.close(); //default admin user doesn't exist in the file (-1)
 	for(const User* u : m_users) {
 		u->serialize(filename);
 	}
@@ -75,13 +75,13 @@ void Library::deserialize(const std::string& filename) {
 	file.open(filename, std::ios::in);
 	Utilities::checkIfOpen(file);
 
-	//Utilities::skipLines(file, users); //offset untested!
-	//int books; file >> books; file.close();
-	//std::cout << "books: " << books << '\n';
-	//for (int i = users; i <= books; ++i) { //offset untested!
-	//	Book* book = Book::deserialize(filename, i);
-	//	m_books.push_back(book);
-	//}
+	Utilities::skipLines(file, users+1);
+	int books; file >> books; file.close();
+	for (int i = users + 2; i <= books + users + 1; ++i) {
+		std::cout << i << '\n';
+		Book* book = Book::deserialize(filename, i);
+		m_books.push_back(book);
+	}
 }
 
 void Library::login() {
