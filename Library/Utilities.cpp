@@ -25,7 +25,6 @@ bool Utilities::checkIfExists(const std::string& filename) {
 	return file_exists;
 }
 
-
 void Utilities::logAndThrow(std::string message) {
 	std::cerr << message;
 	throw std::runtime_error(message);

@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "User.hpp"
-#include "Admin.hpp"
-#include "Book.hpp"
+#include "../User/User.hpp"
+#include "../User/Admin.hpp"
+#include "../Book.hpp"
 
 class Library {
 private:
@@ -39,6 +39,7 @@ public:
 	void logout();
 	bool loggedIn() const;
 	bool loggedInAsAdmin() const;
+	bool activeFile() const;
 	void usersAdd(User*);
 	void usersRemove(const std::string&);
 

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "Library.hpp"
-#include "Utilities.hpp"
+#include "../Utilities.hpp"
 
 Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) { m_users.push_back(new Admin{"admin", m_default_admin_password}); }
 
@@ -144,11 +144,6 @@ void Library::login(const std::string& username, const std::string& password) {
 }
 
 void Library::logout() {
-	if(m_active_user == "") {
-		if (Utilities::VERBOSE) { std::cout << "You are already logged out.\n"; }
-		return;
-	}
-
 	m_active_user = "";
 	m_admin_logged_in = false;
 	if (Utilities::VERBOSE) { std::cout << "Logged out.\n"; }
@@ -160,6 +155,10 @@ bool Library::loggedIn() const {
 
 bool Library::loggedInAsAdmin() const {
 	return m_admin_logged_in;
+}
+
+bool Library::activeFile() const {
+	return m_filename != "";
 }
 
 void Library::usersAdd(User* user) {

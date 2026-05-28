@@ -1,5 +1,5 @@
-﻿#include "Library.hpp"
-#include "Menu.hpp"
+﻿#include "Library&Menu/Library.hpp"
+#include "Library&Menu/Menu.hpp"
 
 int main() {
     Library lib;

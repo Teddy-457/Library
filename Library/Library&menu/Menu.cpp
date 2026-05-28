@@ -1,7 +1,36 @@
 ﻿#include <iostream>
 #include <string>
 #include "Menu.hpp"
-#include "Utilities.hpp"
+#include "../User/User.hpp"
+#include "../User/Client.hpp"
+#include "../User/Admin.hpp"
+#include "../Utilities.hpp"
+
+namespace {
+    bool checkLoginAndLog(Library& library) {
+        if (!library.loggedIn()) {
+            std::cout << "You need to log in to run this command.\n";
+            return false;
+        }
+        return true;
+    }
+
+    bool checkAdminAndLog(Library& library) {
+        if (!library.loggedInAsAdmin()) {
+            std::cout << "You need to be logged in as an administrator to run this command.\n";
+            return false;
+        }
+        return true;
+    }
+
+    bool checkFileAndLog(Library& library) {
+        if (!library.activeFile()) {
+            std::cout << "You need to open a file to use this command.\n";
+            return false;
+        }
+        return true;
+    }
+}
 
 void Menu::menu(Library& library) {
     bool first_run{ true };
@@ -64,8 +93,11 @@ void Menu::menu(Library& library) {
             return;
         }
         else if (command == "login") {
+            if (!checkFileAndLog(library)) { Utilities::clearCin(); continue; }
+
             if (library.loggedIn()) {
                 std::cout << "You are already logged in.\n";
+                Utilities::clearCin();
                 continue;
             }
 
@@ -85,14 +117,17 @@ void Menu::menu(Library& library) {
 
             library.login(username, password);
         }
-        if (!library.loggedIn()) {///////runs too much
-            std::cout << "You need to be logged in to use this command / the command doesn't exist\n";
-            Utilities::clearCin();
-        }
         else if (command == "logout") {
+            if (!checkFileAndLog(library) || !checkLoginAndLog) { continue; }
+
             library.logout();
         }
         else if (command == "books") {
+            if (!checkFileAndLog(library) || !checkLoginAndLog) {
+                Utilities::clearCin();
+                continue;
+            }
+
             std::cin >> command;
             if (command == "all") {
                 library.booksAll();
@@ -118,20 +153,14 @@ void Menu::menu(Library& library) {
                 ///
             }
             else if (command == "add") {
-                if (!library.loggedInAsAdmin()) {
-                    std::cout << "You need to be logged in as an administrator to run this command.\n";
-                    continue;
-                }
+                if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
 
                 ///
                 ///
                 ///
             }
             else if (command == "remove") {
-                if (!library.loggedInAsAdmin()) {
-                    std::cout << "You need to be logged in as an administrator to run this command.\n";
-                    continue;
-                }
+                if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
 
                 unsigned long isbn;
                 std::cin >> isbn;
@@ -141,15 +170,18 @@ void Menu::menu(Library& library) {
 
                 library.booksRemove(isbn);
             }
+            else {
+                std::cout << "Unknown command.\n";
+            }
         }
         else if (command == "users") {
+            if (!checkFileAndLog(library) || !checkAdminAndLog) {
+                Utilities::clearCin();
+                continue;
+            }
+
             std::cin >> command;
             if (command == "add") {
-                if (!library.loggedInAsAdmin()) {
-                    std::cout << "You need to be logged in as an administrator to run this command.\n";
-                    continue;
-                }
-
                 std::string username;
                 std::string password;
                 bool admin;
@@ -168,11 +200,6 @@ void Menu::menu(Library& library) {
                 library.usersAdd(user);
             }
             else if (command == "remove") {
-                if (!library.loggedInAsAdmin()) {
-                    std::cout << "You need to be logged in as an administrator to run this command.\n";
-                    continue;
-                }
-
                 std::string username;
                 std::cin >> username;
                 ///
@@ -181,6 +208,12 @@ void Menu::menu(Library& library) {
 
                 library.usersRemove(username);
             }
+            else {
+                std::cout << "Unknown command.\n";
+            }
+        }
+        else {
+            std::cout << "Unknown command.\n";
         }
     }
 }

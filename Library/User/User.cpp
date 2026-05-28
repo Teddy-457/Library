@@ -3,7 +3,7 @@
 #include "User.hpp"
 #include "Client.hpp"
 #include "Admin.hpp"
-#include "Utilities.hpp"
+#include "../Utilities.hpp"
 
 User::User(std::string username, std::string password, bool admin) : m_username(username), m_password(password), m_admin(admin) {}
 
