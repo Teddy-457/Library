@@ -19,20 +19,45 @@ void Library::free() {
 	m_filename = "";
 	m_active_user = "";
 	m_admin_logged_in = false;
+	m_users.push_back(new Admin{"admin", m_default_admin_password});
 }
 
 Library::~Library() {
 	free();
 }
 
-void Library::open() {
-    ///
+void Library::open(const std::string& filename) {
+	if(m_filename != "") {
+		std::cout << "You need to close the currently open file first.\n";
+		return;
+	}
+
+	bool file_exists{Utilities::checkIfExists(filename)};
+
+	if(file_exists) {
+		deserialize(filename);
+		std::cout << "Successfully opened " << filename << ".\n";
+	}
+	else {
+		std::ofstream file(filename, std::ios::out); file.close();
+		free();
+		m_filename = filename;
+		std::cout << "Successfully (created and) opened " << filename << ".\n";
+	}
+	///
 	///
 	///
 }
 
 void Library::close() {
-    ///
+	if(m_filename != "") { 
+		std::cout << "Successfully closed " << m_filename << ".\n";
+		free(); ///could this free be a problem? 
+	}
+	else{
+		std::cout << "No file is opened.\n";
+	}
+	///
 	///
 	///
 }
@@ -43,7 +68,7 @@ void Library::save() {
 	///
 }
 
-void Library::saveas() {
+void Library::saveas(const std::string& filename) {
     ///
 	///
 	///
@@ -69,10 +94,12 @@ void Library::serialize(const std::string& filename) const {
 
 void Library::deserialize(const std::string& filename) {
 	free();
-	m_users.push_back(new Admin{"admin", m_default_admin_password});
-
+	m_filename = filename;
+	
 	std::ifstream file(filename, std::ios::in);
     Utilities::checkIfOpen(file);
+
+	if (file.peek() == std::ifstream::traits_type::eof()) { file.close(); return; } //check for empty file generated with open()
 
 	int users; file >> users; file.close();
 	for (int i = 1; i <= users; ++i) {

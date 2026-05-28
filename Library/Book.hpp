@@ -24,6 +24,8 @@ public:
 	Book() = delete;
 	Book(const Book&) = delete;
 	Book& operator=(const Book&) = delete;
+	Book (Book&&) noexcept = delete;
+	Book& operator=(Book&&) noexcept = delete;
 	~Book();
 
 	void serialize(const std::string&) const;

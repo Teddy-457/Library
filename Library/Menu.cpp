@@ -15,11 +15,15 @@ void Menu::menu(Library& library) {
         std::cin >> command;
 
         if (command == "open") {
+            std::string filename;
+            std::cin >> filename;
             ///
+            ///error handling
             ///
-            ///
+            library.open(filename);
         }
         else if (command == "close") {
+            library.close();
             ///
             ///
             ///
@@ -81,7 +85,7 @@ void Menu::menu(Library& library) {
 
             library.login(username, password);
         }
-        if (!library.loggedIn()) {
+        if (!library.loggedIn()) {///////runs too much
             std::cout << "You need to be logged in to use this command / the command doesn't exist\n";
             Utilities::clearCin();
         }
@@ -137,9 +141,6 @@ void Menu::menu(Library& library) {
 
                 library.booksRemove(isbn);
             }
-            //else {
-            //    std::cout << "Command doesn't exist.1\n";
-            //}
         }
         else if (command == "users") {
             std::cin >> command;
@@ -180,12 +181,6 @@ void Menu::menu(Library& library) {
 
                 library.usersRemove(username);
             }
-            //else {
-            //    std::cout << "Command doesn't exist2.\n";
-            //}
         }
-        //else {
-        //    std::cout << "Command doesn't exist3.\n";
-        //}
     }
 }

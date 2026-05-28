@@ -26,12 +26,14 @@ public:
 	Library();
 	Library(const Library&) = delete;
 	Library& operator=(const Library&) = delete;
+	Library (Library&&) noexcept = delete;
+	Library& operator=(Library&&) noexcept = delete;
 	~Library();
 	
-	void open();
+	void open(const std::string&);
     void close();
     void save();
-    void saveas();
+    void saveas(const std::string&);
 
 	void login(const std::string&, const std::string&);
 	void logout();

@@ -17,6 +17,15 @@ void Utilities::checkIfOpen(const std::ofstream& file) {
 	}
 }
 
+bool Utilities::checkIfExists(const std::string& filename) {
+	std::ifstream file(filename);
+	bool file_exists{file.good()};
+	file.close();
+
+	return file_exists;
+}
+
+
 void Utilities::logAndThrow(std::string message) {
 	std::cerr << message;
 	throw std::runtime_error(message);
