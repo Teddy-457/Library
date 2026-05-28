@@ -39,8 +39,9 @@ void Menu::menu(Library& library) {
             std::cout << '\n';
             first_run = false;
         }
-        std::string command;
+
         std::cout << "> ";
+        std::string command;
         std::cin >> command;
 
         if (command == "open") {
@@ -53,19 +54,17 @@ void Menu::menu(Library& library) {
         }
         else if (command == "close") {
             library.close();
-            ///
-            ///
-            ///
         }
         else if (command == "save") {
-            ///
-            ///
-            ///
+            library.save();
         }
         else if (command == "saveas") {
+            std::string filename;
+            std::cin >> filename;
             ///
+            ///error handling
             ///
-            ///
+            library.saveas(filename);
         }
         else if (command == "help") {
             std::cout << "The following commands are supported:\n"
@@ -118,12 +117,12 @@ void Menu::menu(Library& library) {
             library.login(username, password);
         }
         else if (command == "logout") {
-            if (!checkFileAndLog(library) || !checkLoginAndLog) { continue; }
+            if (!checkFileAndLog(library) || !checkLoginAndLog(library)) { continue; }
 
             library.logout();
         }
         else if (command == "books") {
-            if (!checkFileAndLog(library) || !checkLoginAndLog) {
+            if (!checkFileAndLog(library) || !checkLoginAndLog(library)) {
                 Utilities::clearCin();
                 continue;
             }
@@ -175,7 +174,7 @@ void Menu::menu(Library& library) {
             }
         }
         else if (command == "users") {
-            if (!checkFileAndLog(library) || !checkAdminAndLog) {
+            if (!checkFileAndLog(library) || !checkAdminAndLog(library)) {
                 Utilities::clearCin();
                 continue;
             }

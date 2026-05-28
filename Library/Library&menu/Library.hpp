@@ -5,6 +5,12 @@
 #include "../User/Admin.hpp"
 #include "../Book.hpp"
 
+static enum class Logging {
+	QUIET,
+	VERBOSE,
+	DEBUG,
+};
+
 class Library {
 private:
 	std::vector<User*> m_users;
@@ -16,6 +22,7 @@ private:
 	bool m_admin_logged_in;
 
     const std::string m_default_admin_password{ "i<3c++" };
+	const Logging m_LOG_LEVEL{ Logging::DEBUG };
 	
 	void serialize(const std::string&) const;
 	void deserialize(const std::string&);
@@ -32,8 +39,8 @@ public:
 	
 	void open(const std::string&);
     void close();
-    void save();
-    void saveas(const std::string&);
+    void save() const;
+	void saveas(const std::string&, bool = false) const;
 
 	void login(const std::string&, const std::string&);
 	void logout();

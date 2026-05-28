@@ -3,8 +3,6 @@
 #include <string>
 
 /*struct*/ namespace Utilities {
-	/*static*/ constexpr bool VERBOSE{true};
-
 	/*static*/ void checkIfOpen(const std::ifstream&);
 	/*static*/ void checkIfOpen(const std::ofstream&);
 	/*static*/ bool checkIfExists(const std::string&);

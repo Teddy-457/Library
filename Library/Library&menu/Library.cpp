@@ -4,9 +4,15 @@
 #include "Library.hpp"
 #include "../Utilities.hpp"
 
-Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) { m_users.push_back(new Admin{"admin", m_default_admin_password}); }
+Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::Library()\n"; }
+
+	m_users.push_back(new Admin{"admin", m_default_admin_password});
+}
 
 void Library::free() {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::free()\n"; }
+
 	for (const User* u : m_users) {
 		delete u;
 	}
@@ -23,12 +29,16 @@ void Library::free() {
 }
 
 Library::~Library() {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::~Library()\n"; }
+
 	free();
 }
 
 void Library::open(const std::string& filename) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::open(" << filename << ")\n"; }
+
 	if(m_filename != "") {
-		std::cout << "You need to close the currently open file first.\n";
+		std::cout << "You need to close the currently opened file first.\n";
 		return;
 	}
 
@@ -44,37 +54,49 @@ void Library::open(const std::string& filename) {
 		m_filename = filename;
 		std::cout << "Successfully (created and) opened " << filename << ".\n";
 	}
-	///
-	///
-	///
 }
 
 void Library::close() {
-	if(m_filename != "") { 
-		std::cout << "Successfully closed " << m_filename << ".\n";
-		free(); ///could this free be a problem? 
-	}
-	else{
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::close()\n"; }
+
+	if (m_filename == "") {
 		std::cout << "No file is opened.\n";
+		return;
 	}
-	///
-	///
-	///
+
+	std::string filename{m_filename};
+	free(); ///could this free be a problem?
+	std::cout << "Successfully closed " << filename << ".\n";
 }
 
-void Library::save() {
+void Library::save() const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::save()\n"; }
+
+	saveas(m_filename, true);
+	std::cout << "Successfully saved " << m_filename << ".\n";
     ///
 	///
 	///
 }
 
-void Library::saveas(const std::string& filename) {
+void Library::saveas(const std::string& filename, bool called_from_save) const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::saveas(" << filename << ")\n"; }
+
+	if (m_filename == "") {
+		std::cout << "You don't have an opened file.\n";
+		return;
+	}
+
+	serialize(filename);
+	if (!called_from_save) { std::cout << "Successfully saved another" << filename << ".\n"; }
     ///
 	///
 	///
 }
 
 void Library::serialize(const std::string& filename) const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::serialize(" << filename << ")\n"; }
+
     std::ofstream file(filename, std::ios::out);
     Utilities::checkIfOpen(file);
 
@@ -93,6 +115,8 @@ void Library::serialize(const std::string& filename) const {
 }
 
 void Library::deserialize(const std::string& filename) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::deserialize(" << filename << ")\n"; }
+
 	free();
 	m_filename = filename;
 	
@@ -119,6 +143,8 @@ void Library::deserialize(const std::string& filename) {
 }
 
 void Library::login(const std::string& username, const std::string& password) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::login(" << username << ", " << password << ")\n"; }
+
 	if(username == "admin") {
 		if(password == m_default_admin_password) {
 			m_active_user = "admin";
@@ -144,24 +170,34 @@ void Library::login(const std::string& username, const std::string& password) {
 }
 
 void Library::logout() {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::logout()\n"; }
+
 	m_active_user = "";
 	m_admin_logged_in = false;
-	if (Utilities::VERBOSE) { std::cout << "Logged out.\n"; }
+	if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Logged out.\n"; }
 }
 
 bool Library::loggedIn() const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::loggedIn()\n"; }
+
 	return m_active_user != "";
 }
 
 bool Library::loggedInAsAdmin() const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::loggedInAsAdmin()\n"; }
+
 	return m_admin_logged_in;
 }
 
 bool Library::activeFile() const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::activeFile()\n"; }
+
 	return m_filename != "";
 }
 
 void Library::usersAdd(User* user) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::usersAdd(User*)\n"; }
+
 	std::string username{user->getUsername()};
 	for (const User* u : m_users) {
 		if(u->getUsername() == username) {
@@ -171,14 +207,16 @@ void Library::usersAdd(User* user) {
 	}
 	m_users.push_back(user);
 	if(user->isAdmin()) {
-		if (Utilities::VERBOSE) { std::cout << "Added admin " << username << '.' << '\n'; }
+		if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Added admin " << username << '.' << '\n'; }
 	}
 	else {
-		if (Utilities::VERBOSE) { std::cout << "Added user " << username << '.' << '\n'; }
+		if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Added user " << username << '.' << '\n'; }
 	}
 }
 
 void Library::usersRemove(const std::string& username) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::usersRemove(" << username << ")\n"; }
+
 	if(username=="admin") {
 		std::cout << "Can't delete default admin user.\n";
 		return;
@@ -188,7 +226,7 @@ void Library::usersRemove(const std::string& username) {
 		if(m_users[i]->getUsername() == username) {
 			m_users.erase(m_users.begin() + i);
 			if (m_active_user == username) { logout(); }
-			if (Utilities::VERBOSE) { std::cout << "Deleted user " << username << '.' << '\n'; }
+			if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Deleted user " << username << '.' << '\n'; }
 			return;
 		}
 	}
@@ -196,6 +234,8 @@ void Library::usersRemove(const std::string& username) {
 }
 
 void Library::booksAdd(Book* book) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksAdd(Book*)\n"; }
+
 	for (const Book* b : m_books) {
 		if(b->getISBN() == book->getISBN()) {
 			std::cout << "A book with that ISBN already exists.\n";
@@ -203,13 +243,15 @@ void Library::booksAdd(Book* book) {
 		}
 	}
 	m_books.push_back(book);
-	if (Utilities::VERBOSE) { std::cout << "Added " << book->getTitle() << ".\n"; }
+	if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Added " << book->getTitle() << ".\n"; }
 }
 
 void Library::booksRemove(unsigned long isbn) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksRemove(" << isbn << ")\n"; }
+
 	for (int i = 0; i < m_books.size(); ++i) {
 		if(m_books[i]->getISBN() == isbn) {
-			if (Utilities::VERBOSE) { std::cout << "Removed " << m_books[i]->getTitle() << ".\n"; }
+			if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Removed " << m_books[i]->getTitle() << ".\n"; }
 			m_books.erase(m_books.begin() + i);
 			return;
 		}
@@ -218,6 +260,8 @@ void Library::booksRemove(unsigned long isbn) {
 }
 
 void Library::booksAll() const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksAll()\n"; }
+
 	for(const Book* b : m_books) {
 		std::cout << b->getTitle() << '\n'
 				  << b->getAuthor() << '\n'
@@ -227,6 +271,8 @@ void Library::booksAll() const {
 }
 
 void Library::booksInfo(unsigned long isbn) const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksInfo(" << isbn << ")\n"; }
+
 	for(const Book* b : m_books) {
 		if (b->getISBN() == isbn) {
 			b->print();
@@ -236,6 +282,8 @@ void Library::booksInfo(unsigned long isbn) const {
 }
 
 void Library::booksFind(const Book::Option& option, std::string option_string) const {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksFind(Book::Option, " << option_string << ")\n"; }
+
 	///Търсене на книга по зададен критерий да игнорира регистъра на буквите (малки или големи)
 	
 	auto to_lowercase = [](std::string &str) -> void {
@@ -254,6 +302,8 @@ enum class Library::Sort {
 };
 
 void Library::booksSort(const Book::Option&, const Sort& sort) {
+	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksSort(Book::Option, Library::Sort)\n"; }
+
 	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от пряка селекция и метода на мехурчето
 	
 	///
