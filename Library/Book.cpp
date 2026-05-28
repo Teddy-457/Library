@@ -129,13 +129,45 @@ unsigned long Book::getISBN() const {
 		return m_isbn;
 }
 
-enum class Book::Option {
-	TITLE,
-	AUTHOR,
-	TAG,
-	YEAR,
-	RATING,
-};
+std::string Book::optionToString(BookOption option) {
+	switch (option) {
+		case BookOption::TITLE:
+			return "title";
+		case BookOption::AUTHOR:
+			return "author";
+		case BookOption::TAG:
+			return "tag";
+		case BookOption::YEAR:
+			return "year";
+		case BookOption::RATING:
+			return "rating";
+		case BookOption::INVALID:
+			return "";
+		default:
+			Utilities::logAndThrow("No such BookOption exists");
+	}
+}
+
+BookOption Book::stringToOption(const std::string& option) {
+	if (option == "title") {
+		return BookOption::TITLE;
+	}
+	else if (option == "author") {
+		return BookOption::AUTHOR;
+	}
+	else if (option == "tag") {
+		return BookOption::TAG;
+	}
+	else if (option == "year") {
+		return BookOption::YEAR;
+	}
+	else if (option == "rating") {
+		return BookOption::RATING;
+	}
+	else {
+		return BookOption::INVALID;
+	}
+}
 
 void Book::print() const {
 	std::cout << m_title << '\n'

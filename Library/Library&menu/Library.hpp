@@ -5,10 +5,15 @@
 #include "../User/Admin.hpp"
 #include "../Book.hpp"
 
-static enum class Logging {
+enum class Logging {
 	QUIET,
 	VERBOSE,
 	DEBUG,
+};
+
+enum class BookSort {
+	ASCENDING,
+	DESCENDING,
 };
 
 class Library {
@@ -22,10 +27,14 @@ private:
 	bool m_admin_logged_in;
 
     const std::string m_default_admin_password{ "i<3c++" };
-	const Logging m_LOG_LEVEL{ Logging::DEBUG };
+	const Logging m_LOG_LEVEL{ Logging::VERBOSE };
 	
 	void serialize(const std::string&) const;
 	void deserialize(const std::string&);
+
+	bool findBookByTitle(const std::string&) const;
+	bool findBookByAuthor(const std::string&) const;
+	bool findBookByTag(const std::string&) const;
 	
 	void free();
 
@@ -47,6 +56,7 @@ public:
 	bool loggedIn() const;
 	bool loggedInAsAdmin() const;
 	bool activeFile() const;
+	const Logging& getLogLevel() const;
 	void usersAdd(User*);
 	void usersRemove(const std::string&);
 
@@ -54,7 +64,7 @@ public:
 	void booksRemove(unsigned long);
 	void booksAll() const;
 	void booksInfo(unsigned long) const;
-	void booksFind(const Book::Option&, std::string) const;
+	void booksFind(BookOption, std::string) const;
 	enum class Sort;
-	void booksSort(const Book::Option&, const Sort&);
+	void booksSort(BookOption, BookSort);
 };

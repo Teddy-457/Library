@@ -6,7 +6,7 @@
 #include "../User/Admin.hpp"
 #include "../Utilities.hpp"
 
-namespace {
+namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(Library& library) {
         if (!library.loggedIn()) {
             std::cout << "You need to log in to run this command.\n";
@@ -76,7 +76,7 @@ void Menu::menu(Library& library) {
                 "exit					exists the program\n\n"
                 "login <username> <password>		logs in as <username>\n"
                 "logout					logs out current user\n\n"
-                "books all				prints information about all books\n"
+                "books all/list				prints information about all books\n"
                 "      info/view <isbn_value>		prints detailed information about a book\n"
                 "      find <option> <option_string> 	<option> can be title, author, or tag\n"
                 "      sort <option> [asc | desc] 	<option> can be title, author, or tag\n"
@@ -128,7 +128,7 @@ void Menu::menu(Library& library) {
             }
 
             std::cin >> command;
-            if (command == "all") {
+            if (command == "all" || command == "list") {
                 library.booksAll();
             }
             else if (command == "info" || command == "view") {
@@ -142,9 +142,23 @@ void Menu::menu(Library& library) {
                 std::cout << '\n';
             }
             else if (command == "find") {
+                std::string option;
+                char option_string[128];
+                std::cin >> option;
+                std::cin.getline(option_string, 128);
+                std::string opt_str{option_string};
+                for (int i = 0; i < opt_str.size(); ++i) {
+                    if (opt_str[i] == ' ' && (i == 0 || i == opt_str.size() - 1)) {
+                        opt_str.erase(opt_str.begin() + i);
+                    }
+                }
                 ///
+                ///error handling
                 ///
-                ///
+
+                BookOption opt = Book::stringToOption(option);
+                library.booksFind(opt, opt_str);
+                std::cout << '\n';
             }
             else if (command == "sort") {
                 ///
@@ -169,7 +183,7 @@ void Menu::menu(Library& library) {
 
                 library.booksRemove(isbn);
             }
-            else {
+            else if (library.getLogLevel() != Logging::QUIET) {
                 std::cout << "Unknown command.\n";
             }
         }
@@ -207,11 +221,11 @@ void Menu::menu(Library& library) {
 
                 library.usersRemove(username);
             }
-            else {
+            else if (library.getLogLevel() != Logging::QUIET) {
                 std::cout << "Unknown command.\n";
             }
         }
-        else {
+        else if(library.getLogLevel() != Logging::QUIET) {
             std::cout << "Unknown command.\n";
         }
     }

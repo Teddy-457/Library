@@ -4,6 +4,15 @@
 
 using Tags_t = std::vector<const char*>;
 
+enum class BookOption {
+	TITLE,
+	AUTHOR,
+	TAG,
+	YEAR,
+	RATING,
+	INVALID,
+};
+
 class Book {
 private:
 	std::string m_author;
@@ -36,6 +45,7 @@ public:
 	std::string getAuthor() const;
 	const Tags_t& getTags() const;
 	unsigned long getISBN() const;
-	enum class Option;
+	static std::string optionToString(BookOption);
+	static BookOption stringToOption(const std::string&);
 	void print() const;
 };

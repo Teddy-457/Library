@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Library.hpp"
 #include "../Utilities.hpp"
+#include "../Book.hpp"
 
 Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::Library()\n"; }
@@ -65,7 +66,7 @@ void Library::close() {
 	}
 
 	std::string filename{m_filename};
-	free(); ///could this free be a problem?
+	free();
 	std::cout << "Successfully closed " << filename << ".\n";
 }
 
@@ -74,9 +75,6 @@ void Library::save() const {
 
 	saveas(m_filename, true);
 	std::cout << "Successfully saved " << m_filename << ".\n";
-    ///
-	///
-	///
 }
 
 void Library::saveas(const std::string& filename, bool called_from_save) const {
@@ -89,9 +87,6 @@ void Library::saveas(const std::string& filename, bool called_from_save) const {
 
 	serialize(filename);
 	if (!called_from_save) { std::cout << "Successfully saved another" << filename << ".\n"; }
-    ///
-	///
-	///
 }
 
 void Library::serialize(const std::string& filename) const {
@@ -174,7 +169,7 @@ void Library::logout() {
 
 	m_active_user = "";
 	m_admin_logged_in = false;
-	if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Logged out.\n"; }
+	if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Logged out.\n"; }
 }
 
 bool Library::loggedIn() const {
@@ -195,6 +190,10 @@ bool Library::activeFile() const {
 	return m_filename != "";
 }
 
+const Logging& Library::getLogLevel() const {
+	return m_LOG_LEVEL;
+}
+
 void Library::usersAdd(User* user) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::usersAdd(User*)\n"; }
 
@@ -207,10 +206,10 @@ void Library::usersAdd(User* user) {
 	}
 	m_users.push_back(user);
 	if(user->isAdmin()) {
-		if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Added admin " << username << '.' << '\n'; }
+		if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Added admin " << username << '.' << '\n'; }
 	}
 	else {
-		if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Added user " << username << '.' << '\n'; }
+		if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Added user " << username << '.' << '\n'; }
 	}
 }
 
@@ -226,7 +225,7 @@ void Library::usersRemove(const std::string& username) {
 		if(m_users[i]->getUsername() == username) {
 			m_users.erase(m_users.begin() + i);
 			if (m_active_user == username) { logout(); }
-			if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Deleted user " << username << '.' << '\n'; }
+			if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Deleted user " << username << '.' << '\n'; }
 			return;
 		}
 	}
@@ -243,7 +242,7 @@ void Library::booksAdd(Book* book) {
 		}
 	}
 	m_books.push_back(book);
-	if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Added " << book->getTitle() << ".\n"; }
+	if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Added " << book->getTitle() << ".\n"; }
 }
 
 void Library::booksRemove(unsigned long isbn) {
@@ -251,7 +250,7 @@ void Library::booksRemove(unsigned long isbn) {
 
 	for (int i = 0; i < m_books.size(); ++i) {
 		if(m_books[i]->getISBN() == isbn) {
-			if (m_LOG_LEVEL == Logging::VERBOSE) { std::cout << "Removed " << m_books[i]->getTitle() << ".\n"; }
+			if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Removed " << m_books[i]->getTitle() << ".\n"; }
 			m_books.erase(m_books.begin() + i);
 			return;
 		}
@@ -281,32 +280,84 @@ void Library::booksInfo(unsigned long isbn) const {
 	}
 }
 
-void Library::booksFind(const Book::Option& option, std::string option_string) const {
+void Library::booksFind(BookOption option, std::string option_string) const {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksFind(Book::Option, " << option_string << ")\n"; }
 
 	///Търсене на книга по зададен критерий да игнорира регистъра на буквите (малки или големи)
 	
-	auto to_lowercase = [](std::string &str) -> void {
-		for (char& c : str) { c = std::tolower(c); }
-	};
-	to_lowercase(option_string);
+	option_string = Utilities::to_lowercase(option_string);
 	
-	///
-	///
-	///
+	bool found{ false };
+	switch (option) {
+		case BookOption::TITLE:
+			found = findBookByTitle(option_string);
+			break;
+		case BookOption::AUTHOR:
+			found = findBookByAuthor(option_string);
+			break;
+		case BookOption::TAG:
+			found = findBookByTag(option_string);
+			break;
+		default:
+			std::cout << "Option can only be title, author, or tag.\n";
+	}
+	if (!found) { std::cout << "Couldn't find book with " 
+		<< Book::optionToString(option) << ' ' << option_string << ".\n";
+	}
 }
 
-enum class Library::Sort {
-	ASCENDING,
-	DESCENDING,
-};
+bool Library::findBookByTitle(const std::string& title) const {
+	for (const Book* b : m_books) {
+		if (Utilities::to_lowercase(b->getTitle()) == title) {
+			b->print();
+			return true;
+		}
+	}
+	return false;
+}
 
-void Library::booksSort(const Book::Option&, const Sort& sort) {
+bool Library::findBookByAuthor(const std::string& author) const {
+	for (const Book* b : m_books) {
+		if (Utilities::to_lowercase(b->getAuthor()) == author) {
+			b->print();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Library::findBookByTag(const std::string& tag) const {
+	for (const Book* b : m_books) {
+		for (const char* t : b->getTags()) {
+			if (Utilities::to_lowercase(t) == tag) {
+				b->print();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+void Library::booksSort(BookOption option, BookSort sort) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksSort(Book::Option, Library::Sort)\n"; }
 
 	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от пряка селекция и метода на мехурчето
 	
-	///
-	///
-	///
+	switch (option) {
+		case BookOption::TITLE:
+			///
+			return;
+		case BookOption::AUTHOR:
+			///
+			return;
+		case BookOption::YEAR:
+			///
+			return;
+		case BookOption::RATING:
+			///
+			return;
+		default:
+			std::cout << "Option can only be title, author, year, or rating.\n";
+			return;
+	}
 }

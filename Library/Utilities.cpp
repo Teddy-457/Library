@@ -40,3 +40,12 @@ void Utilities::clearCin() {
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
+
+std::string Utilities::to_lowercase(const std::string& string) {
+	std::string str{ string };
+	for (char& c : str) {
+		c = std::tolower(c);
+	}
+	
+	return str;
+};
