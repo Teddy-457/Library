@@ -14,15 +14,49 @@ Book::Book(std::string author, std::string title, std::string genre,
 		for (const char* t : tags) {
 			std::size_t size{ strlen(t) };
 			char* tag = new char[size + 1];
-			strcpy_s(tag, size+1, t);
+			strcpy_s(tag, size + 1, t);
 			m_tags.push_back(tag);
 		}
 	}
 
-Book::~Book() {
+Book::Book(Book&& other) noexcept {
+	m_author = std::move(other.m_author);
+	m_title = std::move(other.m_title);
+	m_genre = std::move(other.m_genre);
+	m_description = std::move(other.m_description);
+	m_year = other.m_year;
+	m_tags = std::move(other.m_tags);
+	m_rating = other.m_rating;
+	m_isbn = other.m_isbn;
+}
+
+Book& Book::operator=(Book&& other) noexcept {
+	if (this != &other) {
+		free();
+
+		m_author = std::move(other.m_author);
+		m_title = std::move(other.m_title);
+		m_genre = std::move(other.m_genre);
+		m_description = std::move(other.m_description);
+		m_year = other.m_year;
+		m_tags = std::move(other.m_tags);
+		m_rating = other.m_rating;
+		m_isbn = other.m_isbn;
+
+		other.m_tags.clear();
+	}
+	return *this;
+}
+
+void Book::free() {
 	for (const char* t : m_tags) {
 		delete[] t;
 	}
+	m_tags.clear();
+}
+
+Book::~Book() {
+	free();
 }
 
 void Book::serialize(const std::string& filename) const {
@@ -93,15 +127,9 @@ Book* Book::deserialize(const std::string& filename, unsigned line) {
 		}
 		file.close();
 
-		Book* book = new Book{author, title, genre,
-						description, year, tags,
+		return new Book{author, title, genre,
+						description, year, std::move(tags),
 						rating, isbn};
-		
-		for (const char* t : tags) {
-			delete[] t;
-		}
-		
-		return book;
 	}
 	else {
 		file.close();

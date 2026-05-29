@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <utility>
 #include "Library.hpp"
 #include "../Utilities.hpp"
 #include "../Book.hpp"
@@ -365,7 +366,18 @@ void Library::booksSort(BookOption option, BookSort sort) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksSort(Book::Option, Library::Sort)\n"; }
 
 	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от selection sort и bubble sort
-	///insertion sort
+	std::size_t size{ m_books.size() };
+	if (size == 1) { return; }
+
+	auto insertionSort = [this, size](BookSort sort /*std::vector<Book*>& books = m_books*/) -> void {
+		for (int i = 1; i < size; ++i) {
+			Book* book{ std::move(m_books[i]) };
+		}
+
+		///
+		///
+		///
+	};
 
 	switch (option) {
 		case BookOption::TITLE:

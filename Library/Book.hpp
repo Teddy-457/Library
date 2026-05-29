@@ -26,6 +26,8 @@ private:
 
     static constexpr char m_DELIMITER{ '%' };
 
+	void free();
+
 public:
 	Book(std::string, std::string, std::string, std::string, signed, Tags_t,
 		 double, unsigned long);
@@ -33,8 +35,8 @@ public:
 	Book() = delete;
 	Book(const Book&) = delete;
 	Book& operator=(const Book&) = delete;
-	Book (Book&&) noexcept = delete;
-	Book& operator=(Book&&) noexcept = delete;
+	Book (Book&&) noexcept;
+	Book& operator=(Book&&) noexcept;
 	~Book();
 
 	void serialize(const std::string&) const;
