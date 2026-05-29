@@ -190,7 +190,7 @@ bool Library::activeFile() const {
 	return m_filename != "";
 }
 
-const Logging& Library::getLogLevel() const {
+Logging Library::getLogLevel() const {
 	return m_LOG_LEVEL;
 }
 
@@ -283,8 +283,6 @@ void Library::booksInfo(unsigned long isbn) const {
 void Library::booksFind(BookOption option, std::string option_string) const {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksFind(Book::Option, " << option_string << ")\n"; }
 
-	///Търсене на книга по зададен критерий да игнорира регистъра на буквите (малки или големи)
-	
 	option_string = Utilities::to_lowercase(option_string);
 	
 	bool found{ false };
@@ -338,11 +336,37 @@ bool Library::findBookByTag(const std::string& tag) const {
 	return false;
 }
 
+std::string Library::sortToString(BookSort option) {
+	switch (option) {
+		case BookSort::ASCENDING:
+			return "ascending";
+		case BookSort::DESCENDING:
+			return "descending";
+		case BookSort::INVALID:
+			return "";
+		default:
+			Utilities::logAndThrow("No such BookSort exists");
+	}
+}
+
+BookSort Library::stringToSort(const std::string& option) {
+	if (option == "asc") {
+		return BookSort::ASCENDING;
+	}
+	else if (option == "desc") {
+		return BookSort::DESCENDING;
+	}
+	else {
+		return BookSort::INVALID;
+	}
+}
+
 void Library::booksSort(BookOption option, BookSort sort) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksSort(Book::Option, Library::Sort)\n"; }
 
-	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от пряка селекция и метода на мехурчето
-	
+	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от selection sort и bubble sort
+	///insertion sort
+
 	switch (option) {
 		case BookOption::TITLE:
 			///

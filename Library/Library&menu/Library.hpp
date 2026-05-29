@@ -14,6 +14,7 @@ enum class Logging {
 enum class BookSort {
 	ASCENDING,
 	DESCENDING,
+	INVALID = -1,
 };
 
 class Library {
@@ -35,6 +36,9 @@ private:
 	bool findBookByTitle(const std::string&) const;
 	bool findBookByAuthor(const std::string&) const;
 	bool findBookByTag(const std::string&) const;
+
+	static std::string sortToString(BookSort);
+	static BookSort stringToSort(const std::string&);
 	
 	void free();
 
@@ -56,7 +60,7 @@ public:
 	bool loggedIn() const;
 	bool loggedInAsAdmin() const;
 	bool activeFile() const;
-	const Logging& getLogLevel() const;
+	Logging getLogLevel() const;
 	void usersAdd(User*);
 	void usersRemove(const std::string&);
 
@@ -65,6 +69,5 @@ public:
 	void booksAll() const;
 	void booksInfo(unsigned long) const;
 	void booksFind(BookOption, std::string) const;
-	enum class Sort;
 	void booksSort(BookOption, BookSort);
 };

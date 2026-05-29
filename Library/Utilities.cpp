@@ -1,9 +1,9 @@
-#include "Utilities.hpp"
 #include <iostream>
 #include <string>
 #include <limits>
 #include <fstream>
 #include <stdexcept>
+#include "Utilities.hpp"
 
 void Utilities::checkIfOpen(const std::ifstream& file) {
 	if (!file.is_open()) {
@@ -25,7 +25,7 @@ bool Utilities::checkIfExists(const std::string& filename) {
 	return file_exists;
 }
 
-void Utilities::logAndThrow(std::string message) {
+void Utilities::logAndThrow(const std::string& message) {
 	std::cerr << message;
 	throw std::runtime_error(message);
 }

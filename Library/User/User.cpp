@@ -33,11 +33,11 @@ User* User::deserialize(const std::string& filename, unsigned line) {
     }
 }
 
-std::string User::getUsername() const {
+const std::string& User::getUsername() const {
     return m_username;
 }
 
-std::string User::getPassword() const {
+const std::string& User::getPassword() const {
     return m_password;
 }
 

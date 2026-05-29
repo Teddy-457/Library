@@ -7,7 +7,7 @@
 #include "../Utilities.hpp"
 
 namespace { //or use static functions for internal linkage
-    bool checkLoginAndLog(Library& library) {
+    bool checkLoginAndLog(const Library& library) {
         if (!library.loggedIn()) {
             std::cout << "You need to log in to run this command.\n";
             return false;
@@ -15,7 +15,7 @@ namespace { //or use static functions for internal linkage
         return true;
     }
 
-    bool checkAdminAndLog(Library& library) {
+    bool checkAdminAndLog(const Library& library) {
         if (!library.loggedInAsAdmin()) {
             std::cout << "You need to be logged in as an administrator to run this command.\n";
             return false;
@@ -23,7 +23,7 @@ namespace { //or use static functions for internal linkage
         return true;
     }
 
-    bool checkFileAndLog(Library& library) {
+    bool checkFileAndLog(const Library& library) {
         if (!library.activeFile()) {
             std::cout << "You need to open a file to use this command.\n";
             return false;

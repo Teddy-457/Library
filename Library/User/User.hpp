@@ -15,8 +15,8 @@ public:
     virtual void serialize(const std::string&) const = 0;
     static User* deserialize(const std::string&, unsigned);
 
-    std::string getUsername() const;
-    std::string getPassword() const;
+    const std::string& getUsername() const;
+    const std::string& getPassword() const;
     bool isAdmin() const;
 
     virtual ~User() = default;

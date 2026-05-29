@@ -109,15 +109,15 @@ Book* Book::deserialize(const std::string& filename, unsigned line) {
 	}
 }
 
-std::string Book::getTitle() const {
+const std::string& Book::getTitle() const {
 	return m_title;
 }
 
-std::string Book::getGenre() const {
+const std::string& Book::getGenre() const {
 	return m_genre;
 }
 
-std::string Book::getAuthor() const {
+const std::string& Book::getAuthor() const {
 	return m_author;
 }
 

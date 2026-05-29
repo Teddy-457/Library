@@ -2,16 +2,16 @@
 #include <string>
 #include <vector>
 
-using Tags_t = std::vector<const char*>;
-
 enum class BookOption {
 	TITLE,
 	AUTHOR,
 	TAG,
 	YEAR,
 	RATING,
-	INVALID,
+	INVALID = -1,
 };
+
+using Tags_t = std::vector<const char*>;
 
 class Book {
 private:
@@ -40,9 +40,9 @@ public:
 	void serialize(const std::string&) const;
 	static Book* deserialize(const std::string&, unsigned);
 
-	std::string getTitle() const;
-	std::string getGenre() const;
-	std::string getAuthor() const;
+	const std::string& getTitle() const;
+	const std::string& getGenre() const;
+	const std::string& getAuthor() const;
 	const Tags_t& getTags() const;
 	unsigned long getISBN() const;
 	static std::string optionToString(BookOption);
