@@ -37,8 +37,10 @@ void Utilities::skipLines(std::ifstream& file, unsigned lines) {
 }
 
 void Utilities::clearCin() {
-	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	if (std::cin.fail() || std::cin.rdbuf()->in_avail() > 0) {
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
 }
 
 std::string Utilities::to_lowercase(const std::string& string) {
@@ -56,4 +58,18 @@ void Utilities::stripWhitespaceFrontAndBack(std::string& str) {
 			str.erase(str.begin() + i);
 		}
 	}
+}
+
+bool Utilities::containsChar(const std::string& str, char c) {
+	for (const char str_c : str) {
+		if (str_c == c) { return true; }
+	}
+	return false;
+}
+
+bool containsWhitespace(const std::string& str) {
+	for (const char str_c : str) {
+		if (str_c == ' ') { return true; }
+	}
+	return false;
 }

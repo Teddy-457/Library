@@ -11,4 +11,6 @@
 	/*static*/ void clearCin();
 	/*static*/ std::string to_lowercase(const std::string&);
 	/*static*/ void stripWhitespaceFrontAndBack(std::string&);
+	/*static*/ bool containsChar(const std::string&, char);
+	/*static*/ bool containsWhitespace(const std::string&);
 };

@@ -50,7 +50,7 @@ public:
 	void open(const std::string&);
     void close();
     void save() const;
-	void saveas(const std::string&, bool = false) const;
+	bool saveas(const std::string&, bool = false) const;
 
 	void login(const std::string&, const std::string&);
 	void logout();

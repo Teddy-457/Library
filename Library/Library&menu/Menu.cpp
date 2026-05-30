@@ -8,7 +8,7 @@
 #include "../Utilities.hpp"
 
 #define AUTO_OPEN_LIBRARY_DAT
-#define AUTO_LOGIN_JOHN_PORK
+//#define AUTO_LOGIN_JOHN_PORK
 
 namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(const Library& library) {
@@ -30,6 +30,15 @@ namespace { //or use static functions for internal linkage
     bool checkFileAndLog(const Library& library) {
         if (!library.activeFile()) {
             std::cout << "You need to open a file to use this command.\n";
+            return false;
+        }
+        return true;
+    }
+
+    bool validateInput(bool fail_condition, const std::string& fail_message) {
+        if (fail_condition) {
+            std::cout << fail_message << '\n';
+            Utilities::clearCin();
             return false;
         }
         return true;
@@ -67,6 +76,7 @@ void Menu::menu(Library& library) {
             first_run = false;
         }
 
+        Utilities::clearCin();
         std::cout << "> ";
         std::string command;
         std::cin >> command;
@@ -75,7 +85,7 @@ void Menu::menu(Library& library) {
             std::string filename;
             std::cin >> filename;
             ///
-            ///error handling
+            ///error handling?
             ///
             library.open(filename);
         }
@@ -89,7 +99,7 @@ void Menu::menu(Library& library) {
             std::string filename;
             std::cin >> filename;
             ///
-            ///error handling
+            ///error handling (same as "open")
             ///
             library.saveas(filename);
         }
@@ -119,17 +129,18 @@ void Menu::menu(Library& library) {
             return;
         }
         else if (command == "login") {
-            if (!checkFileAndLog(library)) { Utilities::clearCin(); continue; }
+            if (!checkFileAndLog(library)) { continue; }
 
             if (library.loggedIn()) {
                 std::cout << "You are already logged in.\n";
-                Utilities::clearCin();
                 continue;
             }
 
             std::cout << "Enter your username: ";
             std::string username;
             std::cin >> username;
+            if (!validateInput(Utilities::containsChar(username, User::m_DELIMITER),
+                std::string{ "Username can't contain " + User::m_DELIMITER })) { continue; }
 
             std::cout << "Enter your password: ";
             std::string password;
@@ -144,9 +155,9 @@ void Menu::menu(Library& library) {
                 }
             }
             std::cout << '\n';
-            ///
-            ///error handling
-            ///
+
+            if(!validateInput(Utilities::containsChar(password, User::m_DELIMITER),
+                std::string{ "Password can't contain " + User::m_DELIMITER })) { continue; }
 
             library.login(username, password);
         }
@@ -156,10 +167,7 @@ void Menu::menu(Library& library) {
             library.logout();
         }
         else if (command == "books") {
-            if (!checkFileAndLog(library) || !checkLoginAndLog(library)) {
-                Utilities::clearCin();
-                continue;
-            }
+            if (!checkFileAndLog(library) || !checkLoginAndLog(library)) { continue; }
 
             std::cin >> command;
             if (command == "all" || command == "list") {
@@ -206,7 +214,7 @@ void Menu::menu(Library& library) {
                 library.booksSort(opt, srt);
             }
             else if (command == "add") {
-                if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
+                if (!checkAdminAndLog(library)) { continue; }
 
                 char c_str_title[128];
                 char c_str_author[128];
@@ -285,7 +293,7 @@ void Menu::menu(Library& library) {
                 library.booksAdd(book);
             }
             else if (command == "remove") {
-                if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
+                if (!checkAdminAndLog(library)) { continue; }
 
                 unsigned long isbn;
                 std::cin >> isbn;
@@ -300,10 +308,7 @@ void Menu::menu(Library& library) {
             }
         }
         else if (command == "users") {
-            if (!checkFileAndLog(library) || !checkAdminAndLog(library)) {
-                Utilities::clearCin();
-                continue;
-            }
+            if (!checkFileAndLog(library) || !checkAdminAndLog(library)) { continue; }
 
             std::cin >> command;
             if (command == "add") {

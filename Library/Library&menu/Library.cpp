@@ -76,20 +76,22 @@ void Library::close() {
 void Library::save() const {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::save()\n"; }
 
-	saveas(m_filename, true);
-	std::cout << "Successfully saved " << m_filename << ".\n";
+	if (saveas(m_filename, true)) {
+		std::cout << "Successfully saved " << m_filename << ".\n";
+	}
 }
 
-void Library::saveas(const std::string& filename, bool called_from_save) const {
+bool Library::saveas(const std::string& filename, bool called_from_save) const {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::saveas(" << filename << ")\n"; }
 
 	if (m_filename == "") {
 		std::cout << "You don't have an opened file.\n";
-		return;
+		return false;
 	}
 
 	serialize(filename);
-	if (!called_from_save) { std::cout << "Successfully saved another" << filename << ".\n"; }
+	if (!called_from_save) { std::cout << "Successfully saved another " << filename << ".\n"; }
+	return true;
 }
 
 void Library::serialize(const std::string& filename) const {

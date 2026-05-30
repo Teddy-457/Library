@@ -7,11 +7,11 @@ protected:
     std::string m_password;
     bool m_admin;
 
-    static constexpr char m_DELIMITER{ '$' };
-
     User(std::string, std::string, bool);
 
 public:
+    static constexpr char m_DELIMITER{ '$' };
+
     virtual void serialize(const std::string&) const = 0;
     static User* deserialize(const std::string&, unsigned);
 
