@@ -1,9 +1,9 @@
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <utility>
-#include <functional>
 #include "Library.hpp"
+#include <functional>
+#include <iostream>
+#include <fstream>
+#include <utility>
+#include <string>
 #include "../Utilities.hpp"
 #include "../Book.hpp"
 
@@ -67,7 +67,7 @@ void Library::close() {
 		return;
 	}
 
-	std::string filename{m_filename};
+	std::string filename{ m_filename };
 	free();
 	m_users.push_back(new Admin{ "admin", m_default_admin_password });
 	std::cout << "Successfully closed " << filename << ".\n";
@@ -125,7 +125,7 @@ void Library::deserialize(const std::string& filename) {
 
 	int users; file >> users; file.close();
 	for (int i = 1; i <= users; ++i) {
-		User* user = User::deserialize(filename, i);
+		User* user{ User::deserialize(filename, i) };
 		m_users.push_back(user);
 	}
 
@@ -135,7 +135,7 @@ void Library::deserialize(const std::string& filename) {
 	Utilities::skipLines(file, users+1);
 	int books; file >> books; file.close();
 	for (int i = users + 2; i <= books + users + 1; ++i) {
-		Book* book = Book::deserialize(filename, i);
+		Book* book{ Book::deserialize(filename, i) };
 		m_books.push_back(book);
 	}
 }
@@ -200,7 +200,7 @@ Logging Library::getLogLevel() const {
 void Library::usersAdd(User* user) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::usersAdd(User*)\n"; }
 
-	std::string username{user->getUsername()};
+	std::string username{ user->getUsername() };
 	for (const User* u : m_users) {
 		if(u->getUsername() == username) {
 			std::cout << "A user with that username already exists.\n";
@@ -220,7 +220,7 @@ void Library::usersAdd(User* user) {
 void Library::usersRemove(const std::string& username) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::usersRemove(" << username << ")\n"; }
 
-	if(username=="admin") {
+	if (username == "admin") {
 		std::cout << "Can't delete default admin user.\n";
 		return;
 	}
@@ -371,9 +371,6 @@ BookSort Library::stringToSort(const std::string& option) {
 void Library::booksSort(BookOption option, BookSort sort) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksSort(Book::Option, Library::Sort)\n"; }
 
-	//std::size_t size{ m_books.size() };
-	//if (size == 1) { return; }
-
 	using SortFun = std::function<bool(const Book*, const Book*)>;
 
 	if (sort == BookSort::INVALID) {
@@ -405,7 +402,7 @@ void Library::booksSort(BookOption option, BookSort sort) {
 	}
 
 	if (sort == BookSort::DESCENDING) {
-		SortFun copy = sorting_option;
+		SortFun copy{ sorting_option };
 		sorting_option = [copy](const Book* b_1, const Book* b_2)->bool
 			{ return copy(b_2, b_1); };
 	}

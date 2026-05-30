@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "Book.hpp"
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "Utilities.hpp"
 
 Book::Book(std::string author, std::string title, std::string genre,
@@ -13,7 +13,7 @@ Book::Book(std::string author, std::string title, std::string genre,
 	{
 		for (const char* t : tags) {
 			std::size_t size{ strlen(t) };
-			char* tag = new char[size + 1];
+			char* tag{ new char[size + 1] };
 			strcpy_s(tag, size + 1, t);
 			m_tags.push_back(tag);
 		}

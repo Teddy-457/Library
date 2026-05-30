@@ -1,7 +1,7 @@
+#include "Client.hpp"
 #include <fstream>
 #include <string>
 #include "../Utilities.hpp"
-#include "Client.hpp"
 
 Client::Client(std::string username, std::string password, bool) : User(username, password, true) {} //protected
 Client::Client(std::string username, std::string password) : User(username, password, false) {}      //public

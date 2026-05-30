@@ -1,10 +1,10 @@
-﻿#include <iostream>
-#include <string>
+﻿#include "Menu.hpp"
+#include <iostream>
 #include <conio.h>
-#include "Menu.hpp"
-#include "../User/User.hpp"
+#include <string>
 #include "../User/Client.hpp"
 #include "../User/Admin.hpp"
+#include "../User/User.hpp"
 #include "../Utilities.hpp"
 
 #define AUTO_OPEN_LIBRARY_DAT
@@ -182,7 +182,7 @@ void Menu::menu(Library& library) {
 
                 char option_string[128];
                 std::cin.getline(option_string, 128);
-                std::string opt_str{option_string};
+                std::string opt_str{ option_string };
                 Utilities::stripWhitespaceFrontAndBack(opt_str);
                 ///
                 ///error handling
@@ -222,12 +222,12 @@ void Menu::menu(Library& library) {
 
                 std::cout << "Title: ";
                 std::cin.getline(c_str_title, 128);
-                std::string title{c_str_title};
+                std::string title{ c_str_title };
                 Utilities::stripWhitespaceFrontAndBack(title);
                 
                 std::cout << "Author: ";
                 std::cin.getline(c_str_author, 128);
-                std::string author{c_str_author};
+                std::string author{ c_str_author };
                 Utilities::stripWhitespaceFrontAndBack(author);
 
                 std::cout << "Genre: ";
@@ -262,7 +262,7 @@ void Menu::menu(Library& library) {
                     
                     Utilities::stripWhitespaceFrontAndBack(temp_tag);
                     if (!temp_tag.empty()) {
-                        char* tag = new char[temp_tag.size() + 1];
+                        char* tag{ new char[temp_tag.size() + 1] };
                         strcpy_s(tag, temp_tag.size() + 1, temp_tag.c_str());
                         tags.push_back(tag);
                     }
@@ -275,8 +275,8 @@ void Menu::menu(Library& library) {
                 ///error handling
                 ///
                 
-                Book* book = new Book{ author, title, genre, description,
-                    year, tags, rating, isbn };
+                Book* book{ new Book{ author, title, genre, description,
+                    year, tags, rating, isbn } };
 
                 for (const char* t : tags) {
                     delete[] t;
@@ -320,7 +320,7 @@ void Menu::menu(Library& library) {
                     user = new Admin{ username, password };
                 }
                 else {
-                    user = new Client(username, password);
+                    user = new Client{ username, password };
                 }
                 library.usersAdd(user);
             }

@@ -1,9 +1,9 @@
-#include <iostream>
-#include <string>
-#include <limits>
-#include <fstream>
-#include <stdexcept>
 #include "Utilities.hpp"
+#include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <limits>
+#include <string>
 
 void Utilities::checkIfOpen(const std::ifstream& file) {
 	if (!file.is_open()) {
