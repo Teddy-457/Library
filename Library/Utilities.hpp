@@ -10,4 +10,5 @@
 	/*static*/ void skipLines(std::ifstream&, unsigned);
 	/*static*/ void clearCin();
 	/*static*/ std::string to_lowercase(const std::string&);
+	/*static*/ void stripWhitespaceFrontAndBack(std::string&);
 };

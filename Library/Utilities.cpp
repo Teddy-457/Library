@@ -48,4 +48,12 @@ std::string Utilities::to_lowercase(const std::string& string) {
 	}
 	
 	return str;
-};
+}
+
+void Utilities::stripWhitespaceFrontAndBack(std::string& str) {
+	for (int i = 0; i < str.size(); ++i) {
+		if (str[i] == ' ' && (i == 0 || i == str.size() - 1)) {
+			str.erase(str.begin() + i);
+		}
+	}
+}

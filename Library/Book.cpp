@@ -127,9 +127,15 @@ Book* Book::deserialize(const std::string& filename, unsigned line) {
 		}
 		file.close();
 
-		return new Book{author, title, genre,
-						description, year, std::move(tags),
-						rating, isbn};
+		Book* book = new Book{ author, title, genre,
+						description, year, tags,
+						rating, isbn };
+
+		for (const char* t : tags) {
+			delete[] t;
+		}
+
+		return book;
 	}
 	else {
 		file.close();

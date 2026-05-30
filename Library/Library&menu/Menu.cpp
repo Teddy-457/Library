@@ -6,6 +6,9 @@
 #include "../User/Admin.hpp"
 #include "../Utilities.hpp"
 
+#define AUTO_OPEN_LIBRARY_DAT
+#define AUTO_LOGIN_JOHN_PORK
+
 namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(const Library& library) {
         if (!library.loggedIn()) {
@@ -35,6 +38,24 @@ namespace { //or use static functions for internal linkage
 void Menu::menu(Library& library) {
     bool first_run{ true };
     while (true) {
+        static int run{0};
+        ++run;
+        
+#ifdef AUTO_OPEN_LIBRARY_DAT
+        if (run == 1) {
+            std::cout << "[AUTO_OPEN_LIBRARY_DAT] ";
+            library.open("Library.dat");
+            continue;
+        }
+#ifdef AUTO_LOGIN_JOHN_PORK
+        else if (run == 2) {
+            std::cout << "[AUTO_LOGIN_JOHN_PORK] ";
+            library.login("john-pork", "1");
+            continue;
+        }
+#endif
+#endif
+
         if (!first_run) {
             std::cout << '\n';
             first_run = false;
@@ -79,8 +100,8 @@ void Menu::menu(Library& library) {
                 "books all/list				prints information about all books\n"
                 "      info/view <isbn_value>		prints detailed information about a book\n"
                 "      find <option> <option_string> 	<option> can be title, author, or tag\n"
-                "      sort <option> [asc | desc] 	<option> can be title, author, or tag\n"
-                "      add <title> <author> <genre> 	adds book\n"
+                "      sort <option> [asc | desc] 	<option> can be title, author, year or rating\n"
+                "      add <title> <author> <genre> 	adds book, tags are comma separated\n"
                 "      <description> <year> <rating>\n"
                 "      <isbn> <tags>\n"
                 "      remove <isbn_value>	  	removes book with <isbn_value>\n\n"
@@ -149,11 +170,7 @@ void Menu::menu(Library& library) {
                 char option_string[128];
                 std::cin.getline(option_string, 128);
                 std::string opt_str{option_string};
-                for (int i = 0; i < opt_str.size(); ++i) {
-                    if (opt_str[i] == ' ' && (i == 0 || i == opt_str.size() - 1)) {
-                        opt_str.erase(opt_str.begin() + i);
-                    }
-                }
+                Utilities::stripWhitespaceFrontAndBack(opt_str);
                 ///
                 ///error handling
                 ///
@@ -178,34 +195,81 @@ void Menu::menu(Library& library) {
             else if (command == "add") {
                 if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
 
-                char title[128];        //std::string title;
-                char author[128];       //std::string author
-                char genre[128];        //std::string genre;
-                char description[128];  //std::string description;
+                char c_str_title[128];
+                char c_str_author[128];
+                char c_str_genre[128];      
+                char c_str_description[128];
                 signed year;
                 double rating;
                 unsigned long isbn;
                 Tags_t tags;
-
-                ///add <title> <author> <genre>
-                ///    <description> <year> <rating>\n"
-                ///    <isbn> <tags>\n"
-
-                ///char option_string[128];
-                //std::cin.getline(option_string, 128);
-                //std::string opt_str{ option_string };
-                //for (int i = 0; i < opt_str.size(); ++i) {
-                //    if (opt_str[i] == ' ' && (i == 0 || i == opt_str.size() - 1)) {
-                //        opt_str.erase(opt_str.begin() + i);
-                //    }
-                ///}
                 
+                std::cout << '\n';
+                std::cin.get();
+
+                std::cout << "Title: ";
+                std::cin.getline(c_str_title, 128);
+                std::string title{c_str_title};
+                Utilities::stripWhitespaceFrontAndBack(title);
+                
+                std::cout << "Author: ";
+                std::cin.getline(c_str_author, 128);
+                std::string author{c_str_author};
+                Utilities::stripWhitespaceFrontAndBack(author);
+
+                std::cout << "Genre: ";
+                std::cin.getline(c_str_genre, 128);
+                std::string genre{ c_str_genre };
+                Utilities::stripWhitespaceFrontAndBack(genre);
+
+                std::cout << "Description: ";
+                std::cin.getline(c_str_description, 128);
+                std::string description{ c_str_description };
+                Utilities::stripWhitespaceFrontAndBack(description);
+
+                std::cout << "Year: ";
+                std::cin >> year;
+                std::cout << "Rating: ";
+                std::cin >> rating;
+                std::cout << "ISBN: ";
+                std::cin >> isbn;
+                
+                std::cout << "Tags (commas separated): ";
+                char c = std::cin.get();
+                while (c == ' ' || c == '\n') {
+                    c = std::cin.get();
+                }
+
+                while (c != '\n' && std::cin) {
+                    std::string temp_tag;
+                    while (c != ',' && c != '\n' && std::cin) {
+                        temp_tag.push_back(c);
+                        c = std::cin.get();
+                    }
+                    
+                    Utilities::stripWhitespaceFrontAndBack(temp_tag);
+                    if (!temp_tag.empty()) {
+                        char* tag = new char[temp_tag.size() + 1];
+                        strcpy_s(tag, temp_tag.size() + 1, temp_tag.c_str());
+                        tags.push_back(tag);
+                    }
+                    
+                    if (c == ',') {
+                        c = std::cin.get();
+                    }
+                }
                 ///
                 ///error handling
                 ///
                 
-                library.booksAdd(new Book{author, title, genre, description,
-                    year, std::move(tags), rating, isbn});
+                Book* book = new Book{ author, title, genre, description,
+                    year, tags, rating, isbn };
+
+                for (const char* t : tags) {
+                    delete[] t;
+                }
+
+                library.booksAdd(book);
             }
             else if (command == "remove") {
                 if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
