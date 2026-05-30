@@ -54,10 +54,6 @@ public:
 
 	void login(const std::string&, const std::string&);
 	void logout();
-	bool loggedIn() const;
-	bool loggedInAsAdmin() const;
-	bool activeFile() const;
-	Logging getLogLevel() const;
 	void usersAdd(User*);
 	void usersRemove(const std::string&);
 
@@ -67,6 +63,11 @@ public:
 	void booksInfo(unsigned long) const;
 	void booksFind(BookOption, std::string) const;
 	void booksSort(BookOption, BookSort);
+
+	bool loggedIn() const;
+	bool loggedInAsAdmin() const;
+	bool activeFile() const;
+	Logging getLogLevel() const;
 
 	static std::string sortToString(BookSort);
 	static BookSort stringToSort(const std::string&);

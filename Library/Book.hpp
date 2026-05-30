@@ -29,9 +29,6 @@ private:
 	void free();
 
 public:
-	Book(std::string, std::string, std::string, std::string, signed, Tags_t,
-		 double, unsigned long);
-
 	Book() = delete;
 	Book(const Book&) = delete;
 	Book& operator=(const Book&) = delete;
@@ -39,8 +36,13 @@ public:
 	Book& operator=(Book&&) noexcept;
 	~Book();
 
+	Book(std::string, std::string, std::string, std::string, signed, Tags_t,
+		double, unsigned long);
+
 	void serialize(const std::string&) const;
 	static Book* deserialize(const std::string&, unsigned);
+
+	void print() const;
 
 	const std::string& getTitle() const;
 	const std::string& getGenre() const;
@@ -49,7 +51,7 @@ public:
 	double getRating() const;
 	const Tags_t& getTags() const;
 	unsigned long getISBN() const;
+
 	static std::string optionToString(BookOption);
 	static BookOption stringToOption(const std::string&);
-	void print() const;
 };

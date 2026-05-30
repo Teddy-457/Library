@@ -17,6 +17,5 @@ public:
 	~Menu() = default;
 
 	static Menu& getInstance();
-
 	void menu(Library&);
 };
