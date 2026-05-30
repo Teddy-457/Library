@@ -67,8 +67,5 @@
     <None Include="Library.dat">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="mmm">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

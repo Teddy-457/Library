@@ -28,7 +28,6 @@ void Library::free() {
 	m_filename = "";
 	m_active_user = "";
 	m_admin_logged_in = false;
-	m_users.push_back(new Admin{"admin", m_default_admin_password});
 }
 
 Library::~Library() {
@@ -54,6 +53,7 @@ void Library::open(const std::string& filename) {
 	else {
 		std::ofstream file(filename, std::ios::out); file.close();
 		free();
+		m_users.push_back(new Admin{ "admin", m_default_admin_password });
 		m_filename = filename;
 		std::cout << "Successfully (created and) opened " << filename << ".\n";
 	}
@@ -69,6 +69,7 @@ void Library::close() {
 
 	std::string filename{m_filename};
 	free();
+	m_users.push_back(new Admin{ "admin", m_default_admin_password });
 	std::cout << "Successfully closed " << filename << ".\n";
 }
 
@@ -203,6 +204,7 @@ void Library::usersAdd(User* user) {
 	for (const User* u : m_users) {
 		if(u->getUsername() == username) {
 			std::cout << "A user with that username already exists.\n";
+			delete user;
 			return;
 		}
 	}
@@ -225,6 +227,7 @@ void Library::usersRemove(const std::string& username) {
 
 	for (int i = 0; i < m_users.size(); ++i) {
 		if(m_users[i]->getUsername() == username) {
+			delete m_users[i];
 			m_users.erase(m_users.begin() + i);
 			if (m_active_user == username) { logout(); }
 			if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Deleted user " << username << '.' << '\n'; }
@@ -240,6 +243,7 @@ void Library::booksAdd(Book* book) {
 	for (const Book* b : m_books) {
 		if(b->getISBN() == book->getISBN()) {
 			std::cout << "A book with that ISBN already exists.\n";
+			delete book;
 			return;
 		}
 	}
@@ -253,6 +257,7 @@ void Library::booksRemove(unsigned long isbn) {
 	for (int i = 0; i < m_books.size(); ++i) {
 		if(m_books[i]->getISBN() == isbn) {
 			if (m_LOG_LEVEL != Logging::QUIET) { std::cout << "Removed " << m_books[i]->getTitle() << ".\n"; }
+			delete m_books[i];
 			m_books.erase(m_books.begin() + i);
 			return;
 		}

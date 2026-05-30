@@ -144,7 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Library.dat" />
-    <None Include="mmm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <string>
+#include <conio.h>
 #include "Menu.hpp"
 #include "../User/User.hpp"
 #include "../User/Client.hpp"
@@ -7,7 +8,7 @@
 #include "../Utilities.hpp"
 
 #define AUTO_OPEN_LIBRARY_DAT
-#define AUTO_LOGIN_JOHN_PORK
+//#define AUTO_LOGIN_JOHN_PORK
 
 namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(const Library& library) {
@@ -38,9 +39,9 @@ namespace { //or use static functions for internal linkage
 void Menu::menu(Library& library) {
     bool first_run{ true };
     while (true) {
-        static int run{0};
+        static int run{ 0 };
         ++run;
-        
+
 #ifdef AUTO_OPEN_LIBRARY_DAT
         if (run == 1) {
             std::cout << "[AUTO_OPEN_LIBRARY_DAT] ";
@@ -121,16 +122,23 @@ void Menu::menu(Library& library) {
                 continue;
             }
 
-            ///
-            ///при въвеждане на паролата на екрана да се изписва символа * вместо реалния символ
-            ///
-
-            std::string username;
-            std::string password;
             std::cout << "Enter your username: ";
+            std::string username;
             std::cin >> username;
+
             std::cout << "Enter your password: ";
-            std::cin >> password;
+            std::string password;
+            for (char c = _getch(); c != '\r'; c = _getch()) {
+                if (c != '\b') {
+                    password.push_back(c);
+                    std::cout << '*';
+                }
+                else if (!password.empty()) {
+                    std::cout << "\b \b";
+                    password.pop_back();
+                }
+            }
+            std::cout << '\n';
             ///
             ///error handling
             ///
