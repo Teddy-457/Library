@@ -24,11 +24,11 @@ private:
 	double m_rating;
 	unsigned long m_isbn;
 
-    static constexpr char m_DELIMITER{ '%' };
-
 	void free();
 
 public:
+	static constexpr char m_DELIMITER{ '%' };
+
 	Book() = delete;
 	Book(const Book&) = delete;
 	Book& operator=(const Book&) = delete;

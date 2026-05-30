@@ -9,8 +9,6 @@
 
 Library::Library() : m_filename(""), m_active_user(""), m_admin_logged_in(false) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::Library()\n"; }
-
-	m_users.push_back(new Admin{"admin", m_default_admin_password});
 }
 
 void Library::free() {
@@ -53,7 +51,6 @@ void Library::open(const std::string& filename) {
 	else {
 		std::ofstream file(filename, std::ios::out); file.close();
 		free();
-		m_users.push_back(new Admin{ "admin", m_default_admin_password });
 		m_filename = filename;
 		std::cout << "Successfully (created and) opened " << filename << ".\n";
 	}
@@ -69,7 +66,6 @@ void Library::close() {
 
 	std::string filename{ m_filename };
 	free();
-	m_users.push_back(new Admin{ "admin", m_default_admin_password });
 	std::cout << "Successfully closed " << filename << ".\n";
 }
 
@@ -100,7 +96,7 @@ void Library::serialize(const std::string& filename) const {
     std::ofstream file(filename, std::ios::out);
     Utilities::checkIfOpen(file);
 
-	file << m_users.size() - 1 << '\n'; file.close(); //default admin user doesn't exist in the file (-1)
+	file << m_users.size() << '\n'; file.close();
 	for(const User* u : m_users) {
 		u->serialize(filename);
 	}
@@ -134,7 +130,7 @@ void Library::deserialize(const std::string& filename) {
 	file.open(filename, std::ios::in);
 	Utilities::checkIfOpen(file);
 
-	Utilities::skipLines(file, users+1);
+	Utilities::skipLines(file, users + 1);
 	int books; file >> books; file.close();
 	for (int i = users + 2; i <= books + users + 1; ++i) {
 		Book* book{ Book::deserialize(filename, i) };
@@ -203,6 +199,7 @@ void Library::usersAdd(User* user) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::usersAdd(User*)\n"; }
 
 	std::string username{ user->getUsername() };
+	if (username == "admin") { return; }
 	for (const User* u : m_users) {
 		if(u->getUsername() == username) {
 			std::cout << "A user with that username already exists.\n";
@@ -287,6 +284,7 @@ void Library::booksInfo(unsigned long isbn) const {
 			return;
 		}
 	}
+	std::cout << "No book with that ISBN exists.\n";
 }
 
 void Library::booksFind(BookOption option, std::string option_string) const {

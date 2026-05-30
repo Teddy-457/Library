@@ -8,7 +8,7 @@
 #include "../Utilities.hpp"
 
 #define AUTO_OPEN_LIBRARY_DAT
-//#define AUTO_LOGIN_JOHN_PORK
+#define AUTO_LOGIN_JOHN_PORK
 
 namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(const Library& library) {
@@ -35,7 +35,7 @@ namespace { //or use static functions for internal linkage
         return true;
     }
 
-    bool validateInput(bool fail_condition, const std::string& fail_message) {
+    bool validInput(bool fail_condition, const std::string& fail_message) {
         if (fail_condition) {
             std::cout << fail_message << '\n';
             Utilities::clearCin();
@@ -84,9 +84,7 @@ void Menu::menu(Library& library) {
         if (command == "open") {
             std::string filename;
             std::cin >> filename;
-            ///
-            ///error handling?
-            ///
+
             library.open(filename);
         }
         else if (command == "close") {
@@ -98,31 +96,52 @@ void Menu::menu(Library& library) {
         else if (command == "saveas") {
             std::string filename;
             std::cin >> filename;
-            ///
-            ///error handling (same as "open")
-            ///
+
             library.saveas(filename);
         }
         else if (command == "help") {
-            std::cout << "The following commands are supported:\n"
-                "open <file>				opens <file>\n"
-                "close					closes currently opened file\n"
-                "save					saves the currently open file\n"
-                "saveas <file>				saves the currently open file in <file>\n"
-                "help					prints this information\n"
-                "exit					exists the program\n\n"
-                "login <username> <password>		logs in as <username>\n"
-                "logout					logs out current user\n\n"
-                "books all/list				prints information about all books\n"
-                "      info/view <isbn_value>		prints detailed information about a book\n"
-                "      find <option> <option_string> 	<option> can be title, author, or tag\n"
-                "      sort <option> [asc | desc] 	<option> can be title, author, year or rating\n"
-                "      add <title> <author> <genre> 	adds book, tags are comma separated\n"
-                "      <description> <year> <rating>\n"
-                "      <isbn> <tags>\n"
-                "      remove <isbn_value>	  	removes book with <isbn_value>\n\n"
-                "users add <user> <password> <admin>	adds user (admin if argument set to 1)  \n"
-                "      remove <user>			removes user <username>\n";
+            std::string subcom;
+            while (std::cin.peek() == ' ') {
+                std::cin.get();
+            }
+            std::getline(std::cin, subcom);
+
+            static std::vector<std::string> help_list{ "The following commands are supported:\n",
+                    "open <file>				opens <file>\n",
+                    "close					closes currently opened file\n",
+                    "save					saves the currently open file\n",
+                    "saveas <file>				saves the currently open file in <file>\n",
+                    "help					prints this information\n",
+                    "exit					exists the program\n\n",
+                    "login <username> <password>		logs in as <username>\n",
+                    "logout					logs out current user\n\n",
+                    "books all/list				prints information about all books\n",
+                    "      info/view <isbn_value>		prints detailed information about a book\n",
+                    "      find <option> <option_string> 	<option> can be title, author, or tag\n",
+                    "      sort <option> [asc | desc] 	<option> can be title, author, year or rating\n",
+                    "      add <title> <author> <genre> 	adds book, tags are comma separated\n",
+                    "      <description> <year> <rating>\n",
+                    "      <isbn> <tags>\n",
+                    "      remove <isbn_value>	  	removes book with <isbn_value>\n\n",
+                    "users add <user> <password> <admin>	adds user (admin if argument set to 1)  \n",
+                    "      remove <user>			removes user <username>\n" };
+
+            if (!subcom.empty()) {
+                bool found{ false };
+                for(const std::string& str: help_list) {
+                    if (str.substr(str.find_first_not_of(' '), subcom.size()) == subcom) {
+                        std::cout << str;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) { std::cout << "Subcommand doesn't exist.\n"; }
+            }
+            else {
+                for (const std::string& str : help_list) {
+                    std::cout << str;
+                }
+            }
         }
         else if (command == "exit") {
             std::cout << "Exiting the program...\n";
@@ -131,15 +150,12 @@ void Menu::menu(Library& library) {
         else if (command == "login") {
             if (!checkFileAndLog(library)) { continue; }
 
-            if (library.loggedIn()) {
-                std::cout << "You are already logged in.\n";
-                continue;
-            }
+            if (library.loggedIn()) { std::cout << "You are already logged in.\n"; continue; }
 
             std::cout << "Enter your username: ";
             std::string username;
             std::cin >> username;
-            if (!validateInput(Utilities::containsChar(username, User::m_DELIMITER),
+            if (!validInput(Utilities::containsChar(username, User::m_DELIMITER),
                 std::string{ "Username can't contain " + User::m_DELIMITER })) { continue; }
 
             std::cout << "Enter your password: ";
@@ -156,7 +172,7 @@ void Menu::menu(Library& library) {
             }
             std::cout << '\n';
 
-            if(!validateInput(Utilities::containsChar(password, User::m_DELIMITER),
+            if(!validInput(Utilities::containsChar(password, User::m_DELIMITER),
                 std::string{ "Password can't contain " + User::m_DELIMITER })) { continue; }
 
             library.login(username, password);
@@ -176,9 +192,8 @@ void Menu::menu(Library& library) {
             else if (command == "info" || command == "view") {
                 unsigned long isbn;
                 std::cin >> isbn;
-                ///
-                ///error handling
-                ///
+
+                if (!validInput(!isbn, "Invalid ISBN.")) { continue; }
 
                 library.booksInfo(isbn);
                 std::cout << '\n';
@@ -188,15 +203,11 @@ void Menu::menu(Library& library) {
                 std::cin >> option;
                 BookOption opt{ Book::stringToOption(option) };
 
-                char option_string[128];
-                std::cin.getline(option_string, 128);
-                std::string opt_str{ option_string };
-                Utilities::stripWhitespaceFrontAndBack(opt_str);
-                ///
-                ///error handling
-                ///
+                std::string option_string;
+                std::getline(std::cin >> std::ws, option_string);
+                Utilities::stripWhitespaceFrontAndBack(option_string);
 
-                library.booksFind(opt, opt_str);
+                library.booksFind(opt, option_string);
                 std::cout << '\n';
             }
             else if (command == "sort") {
@@ -207,19 +218,16 @@ void Menu::menu(Library& library) {
                 std::string sort;
                 std::cin >> sort;
                 BookSort srt{ Library::stringToSort(sort) };
-                ///
-                ///error handling
-                ///
                 
                 library.booksSort(opt, srt);
             }
             else if (command == "add") {
                 if (!checkAdminAndLog(library)) { continue; }
 
-                char c_str_title[128];
-                char c_str_author[128];
-                char c_str_genre[128];      
-                char c_str_description[128];
+                std::string title;
+                std::string author;
+                std::string genre;
+                std::string description;
                 signed year;
                 double rating;
                 unsigned long isbn;
@@ -229,23 +237,19 @@ void Menu::menu(Library& library) {
                 std::cin.get();
 
                 std::cout << "Title: ";
-                std::cin.getline(c_str_title, 128);
-                std::string title{ c_str_title };
+                std::getline(std::cin >> std::ws, title);
                 Utilities::stripWhitespaceFrontAndBack(title);
                 
                 std::cout << "Author: ";
-                std::cin.getline(c_str_author, 128);
-                std::string author{ c_str_author };
+                std::getline(std::cin >> std::ws, author);
                 Utilities::stripWhitespaceFrontAndBack(author);
 
                 std::cout << "Genre: ";
-                std::cin.getline(c_str_genre, 128);
-                std::string genre{ c_str_genre };
+                std::getline(std::cin >> std::ws, genre);
                 Utilities::stripWhitespaceFrontAndBack(genre);
 
                 std::cout << "Description: ";
-                std::cin.getline(c_str_description, 128);
-                std::string description{ c_str_description };
+                std::getline(std::cin >> std::ws, description);
                 Utilities::stripWhitespaceFrontAndBack(description);
 
                 std::cout << "Year: ";
@@ -279,10 +283,32 @@ void Menu::menu(Library& library) {
                         c = std::cin.get();
                     }
                 }
-                ///
-                ///error handling
-                ///
-                
+
+                bool delim_found{ false };
+                std::vector<std::string> vec{ title, author, genre, description};
+                for (const std::string& str : vec) {
+                    if (!validInput(Utilities::containsChar(str, Book::m_DELIMITER),
+                        std::string{ "No field of the book can contain " } + Book::m_DELIMITER)) 
+                    {
+                        delim_found = true;
+                        break;
+                    }
+                }
+                for (const char* t : tags) {
+                    if (!validInput(Utilities::containsChar(t, Book::m_DELIMITER),
+                        std::string{ "No field of the book can contain " } + Book::m_DELIMITER)) 
+                    {
+                        delim_found = true;
+                        break;
+                    }
+                }
+                if (delim_found) { continue; }
+
+                if (!validInput(!year, "Invalid year.")
+                    || !validInput(!rating, "Invalid rating.")
+                    || !validInput(!isbn, "Invalid ISBN.")) { continue; }
+
+
                 Book* book{ new Book{ author, title, genre, description,
                     year, tags, rating, isbn } };
 
@@ -297,9 +323,8 @@ void Menu::menu(Library& library) {
 
                 unsigned long isbn;
                 std::cin >> isbn;
-                ///
-                ///error handling
-                ///
+
+                if (!validInput(!isbn, "Invalid ISBN.")) { continue; }
 
                 library.booksRemove(isbn);
             }
@@ -316,9 +341,15 @@ void Menu::menu(Library& library) {
                 std::string password;
                 bool admin;
                 std::cin >> username >> password >> admin;
-                ///
-                ///error handling
-                ///
+
+                if (!validInput(Utilities::containsChar(username, User::m_DELIMITER),
+                    std::string{ "Username can't contain " + User::m_DELIMITER })) {
+                    continue;
+                }
+                if (!validInput(Utilities::containsChar(password, User::m_DELIMITER),
+                    std::string{ "Password can't contain " + User::m_DELIMITER })) {
+                    continue;
+                }
 
                 User* user;
                 if (admin) {
@@ -332,9 +363,6 @@ void Menu::menu(Library& library) {
             else if (command == "remove") {
                 std::string username;
                 std::cin >> username;
-                ///
-                ///error handling
-                ///
 
                 library.usersRemove(username);
             }
