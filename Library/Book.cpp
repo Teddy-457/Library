@@ -149,6 +149,14 @@ const std::string& Book::getAuthor() const {
 	return m_author;
 }
 
+signed Book::getYear() const {
+	return m_year;
+}
+
+double Book::getRating() const {
+	return m_rating;
+}
+
 const Tags_t& Book::getTags() const {
 	return m_tags;
 }

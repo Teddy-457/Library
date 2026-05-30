@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <utility>
+#include <functional>
 #include "Library.hpp"
 #include "../Utilities.hpp"
 #include "../Book.hpp"
@@ -351,10 +352,10 @@ std::string Library::sortToString(BookSort option) {
 }
 
 BookSort Library::stringToSort(const std::string& option) {
-	if (option == "asc") {
+	if (option == "asc" || option == "ascending") {
 		return BookSort::ASCENDING;
 	}
-	else if (option == "desc") {
+	else if (option == "desc" || option == "descending") {
 		return BookSort::DESCENDING;
 	}
 	else {
@@ -365,35 +366,60 @@ BookSort Library::stringToSort(const std::string& option) {
 void Library::booksSort(BookOption option, BookSort sort) {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksSort(Book::Option, Library::Sort)\n"; }
 
-	///при сортиране на книгите по зададен критерий, да се напише алгоритъм различен от selection sort и bubble sort
-	std::size_t size{ m_books.size() };
-	if (size == 1) { return; }
+	//std::size_t size{ m_books.size() };
+	//if (size == 1) { return; }
 
-	auto insertionSort = [this, size](BookSort sort /*std::vector<Book*>& books = m_books*/) -> void {
-		for (int i = 1; i < size; ++i) {
-			Book* book{ std::move(m_books[i]) };
-		}
+	using SortFun = std::function<bool(const Book*, const Book*)>;
 
-		///
-		///
-		///
-	};
+	if (sort == BookSort::INVALID) {
+		std::cout << "Invalid sorting type [asc | desc].\n";
+		return;
+	}
 
+	SortFun sorting_option;
 	switch (option) {
 		case BookOption::TITLE:
-			///
-			return;
+			sorting_option = [](const Book* b_1, const Book* b_2)->bool
+				{ return b_1->getTitle() > b_2->getTitle(); };
+			break;
 		case BookOption::AUTHOR:
-			///
-			return;
+			sorting_option = [](const Book* b_1, const Book* b_2)->bool
+				{ return b_1->getAuthor() > b_2->getAuthor(); };
+			break;
 		case BookOption::YEAR:
-			///
-			return;
+			sorting_option = [](const Book* b_1, const Book* b_2)->bool
+				{ return b_1->getYear() > b_2->getYear(); };
+			break;
 		case BookOption::RATING:
-			///
-			return;
+			sorting_option = [](const Book* b_1, const Book* b_2)->bool
+				{ return b_1->getRating() > b_2->getRating(); };
+			break;
 		default:
 			std::cout << "Option can only be title, author, year, or rating.\n";
 			return;
 	}
-}
+
+	if (sort == BookSort::DESCENDING) {
+		SortFun copy = sorting_option;
+		sorting_option = [copy](const Book* b_1, const Book* b_2)->bool
+			{ return copy(b_2, b_1); };
+	}
+
+	auto insertionSort = [this](SortFun sorting_option) -> void {
+		for (std::size_t i = 1; i < m_books.size(); ++i) {
+			Book* book{ std::move(m_books[i]) };
+
+			std::size_t j{ i };
+			while (j > 0 && sorting_option(m_books[j - 1], book)) {
+				m_books[j] = m_books[j - 1];
+				--j;
+			}
+
+			m_books[j] = std::move(book);
+		}
+	};
+
+	insertionSort(sorting_option);
+	std::cout << "Sorted " << m_books.size() << " books by "
+		<< Book::optionToString(option) << " in " << sortToString(sort) << " order.\n";
+};

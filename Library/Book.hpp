@@ -45,6 +45,8 @@ public:
 	const std::string& getTitle() const;
 	const std::string& getGenre() const;
 	const std::string& getAuthor() const;
+	signed getYear() const;
+	double getRating() const;
 	const Tags_t& getTags() const;
 	unsigned long getISBN() const;
 	static std::string optionToString(BookOption);

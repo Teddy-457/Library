@@ -143,8 +143,10 @@ void Menu::menu(Library& library) {
             }
             else if (command == "find") {
                 std::string option;
-                char option_string[128];
                 std::cin >> option;
+                BookOption opt{ Book::stringToOption(option) };
+
+                char option_string[128];
                 std::cin.getline(option_string, 128);
                 std::string opt_str{option_string};
                 for (int i = 0; i < opt_str.size(); ++i) {
@@ -156,21 +158,54 @@ void Menu::menu(Library& library) {
                 ///error handling
                 ///
 
-                BookOption opt = Book::stringToOption(option);
                 library.booksFind(opt, opt_str);
                 std::cout << '\n';
             }
             else if (command == "sort") {
+                std::string option;
+                std::cin >> option;
+                BookOption opt{ Book::stringToOption(option) };
+                
+                std::string sort;
+                std::cin >> sort;
+                BookSort srt{ Library::stringToSort(sort) };
                 ///
+                ///error handling
                 ///
-                ///
+                
+                library.booksSort(opt, srt);
             }
             else if (command == "add") {
                 if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }
 
+                char title[128];        //std::string title;
+                char author[128];       //std::string author
+                char genre[128];        //std::string genre;
+                char description[128];  //std::string description;
+                signed year;
+                double rating;
+                unsigned long isbn;
+                Tags_t tags;
+
+                ///add <title> <author> <genre>
+                ///    <description> <year> <rating>\n"
+                ///    <isbn> <tags>\n"
+
+                ///char option_string[128];
+                //std::cin.getline(option_string, 128);
+                //std::string opt_str{ option_string };
+                //for (int i = 0; i < opt_str.size(); ++i) {
+                //    if (opt_str[i] == ' ' && (i == 0 || i == opt_str.size() - 1)) {
+                //        opt_str.erase(opt_str.begin() + i);
+                //    }
+                ///}
+                
                 ///
+                ///error handling
                 ///
-                ///
+                
+                library.booksAdd(new Book{author, title, genre, description,
+                    year, std::move(tags), rating, isbn});
             }
             else if (command == "remove") {
                 if (!checkAdminAndLog(library)) { Utilities::clearCin(); continue; }

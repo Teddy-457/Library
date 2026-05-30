@@ -36,9 +36,6 @@ private:
 	bool findBookByTitle(const std::string&) const;
 	bool findBookByAuthor(const std::string&) const;
 	bool findBookByTag(const std::string&) const;
-
-	static std::string sortToString(BookSort);
-	static BookSort stringToSort(const std::string&);
 	
 	void free();
 
@@ -70,4 +67,7 @@ public:
 	void booksInfo(unsigned long) const;
 	void booksFind(BookOption, std::string) const;
 	void booksSort(BookOption, BookSort);
+
+	static std::string sortToString(BookSort);
+	static BookSort stringToSort(const std::string&);
 };
