@@ -3,7 +3,7 @@
 
 int main() {
     Library lib;
-    Menu::menu(lib);
+    Menu::getInstance().menu(lib);
 
     return 0;
 }

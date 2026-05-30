@@ -269,10 +269,10 @@ void Library::booksAll() const {
 	if (m_LOG_LEVEL == Logging::DEBUG) { std::cout << "Library::booksAll()\n"; }
 
 	for(const Book* b : m_books) {
-		std::cout << b->getTitle() << '\n'
-				  << b->getAuthor() << '\n'
-				  << b->getGenre() << '\n'
-				  << b->getISBN() << "\n\n";
+		std::cout << "Title: " <<  b->getTitle() << '\n'
+				  << "Author: " << b->getAuthor() << '\n'
+				  << "Genre: " << b->getGenre() << '\n'
+				  << "ISBN: " << b->getISBN() << "\n\n";
 	}
 }
 

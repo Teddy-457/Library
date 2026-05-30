@@ -212,14 +212,14 @@ BookOption Book::stringToOption(const std::string& option) {
 }
 
 void Book::print() const {
-	std::cout << m_title << '\n'
-			  << m_author << '\n'
-			  << m_year << '\n'
-			  << m_genre << '\n'
-			  << m_description << '\n'
-			  << m_rating << '\n'
-			  << m_isbn << '\n';
-	std::cout << '|';
+	std::cout << "Title: " << m_title << '\n'
+			  << "Author: " << m_author << '\n'
+			  << "Year: " << m_year << '\n'
+			  << "Genre: " << m_genre << '\n'
+			  << "Description: " << m_description << '\n'
+			  << "Rating: " << m_rating << '\n'
+			  << "ISBN: " << m_isbn << '\n';
+	std::cout << "Tags: " << '|';
 	for(const char* t : m_tags) {
 		std::cout << t << '|';
 	}

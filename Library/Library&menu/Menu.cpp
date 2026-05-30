@@ -8,7 +8,7 @@
 #include "../Utilities.hpp"
 
 #define AUTO_OPEN_LIBRARY_DAT
-//#define AUTO_LOGIN_JOHN_PORK
+#define AUTO_LOGIN_JOHN_PORK
 
 namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(const Library& library) {
@@ -34,6 +34,11 @@ namespace { //or use static functions for internal linkage
         }
         return true;
     }
+}
+
+Menu& Menu::getInstance() {
+    static Menu menu;
+    return menu;
 }
 
 void Menu::menu(Library& library) {
