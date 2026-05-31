@@ -7,9 +7,6 @@
 #include "../User/User.hpp"
 #include "../Utilities.hpp"
 
-#define AUTO_OPEN_LIBRARY_DAT
-#define AUTO_LOGIN_JOHN_PORK
-
 namespace { //or use static functions for internal linkage
     bool checkLoginAndLog(const Library& library) {
         if (!library.loggedIn()) {
@@ -74,9 +71,9 @@ void Menu::menu(Library& library) {
         if (!first_run) {
             std::cout << '\n';
             first_run = false;
+            Utilities::clearCin();
         }
 
-        Utilities::clearCin();
         std::cout << "> ";
         std::string command;
         std::cin >> command;

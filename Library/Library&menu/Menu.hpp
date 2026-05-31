@@ -1,9 +1,8 @@
 #pragma once
 #include "Library.hpp"
 
-// namespace Menu {
-//	void menu(Library&);
-//};
+//#define AUTO_OPEN_LIBRARY_DAT
+//#define AUTO_LOGIN_JOHN_PORK
 
 class Menu {
 private:
@@ -19,3 +18,7 @@ public:
 	static Menu& getInstance();
 	void menu(Library&);
 };
+
+// namespace Menu {
+//	void menu(Library&);
+//};

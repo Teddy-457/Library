@@ -305,6 +305,7 @@ void Library::booksFind(BookOption option, std::string option_string) const {
 			break;
 		default:
 			std::cout << "Option can only be title, author, or tag.\n";
+			return;
 	}
 	if (!found) { std::cout << "Couldn't find book with " 
 		<< Book::optionToString(option) << ' ' << option_string << ".\n";
