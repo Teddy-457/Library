@@ -66,10 +66,3 @@ bool Utilities::containsChar(const std::string& str, char c) {
 	}
 	return false;
 }
-
-bool containsWhitespace(const std::string& str) {
-	for (const char str_c : str) {
-		if (str_c == ' ') { return true; }
-	}
-	return false;
-}

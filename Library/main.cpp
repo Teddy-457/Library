@@ -1,4 +1,7 @@
-﻿#include "Library&Menu/Library.hpp"
+﻿#include "Tests.hpp"
+
+#ifdef DOCTEST_CONFIG_DISABLE
+#include "Library&Menu/Library.hpp"
 #include "Library&Menu/Menu.hpp"
 
 int main() {
@@ -7,3 +10,4 @@ int main() {
 
     return 0;
 }
+#endif

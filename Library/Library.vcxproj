@@ -127,6 +127,7 @@
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="Library&amp;menu\Library.cpp" />
     <ClCompile Include="Library&amp;menu\Menu.cpp" />
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="User\Admin.cpp" />
     <ClCompile Include="User\Client.cpp" />
     <ClCompile Include="User\User.cpp" />
@@ -135,8 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.hpp" />
+    <ClInclude Include="doctest.h" />
     <ClInclude Include="Library&amp;menu\Library.hpp" />
     <ClInclude Include="Library&amp;menu\Menu.hpp" />
+    <ClInclude Include="Tests.hpp" />
     <ClInclude Include="User\Admin.hpp" />
     <ClInclude Include="User\Client.hpp" />
     <ClInclude Include="User\User.hpp" />
