@@ -1,0 +1,24 @@
+\doxysection{Admin.\+hpp}
+\hypertarget{_admin_8hpp_source}{}\label{_admin_8hpp_source}\index{Library/User/Admin.hpp@{Library/User/Admin.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Client.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }Admin\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{comment}{//\ Deleted\ default\ constructor\ and\ copying/moving\ semantics}}
+\DoxyCodeLine{00013\ \ \ \ \ Admin()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00014\ \ \ \ \ Admin(\textcolor{keyword}{const}\ Admin\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00015\ \ \ \ \ Admin\&\ operator=(\textcolor{keyword}{const}\ Admin\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00016\ \ \ \ \ Admin(Admin\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00017\ \ \ \ \ Admin\&\ operator=(Admin\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{class_admin_a2f88034aa27d270f94e6379d1bdd0f0f}{\string~Admin}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ \ \ \ \ Admin(std::string\ username,\ std::string\ password);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ Admin*\ \doxymbox{\hyperlink{class_admin_a8b6387b72a081db0141c2e6877ab5cc9}{deserialize}}(std::ifstream\&\ file);}
+\DoxyCodeLine{00035\ \};}
+
+\end{DoxyCode}

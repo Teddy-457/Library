@@ -1,0 +1,311 @@
+\doxysection{Book Class Reference}
+\hypertarget{class_book}{}\label{class_book}\index{Book@{Book}}
+
+
+Represents a book in the library system.  
+
+
+
+
+{\ttfamily \+\#include $<$Book.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_book_a1df53d0579b1ab4e4a48210fd15d5188}\label{class_book_a1df53d0579b1ab4e4a48210fd15d5188} 
+{\bfseries Book} (const \doxymbox{\hyperlink{class_book}{Book}} \&)=delete
+\item 
+\Hypertarget{class_book_a29a57eba69293abc5fac192df6eb1482}\label{class_book_a29a57eba69293abc5fac192df6eb1482} 
+\doxymbox{\hyperlink{class_book}{Book}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_book}{Book}} \&)=delete
+\item 
+\doxymbox{\hyperlink{class_book_aff044ec8164e2f984d6023d3a33a6d78}{Book}} (\doxymbox{\hyperlink{class_book}{Book}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor. Transfers resource ownership. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_book}{Book}} \& \doxymbox{\hyperlink{class_book_a443eaf808b1a00b0456e0c52d8d27c9a}{operator=}} (\doxymbox{\hyperlink{class_book}{Book}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Move assignment operator. Transfers resource ownership. \end{DoxyCompactList}\item 
+\Hypertarget{class_book_a0ba8eceb34ea1301bc08942e37824767}\label{class_book_a0ba8eceb34ea1301bc08942e37824767} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Book} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Cleans up dynamically allocated tags. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_book_a94b561a4a7735739a52693f5d14be5b2}{Book}} (std::\+string author, std::\+string title, std::\+string genre, std::\+string description, signed year, Tags\+\_\+t tags, double rating, unsigned long isbn)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{class_book}{Book} with the given metadata. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_book_a3f1bcfca0a4963e0ef7d61de8741b92f}{serialize}} (const std::\+string \&filename) const
+\begin{DoxyCompactList}\small\item\em Serializes the book\textquotesingle{}s data to a file. \end{DoxyCompactList}\item 
+\Hypertarget{class_book_af46441a304bd9d514fc9fb0cae3536cc}\label{class_book_af46441a304bd9d514fc9fb0cae3536cc} 
+void {\bfseries print} () const
+\begin{DoxyCompactList}\small\item\em Prints a formatted representation of the book\textquotesingle{}s metadata to the console. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_book_ad656beaa1c9ebb225792097ffbed6860}{get\+Title}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the title. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_book_ad94ad4e2f9bd809b0e5b4c4c01f70998}{get\+Genre}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the genre. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_book_ad5dda425ee6e26e530f19caf97f880c2}{get\+Author}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the author. \end{DoxyCompactList}\item 
+signed \doxymbox{\hyperlink{class_book_a3e80f03bb321f6644cb37b6c15187258}{get\+Year}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the publication year. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_book_a4cbdb7aeb4c5403ca6c89d9f788d22c3}{get\+Rating}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the user rating. \end{DoxyCompactList}\item 
+const Tags\+\_\+t \& \doxymbox{\hyperlink{class_book_a15f40f1c04b99c155aed70ad1117f9d9}{get\+Tags}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the collection of tags. \end{DoxyCompactList}\item 
+unsigned long \doxymbox{\hyperlink{class_book_aeb5e2d3641628c05d04dba24fd88553c}{get\+ISBN}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the ISBN. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_book}{Book}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_book_a81f5204f684625d5f222e4d576fa9523}{deserialize}} (const std::\+string \&filename, unsigned line)
+\begin{DoxyCompactList}\small\item\em Deserializes a \doxylink{class_book}{Book} from a specific line in a data file. \end{DoxyCompactList}\item 
+static std::\+string \doxymbox{\hyperlink{class_book_a32e2f5a00945fa2ba07666faaa89e702}{option\+To\+String}} (Book\+Option option)
+\begin{DoxyCompactList}\small\item\em Converts a Book\+Option enum to its native string representation. \end{DoxyCompactList}\item 
+static Book\+Option \doxymbox{\hyperlink{class_book_aca2967dbdd69ddf77d9f73aaedfbf4ab}{string\+To\+Option}} (const std::\+string \&str)
+\begin{DoxyCompactList}\small\item\em Converts a string command to a Book\+Option enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_book_a3c5fde9d3c13e92b2004b15a9ac52841}\label{class_book_a3c5fde9d3c13e92b2004b15a9ac52841} 
+static constexpr char {\bfseries m\+\_\+\+DELIMITER} \{ \textquotesingle{}\%\textquotesingle{} \}
+\begin{DoxyCompactList}\small\item\em The character used to separate fields when saving to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a book in the library system. 
+
+Holds detailed metadata about a book, such as its title, author, genre, publication year, user ratings, and ISBN. Handles its own serialization and formatted console printing. 
+
+\label{class_book_doc-constructors}
+\Hypertarget{class_book_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_book_aff044ec8164e2f984d6023d3a33a6d78}\index{Book@{Book}!Book@{Book}}
+\index{Book@{Book}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{Book()}{Book()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_book_aff044ec8164e2f984d6023d3a33a6d78} 
+Book::\+\+Book (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_book}{Book}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor. Transfers resource ownership. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_book}{Book} to move data from. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_book_a94b561a4a7735739a52693f5d14be5b2}\index{Book@{Book}!Book@{Book}}
+\index{Book@{Book}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{Book()}{Book()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_book_a94b561a4a7735739a52693f5d14be5b2} 
+Book::\+\+Book (\begin{DoxyParamCaption}\item[{std::\+string}]{author}{, }\item[{std::\+string}]{title}{, }\item[{std::\+string}]{genre}{, }\item[{std::\+string}]{description}{, }\item[{signed}]{year}{, }\item[{Tags\+\_\+t}]{tags}{, }\item[{double}]{rating}{, }\item[{unsigned long}]{isbn}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{class_book}{Book} with the given metadata. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em author} & The author of the book. \\
+\hline
+{\em title} & The title of the book. \\
+\hline
+{\em genre} & The genre of the book. \\
+\hline
+{\em description} & A short summary of the book. \\
+\hline
+{\em year} & The year of publication (Negative numbers are supported for BC dates). \\
+\hline
+{\em tags} & A collection of keyword tags indicating themes or topics. \\
+\hline
+{\em rating} & The numerical user rating of the book. \\
+\hline
+{\em isbn} & The unique International Standard \doxylink{class_book}{Book} Number. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_book_doc-func-members}
+\Hypertarget{class_book_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_book_a81f5204f684625d5f222e4d576fa9523}\index{Book@{Book}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily \label{class_book_a81f5204f684625d5f222e4d576fa9523} 
+\doxymbox{\hyperlink{class_book}{Book}} \texorpdfstring{$\ast$}{*} Book::\+deserialize (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{unsigned}]{line}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Deserializes a \doxylink{class_book}{Book} from a specific line in a data file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file to read from. \\
+\hline
+{\em line} & The line number (0-\/indexed or 1-\/indexed based on implementation) to parse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated pointer to the newly created \doxylink{class_book}{Book}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller is responsible for deleting the returned \doxylink{class_book}{Book} instance. 
+\end{DoxyNote}
+\Hypertarget{class_book_ad5dda425ee6e26e530f19caf97f880c2}\index{Book@{Book}!getAuthor@{getAuthor}}
+\index{getAuthor@{getAuthor}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getAuthor()}{getAuthor()}}
+{\footnotesize\ttfamily \label{class_book_ad5dda425ee6e26e530f19caf97f880c2} 
+const std::\+string \& Book::\+get\+Author (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the author. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the book author. 
+\end{DoxyReturn}
+\Hypertarget{class_book_ad94ad4e2f9bd809b0e5b4c4c01f70998}\index{Book@{Book}!getGenre@{getGenre}}
+\index{getGenre@{getGenre}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getGenre()}{getGenre()}}
+{\footnotesize\ttfamily \label{class_book_ad94ad4e2f9bd809b0e5b4c4c01f70998} 
+const std::\+string \& Book::\+get\+Genre (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the genre. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the book genre. 
+\end{DoxyReturn}
+\Hypertarget{class_book_aeb5e2d3641628c05d04dba24fd88553c}\index{Book@{Book}!getISBN@{getISBN}}
+\index{getISBN@{getISBN}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getISBN()}{getISBN()}}
+{\footnotesize\ttfamily \label{class_book_aeb5e2d3641628c05d04dba24fd88553c} 
+unsigned long Book::\+get\+ISBN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the ISBN. 
+
+\begin{DoxyReturn}{Returns}
+The ISBN identification number. 
+\end{DoxyReturn}
+\Hypertarget{class_book_a4cbdb7aeb4c5403ca6c89d9f788d22c3}\index{Book@{Book}!getRating@{getRating}}
+\index{getRating@{getRating}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getRating()}{getRating()}}
+{\footnotesize\ttfamily \label{class_book_a4cbdb7aeb4c5403ca6c89d9f788d22c3} 
+double Book::\+get\+Rating (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the user rating. 
+
+\begin{DoxyReturn}{Returns}
+The numerical rating. 
+\end{DoxyReturn}
+\Hypertarget{class_book_a15f40f1c04b99c155aed70ad1117f9d9}\index{Book@{Book}!getTags@{getTags}}
+\index{getTags@{getTags}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getTags()}{getTags()}}
+{\footnotesize\ttfamily \label{class_book_a15f40f1c04b99c155aed70ad1117f9d9} 
+const Tags\+\_\+t \& Book::\+get\+Tags (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the collection of tags. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the vector of tags. 
+\end{DoxyReturn}
+\Hypertarget{class_book_ad656beaa1c9ebb225792097ffbed6860}\index{Book@{Book}!getTitle@{getTitle}}
+\index{getTitle@{getTitle}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getTitle()}{getTitle()}}
+{\footnotesize\ttfamily \label{class_book_ad656beaa1c9ebb225792097ffbed6860} 
+const std::\+string \& Book::\+get\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the title. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the book title. 
+\end{DoxyReturn}
+\Hypertarget{class_book_a3e80f03bb321f6644cb37b6c15187258}\index{Book@{Book}!getYear@{getYear}}
+\index{getYear@{getYear}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{getYear()}{getYear()}}
+{\footnotesize\ttfamily \label{class_book_a3e80f03bb321f6644cb37b6c15187258} 
+signed Book::\+get\+Year (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the publication year. 
+
+\begin{DoxyReturn}{Returns}
+The signed year of publication. 
+\end{DoxyReturn}
+\Hypertarget{class_book_a443eaf808b1a00b0456e0c52d8d27c9a}\index{Book@{Book}!operator=@{operator=}}
+\index{operator=@{operator=}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_book_a443eaf808b1a00b0456e0c52d8d27c9a} 
+\doxymbox{\hyperlink{class_book}{Book}} \& Book::\+operator= (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_book}{Book}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move assignment operator. Transfers resource ownership. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_book}{Book} to move data from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the assigned \doxylink{class_book}{Book}. 
+\end{DoxyReturn}
+\Hypertarget{class_book_a32e2f5a00945fa2ba07666faaa89e702}\index{Book@{Book}!optionToString@{optionToString}}
+\index{optionToString@{optionToString}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{optionToString()}{optionToString()}}
+{\footnotesize\ttfamily \label{class_book_a32e2f5a00945fa2ba07666faaa89e702} 
+std::\+string Book::\+option\+To\+String (\begin{DoxyParamCaption}\item[{Book\+Option}]{option}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a Book\+Option enum to its native string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em option} & The Book\+Option to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A lowercase string matching the option command. 
+\end{DoxyReturn}
+\Hypertarget{class_book_a3f1bcfca0a4963e0ef7d61de8741b92f}\index{Book@{Book}!serialize@{serialize}}
+\index{serialize@{serialize}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{class_book_a3f1bcfca0a4963e0ef7d61de8741b92f} 
+void Book::\+serialize (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption}) const}
+
+
+
+Serializes the book\textquotesingle{}s data to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file where the book data should be appended. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_book_aca2967dbdd69ddf77d9f73aaedfbf4ab}\index{Book@{Book}!stringToOption@{stringToOption}}
+\index{stringToOption@{stringToOption}!Book@{Book}}
+\doxysubsubsection{\texorpdfstring{stringToOption()}{stringToOption()}}
+{\footnotesize\ttfamily \label{class_book_aca2967dbdd69ddf77d9f73aaedfbf4ab} 
+Book\+Option Book::\+string\+To\+Option (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{str}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a string command to a Book\+Option enum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The input string to parse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding Book\+Option, or Book\+Option::\+\+INVALID if the string form isn\textquotesingle{}t recognized. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Library/\+Book.\+hpp\item 
+Library/\+Book.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,33 @@
+\doxysection{Menu.\+hpp}
+\hypertarget{_menu_8hpp_source}{}\label{_menu_8hpp_source}\index{Library/Library\&menu/Menu.hpp@{Library/Library\&menu/Menu.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Library.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\#define\ AUTO\_OPEN\_LIBRARY\_DAT}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#define\ AUTO\_LOGIN\_JOHN\_PORK}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }Menu\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ Menu()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Deleted\ copy\ and\ move\ semantics\ to\ prevent\ multiple\ instances}}
+\DoxyCodeLine{00020\ \ \ \ \ Menu(\textcolor{keyword}{const}\ Menu\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00021\ \ \ \ \ Menu\&\ operator=(\textcolor{keyword}{const}\ Menu\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00022\ \ \ \ \ Menu(Menu\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00023\ \ \ \ \ Menu\&\ operator=(Menu\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \doxymbox{\hyperlink{class_menu_aec66e8695cecd5e88732d20ffd027921}{\string~Menu}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ Menu\&\ \doxymbox{\hyperlink{class_menu_ad73f0a450269dc0eb3ae81ec7358a963}{getInstance}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_menu_a2601f20008433aa2e21433f12a59c386}{menu}}(\doxymbox{\hyperlink{class_library}{Library}}\&\ library);}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ namespace\ Menu\ \{}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ void\ menu(Library\&);}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\};}}
+
+\end{DoxyCode}

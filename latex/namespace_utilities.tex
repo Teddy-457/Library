@@ -1,0 +1,195 @@
+\doxysection{Utilities Namespace Reference}
+\hypertarget{namespace_utilities}{}\label{namespace_utilities}\index{Utilities@{Utilities}}
+
+
+Helper functions for file IO, string manipulation, and error handling.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{namespace_utilities_adbf154df448235884c4d4e85e5d86049}{check\+If\+Open}} (const std::\+ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Validates if an input file stream is open. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{namespace_utilities_a4b497c2eee525b86b6d21e1784f5aad6}{check\+If\+Open}} (const std::\+ofstream \&file)
+\begin{DoxyCompactList}\small\item\em Validates if an output file stream is open. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_utilities_ab305946e74d6b18e3d4d31521bbf1c76}{check\+If\+Exists}} (const std::\+string \&filename)
+\begin{DoxyCompactList}\small\item\em Checks if a file exists on the filesystem. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{namespace_utilities_a163e2978a6a13d57411d87cc01310309}{log\+And\+Throw}} (const std::\+string \&message)
+\begin{DoxyCompactList}\small\item\em Logs an error message to the console and throws a runtime exception. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{namespace_utilities_a688c491b1c397460bc0116ffbb75e456}{skip\+Lines}} (std::\+ifstream \&file, unsigned lines)
+\begin{DoxyCompactList}\small\item\em Skips a specified number of lines in an input file stream. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{namespace_utilities_a6528524b44e872bce186b9de8089fd1d}{clear\+Cin}} ()
+\begin{DoxyCompactList}\small\item\em Clears the fail state of the standard input stream (std::\+cin) and flushes its buffer. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{namespace_utilities_a83c7bb05c1e3b29e97710c9685dec8b6}{to\+\_\+lowercase}} (const std::\+string \&str)
+\begin{DoxyCompactList}\small\item\em Converts a given string to completely lowercase characters. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{namespace_utilities_ae3d4b106bff5444017e9c02638fe55a4}{strip\+Whitespace\+Front\+And\+Back}} (std::\+string \&str)
+\begin{DoxyCompactList}\small\item\em Strips leading and trailing whitespace characters from a string in-\/place. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_utilities_aaf66d016102fe510882d28cb5ab9dfb2}{contains\+Char}} (const std::\+string \&str, char c)
+\begin{DoxyCompactList}\small\item\em Checks if a specific character exists within a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for file IO, string manipulation, and error handling. 
+
+\label{namespace_utilities_doc-func-members}
+\Hypertarget{namespace_utilities_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespace_utilities_ab305946e74d6b18e3d4d31521bbf1c76}\index{Utilities@{Utilities}!checkIfExists@{checkIfExists}}
+\index{checkIfExists@{checkIfExists}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{checkIfExists()}{checkIfExists()}}
+{\footnotesize\ttfamily \label{namespace_utilities_ab305946e74d6b18e3d4d31521bbf1c76} 
+bool Utilities::\+check\+If\+Exists (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a file exists on the filesystem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path and name of the file to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the file exists, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{namespace_utilities_adbf154df448235884c4d4e85e5d86049}\index{Utilities@{Utilities}!checkIfOpen@{checkIfOpen}}
+\index{checkIfOpen@{checkIfOpen}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{checkIfOpen()}{checkIfOpen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{namespace_utilities_adbf154df448235884c4d4e85e5d86049} 
+void Utilities::\+check\+If\+Open (\begin{DoxyParamCaption}\item[{const std::\+ifstream \&}]{file}{}\end{DoxyParamCaption})}
+
+
+
+Validates if an input file stream is open. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The input file stream to check. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & if the file stream is not open. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{namespace_utilities_a4b497c2eee525b86b6d21e1784f5aad6}\index{Utilities@{Utilities}!checkIfOpen@{checkIfOpen}}
+\index{checkIfOpen@{checkIfOpen}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{checkIfOpen()}{checkIfOpen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{namespace_utilities_a4b497c2eee525b86b6d21e1784f5aad6} 
+void Utilities::\+check\+If\+Open (\begin{DoxyParamCaption}\item[{const std::\+ofstream \&}]{file}{}\end{DoxyParamCaption})}
+
+
+
+Validates if an output file stream is open. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The output file stream to check. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & if the file stream is not open. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{namespace_utilities_a6528524b44e872bce186b9de8089fd1d}\index{Utilities@{Utilities}!clearCin@{clearCin}}
+\index{clearCin@{clearCin}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{clearCin()}{clearCin()}}
+{\footnotesize\ttfamily \label{namespace_utilities_a6528524b44e872bce186b9de8089fd1d} 
+void Utilities::\+clear\+Cin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears the fail state of the standard input stream (std::\+cin) and flushes its buffer. 
+
+Used to recover from bad console input and prevent infinite loops. \Hypertarget{namespace_utilities_aaf66d016102fe510882d28cb5ab9dfb2}\index{Utilities@{Utilities}!containsChar@{containsChar}}
+\index{containsChar@{containsChar}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{containsChar()}{containsChar()}}
+{\footnotesize\ttfamily \label{namespace_utilities_aaf66d016102fe510882d28cb5ab9dfb2} 
+bool Utilities::\+contains\+Char (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{str}{, }\item[{char}]{c}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a specific character exists within a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to search inside. \\
+\hline
+{\em c} & The character to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the character is found, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{namespace_utilities_a163e2978a6a13d57411d87cc01310309}\index{Utilities@{Utilities}!logAndThrow@{logAndThrow}}
+\index{logAndThrow@{logAndThrow}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{logAndThrow()}{logAndThrow()}}
+{\footnotesize\ttfamily \label{namespace_utilities_a163e2978a6a13d57411d87cc01310309} 
+void Utilities::\+log\+And\+Throw (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Logs an error message to the console and throws a runtime exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message to log and throw. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & unconditionally. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{namespace_utilities_a688c491b1c397460bc0116ffbb75e456}\index{Utilities@{Utilities}!skipLines@{skipLines}}
+\index{skipLines@{skipLines}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{skipLines()}{skipLines()}}
+{\footnotesize\ttfamily \label{namespace_utilities_a688c491b1c397460bc0116ffbb75e456} 
+void Utilities::\+skip\+Lines (\begin{DoxyParamCaption}\item[{std::\+ifstream \&}]{file}{, }\item[{unsigned}]{lines}{}\end{DoxyParamCaption})}
+
+
+
+Skips a specified number of lines in an input file stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The input file stream to advance. \\
+\hline
+{\em lines} & The number of newline characters (\textquotesingle{}~\newline
+\textquotesingle{}) to skip. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespace_utilities_ae3d4b106bff5444017e9c02638fe55a4}\index{Utilities@{Utilities}!stripWhitespaceFrontAndBack@{stripWhitespaceFrontAndBack}}
+\index{stripWhitespaceFrontAndBack@{stripWhitespaceFrontAndBack}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{stripWhitespaceFrontAndBack()}{stripWhitespaceFrontAndBack()}}
+{\footnotesize\ttfamily \label{namespace_utilities_ae3d4b106bff5444017e9c02638fe55a4} 
+void Utilities::\+strip\+Whitespace\+Front\+And\+Back (\begin{DoxyParamCaption}\item[{std::\+string \&}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Strips leading and trailing whitespace characters from a string in-\/place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to modify. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespace_utilities_a83c7bb05c1e3b29e97710c9685dec8b6}\index{Utilities@{Utilities}!to\_lowercase@{to\_lowercase}}
+\index{to\_lowercase@{to\_lowercase}!Utilities@{Utilities}}
+\doxysubsubsection{\texorpdfstring{to\_lowercase()}{to\_lowercase()}}
+{\footnotesize\ttfamily \label{namespace_utilities_a83c7bb05c1e3b29e97710c9685dec8b6} 
+std::\+string Utilities::\+to\+\_\+lowercase (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Converts a given string to completely lowercase characters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new string containing the lowercase version of the input. 
+\end{DoxyReturn}

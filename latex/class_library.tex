@@ -1,0 +1,344 @@
+\doxysection{Library Class Reference}
+\hypertarget{class_library}{}\label{class_library}\index{Library@{Library}}
+
+
+The central manager for the library application.  
+
+
+
+
+{\ttfamily \+\#include $<$Library.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_library_a82338219d8bf51962ff5f60a0db21b19}\label{class_library_a82338219d8bf51962ff5f60a0db21b19} 
+{\bfseries Library} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes an empty library with a default admin user. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_ab33f9f9d570d048505748e91b6816c1c}\label{class_library_ab33f9f9d570d048505748e91b6816c1c} 
+{\bfseries Library} (const \doxymbox{\hyperlink{class_library}{Library}} \&)=delete
+\item 
+\Hypertarget{class_library_a4cd658b3799ed13a941ef1abc13f925d}\label{class_library_a4cd658b3799ed13a941ef1abc13f925d} 
+\doxymbox{\hyperlink{class_library}{Library}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_library}{Library}} \&)=delete
+\item 
+\Hypertarget{class_library_a24ec21030736e1dbf7290c1a972f6469}\label{class_library_a24ec21030736e1dbf7290c1a972f6469} 
+{\bfseries Library} (\doxymbox{\hyperlink{class_library}{Library}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_library_af41134975e4df04694657f6890cbb253}\label{class_library_af41134975e4df04694657f6890cbb253} 
+\doxymbox{\hyperlink{class_library}{Library}} \& {\bfseries operator=} (\doxymbox{\hyperlink{class_library}{Library}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_library_a62120f28a9b50cc5b151d868e42ab936}\label{class_library_a62120f28a9b50cc5b151d868e42ab936} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Library} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Calls free() to release all allocated resources. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_a0888c6032c63eea7a53138625658cf07}{open}} (const std::\+string \&filename)
+\begin{DoxyCompactList}\small\item\em Opens a file directly, loading its users and books into memory. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_abaed8c38a9c91a78963767f62ac231f0}\label{class_library_abaed8c38a9c91a78963767f62ac231f0} 
+void {\bfseries close} ()
+\begin{DoxyCompactList}\small\item\em Closes the currently active library file, clearing the internal memory. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_a5bfcb1b53dcd4da7175785400ef17930}\label{class_library_a5bfcb1b53dcd4da7175785400ef17930} 
+void {\bfseries save} () const
+\begin{DoxyCompactList}\small\item\em Saves the current in-\/memory library state back to the active file. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_library_a70df41d358a9173d36ee86087a4aad7d}{saveas}} (const std::\+string \&filename, bool called\+\_\+from\+\_\+save=false) const
+\begin{DoxyCompactList}\small\item\em Saves the library state to a specific file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_a270887827d27741a3c04cf287e6c0efe}{login}} (const std::\+string \&username, const std::\+string \&password)
+\begin{DoxyCompactList}\small\item\em Authenticates a user and starts an active session. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_a8815dceedbbdd02f55f3b47b542ae1e1}\label{class_library_a8815dceedbbdd02f55f3b47b542ae1e1} 
+void {\bfseries logout} ()
+\begin{DoxyCompactList}\small\item\em Logs out the currently active user. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_a572d38cd0e92c300fe7cd7be58c0aa46}{users\+Add}} (\doxymbox{\hyperlink{class_user}{User}} \texorpdfstring{$\ast$}{*}user)
+\begin{DoxyCompactList}\small\item\em Adds a user to the library. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_a7289f61d6a9da64cf127b4248b0bb6ff}{users\+Remove}} (const std::\+string \&username)
+\begin{DoxyCompactList}\small\item\em Removes a user by their username. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_aa7b3d37846f27eddb6559bbb2556eba0}{books\+Add}} (\doxymbox{\hyperlink{class_book}{Book}} \texorpdfstring{$\ast$}{*}book)
+\begin{DoxyCompactList}\small\item\em Adds a new book to the library. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_a1de34d0ac8d3d9674b90d9b38736d709}{books\+Remove}} (unsigned long isbn)
+\begin{DoxyCompactList}\small\item\em Removes a book from the library via its ISBN. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_a11a2030e9e10668ec08b2baa6c66ba11}\label{class_library_a11a2030e9e10668ec08b2baa6c66ba11} 
+void {\bfseries books\+All} () const
+\begin{DoxyCompactList}\small\item\em Prints a formatted list of all books in the library. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_aab906c19194baf5c064d61f1162e0e04}{books\+Info}} (unsigned long isbn) const
+\begin{DoxyCompactList}\small\item\em Prints detailed information for a specific book. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_a83dce20417da2afb49ba3c9983c64617}{books\+Find}} (Book\+Option option, std::\+string value) const
+\begin{DoxyCompactList}\small\item\em Queries and prints books matching a specified option and value. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_library_aa25e9fdbc658fa7de1f1a44c555eb567}{books\+Sort}} (Book\+Option option, Book\+Sort sort)
+\begin{DoxyCompactList}\small\item\em Sorts the internal collection of books and outputs the sorted view. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_library_a10bb1a6017cda896d91676290a1b5a1a}{logged\+In}} () const
+\begin{DoxyCompactList}\small\item\em Checks if there is an active valid user session. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_library_a4e1f2eb49a23f15959c8df94be5fb638}{logged\+In\+As\+Admin}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the currently active user has administrator privileges. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_library_a11cf02c50624016ff9fb608dfa5156dc}{active\+File}} () const
+\begin{DoxyCompactList}\small\item\em Checks if a database file is currently opened and loaded in memory. \end{DoxyCompactList}\item 
+Logging \doxymbox{\hyperlink{class_library_a1b0a1868b902b360242b498b108f8d17}{get\+Log\+Level}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current logging verbosity level of the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std::\+string \doxymbox{\hyperlink{class_library_ab31ba56e59e32fdbdd0804380ba4b00c}{sort\+To\+String}} (Book\+Sort sort)
+\begin{DoxyCompactList}\small\item\em Converts a Book\+Sort enum to a readable lowercase string. \end{DoxyCompactList}\item 
+static Book\+Sort \doxymbox{\hyperlink{class_library_aa24e2568c1ff6824199b9f72146e6a4f}{string\+To\+Sort}} (const std::\+string \&str)
+\begin{DoxyCompactList}\small\item\em Converts an input string command to a Book\+Sort enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The central manager for the library application. 
+
+Handles database file operations (open, save, load), active user sessions, and maintains the in-\/memory collections of users and books. It enforces logging levels and routes specific queries and commands. 
+
+\label{class_library_doc-func-members}
+\Hypertarget{class_library_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_a11cf02c50624016ff9fb608dfa5156dc}\index{Library@{Library}!activeFile@{activeFile}}
+\index{activeFile@{activeFile}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{activeFile()}{activeFile()}}
+{\footnotesize\ttfamily \label{class_library_a11cf02c50624016ff9fb608dfa5156dc} 
+bool Library::\+active\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if a database file is currently opened and loaded in memory. 
+
+\begin{DoxyReturn}{Returns}
+True if an active file exists. 
+\end{DoxyReturn}
+\Hypertarget{class_library_aa7b3d37846f27eddb6559bbb2556eba0}\index{Library@{Library}!booksAdd@{booksAdd}}
+\index{booksAdd@{booksAdd}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{booksAdd()}{booksAdd()}}
+{\footnotesize\ttfamily \label{class_library_aa7b3d37846f27eddb6559bbb2556eba0} 
+void Library::\+books\+Add (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_book}{Book}} \texorpdfstring{$\ast$}{*}}]{book}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new book to the library. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em book} & A dynamically allocated book to add. Ownership is transferred to \doxylink{class_library}{Library}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_a83dce20417da2afb49ba3c9983c64617}\index{Library@{Library}!booksFind@{booksFind}}
+\index{booksFind@{booksFind}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{booksFind()}{booksFind()}}
+{\footnotesize\ttfamily \label{class_library_a83dce20417da2afb49ba3c9983c64617} 
+void Library::\+books\+Find (\begin{DoxyParamCaption}\item[{Book\+Option}]{option}{, }\item[{std::\+string}]{value}{}\end{DoxyParamCaption}) const}
+
+
+
+Queries and prints books matching a specified option and value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em option} & The field to search (e.\+g., TITLE, AUTHOR, TAG). \\
+\hline
+{\em value} & The query string to match. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_aab906c19194baf5c064d61f1162e0e04}\index{Library@{Library}!booksInfo@{booksInfo}}
+\index{booksInfo@{booksInfo}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{booksInfo()}{booksInfo()}}
+{\footnotesize\ttfamily \label{class_library_aab906c19194baf5c064d61f1162e0e04} 
+void Library::\+books\+Info (\begin{DoxyParamCaption}\item[{unsigned long}]{isbn}{}\end{DoxyParamCaption}) const}
+
+
+
+Prints detailed information for a specific book. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isbn} & The ISBN of the book to query. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_a1de34d0ac8d3d9674b90d9b38736d709}\index{Library@{Library}!booksRemove@{booksRemove}}
+\index{booksRemove@{booksRemove}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{booksRemove()}{booksRemove()}}
+{\footnotesize\ttfamily \label{class_library_a1de34d0ac8d3d9674b90d9b38736d709} 
+void Library::\+books\+Remove (\begin{DoxyParamCaption}\item[{unsigned long}]{isbn}{}\end{DoxyParamCaption})}
+
+
+
+Removes a book from the library via its ISBN. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isbn} & The unique ISBN of the book to remove. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_aa25e9fdbc658fa7de1f1a44c555eb567}\index{Library@{Library}!booksSort@{booksSort}}
+\index{booksSort@{booksSort}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{booksSort()}{booksSort()}}
+{\footnotesize\ttfamily \label{class_library_aa25e9fdbc658fa7de1f1a44c555eb567} 
+void Library::\+books\+Sort (\begin{DoxyParamCaption}\item[{Book\+Option}]{option}{, }\item[{Book\+Sort}]{sort}{}\end{DoxyParamCaption})}
+
+
+
+Sorts the internal collection of books and outputs the sorted view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em option} & The field to sort by. \\
+\hline
+{\em sort} & The direction to sort (ASCENDING or DESCENDING). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_a1b0a1868b902b360242b498b108f8d17}\index{Library@{Library}!getLogLevel@{getLogLevel}}
+\index{getLogLevel@{getLogLevel}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{getLogLevel()}{getLogLevel()}}
+{\footnotesize\ttfamily \label{class_library_a1b0a1868b902b360242b498b108f8d17} 
+Logging Library::\+get\+Log\+Level (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the current logging verbosity level of the library. 
+
+\begin{DoxyReturn}{Returns}
+The active Logging configuration. 
+\end{DoxyReturn}
+\Hypertarget{class_library_a10bb1a6017cda896d91676290a1b5a1a}\index{Library@{Library}!loggedIn@{loggedIn}}
+\index{loggedIn@{loggedIn}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{loggedIn()}{loggedIn()}}
+{\footnotesize\ttfamily \label{class_library_a10bb1a6017cda896d91676290a1b5a1a} 
+bool Library::\+logged\+In (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if there is an active valid user session. 
+
+\begin{DoxyReturn}{Returns}
+True if a user is logged in, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_library_a4e1f2eb49a23f15959c8df94be5fb638}\index{Library@{Library}!loggedInAsAdmin@{loggedInAsAdmin}}
+\index{loggedInAsAdmin@{loggedInAsAdmin}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{loggedInAsAdmin()}{loggedInAsAdmin()}}
+{\footnotesize\ttfamily \label{class_library_a4e1f2eb49a23f15959c8df94be5fb638} 
+bool Library::\+logged\+In\+As\+Admin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if the currently active user has administrator privileges. 
+
+\begin{DoxyReturn}{Returns}
+True if the user is logged in and is an admin. 
+\end{DoxyReturn}
+\Hypertarget{class_library_a270887827d27741a3c04cf287e6c0efe}\index{Library@{Library}!login@{login}}
+\index{login@{login}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{class_library_a270887827d27741a3c04cf287e6c0efe} 
+void Library::\+login (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{username}{, }\item[{const std::\+string \&}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Authenticates a user and starts an active session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The account to log in to. \\
+\hline
+{\em password} & The plain-\/text password to verify against. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_a0888c6032c63eea7a53138625658cf07}\index{Library@{Library}!open@{open}}
+\index{open@{open}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \label{class_library_a0888c6032c63eea7a53138625658cf07} 
+void Library::\+open (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Opens a file directly, loading its users and books into memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to open. Creates it if it doesn\textquotesingle{}t exist. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_a70df41d358a9173d36ee86087a4aad7d}\index{Library@{Library}!saveas@{saveas}}
+\index{saveas@{saveas}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{saveas()}{saveas()}}
+{\footnotesize\ttfamily \label{class_library_a70df41d358a9173d36ee86087a4aad7d} 
+bool Library::\+saveas (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{bool}]{called\+\_\+from\+\_\+save}{ = {\ttfamily false}}\end{DoxyParamCaption}) const}
+
+
+
+Saves the library state to a specific file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The destination file. \\
+\hline
+{\em called\+\_\+from\+\_\+save} & Internal flag to suppress success output if called from \doxylink{class_library_a5bfcb1b53dcd4da7175785400ef17930}{save()}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_library_ab31ba56e59e32fdbdd0804380ba4b00c}\index{Library@{Library}!sortToString@{sortToString}}
+\index{sortToString@{sortToString}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{sortToString()}{sortToString()}}
+{\footnotesize\ttfamily \label{class_library_ab31ba56e59e32fdbdd0804380ba4b00c} 
+std::\+string Library::\+sort\+To\+String (\begin{DoxyParamCaption}\item[{Book\+Sort}]{sort}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a Book\+Sort enum to a readable lowercase string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sort} & The Book\+Sort enum. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+"{}ascending"{} or "{}descending"{}. 
+\end{DoxyReturn}
+\Hypertarget{class_library_aa24e2568c1ff6824199b9f72146e6a4f}\index{Library@{Library}!stringToSort@{stringToSort}}
+\index{stringToSort@{stringToSort}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{stringToSort()}{stringToSort()}}
+{\footnotesize\ttfamily \label{class_library_aa24e2568c1ff6824199b9f72146e6a4f} 
+Book\+Sort Library::\+string\+To\+Sort (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{str}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts an input string command to a Book\+Sort enum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The input string (e.\+g. "{}asc"{}, "{}desc"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matching Book\+Sort, or Book\+Sort::\+\+INVALID. 
+\end{DoxyReturn}
+\Hypertarget{class_library_a572d38cd0e92c300fe7cd7be58c0aa46}\index{Library@{Library}!usersAdd@{usersAdd}}
+\index{usersAdd@{usersAdd}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{usersAdd()}{usersAdd()}}
+{\footnotesize\ttfamily \label{class_library_a572d38cd0e92c300fe7cd7be58c0aa46} 
+void Library::\+users\+Add (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_user}{User}} \texorpdfstring{$\ast$}{*}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Adds a user to the library. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & A dynamically allocated user to add. Ownership is transferred to \doxylink{class_library}{Library}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_a7289f61d6a9da64cf127b4248b0bb6ff}\index{Library@{Library}!usersRemove@{usersRemove}}
+\index{usersRemove@{usersRemove}!Library@{Library}}
+\doxysubsubsection{\texorpdfstring{usersRemove()}{usersRemove()}}
+{\footnotesize\ttfamily \label{class_library_a7289f61d6a9da64cf127b4248b0bb6ff} 
+void Library::\+users\+Remove (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Removes a user by their username. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The exact username of the user to delete. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Library/\+\+Library\&menu/\+Library.\+hpp\item 
+Library/\+\+Library\&menu/\+Library.\+cpp\end{DoxyCompactItemize}

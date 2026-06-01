@@ -1,0 +1,180 @@
+\doxysection{User Class Reference}
+\hypertarget{class_user}{}\label{class_user}\index{User@{User}}
+
+
+An abstract base class representing a user in the library system.  
+
+
+
+
+{\ttfamily \+\#include $<$User.\+hpp$>$}
+
+Inheritance diagram for User:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_user}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_user_a1d895763c9a70427daca6e97b613543a}{serialize}} (const std::\+string \&filename) const =0
+\begin{DoxyCompactList}\small\item\em Serializes the user\textquotesingle{}s data to a file. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_user_a0bdca63ed72fc8ffcee690a0119c2104}{get\+Username}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the username. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_user_aee6af833e24993ff1056538c2c34e99c}{get\+Password}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the password. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_user_a149f362a527d2d6024b15bd99e075f40}{is\+Admin}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the user is an administrator. \end{DoxyCompactList}\item 
+\Hypertarget{class_user_a634d7ad22c3d2b5fed35f71e10d98628}\label{class_user_a634d7ad22c3d2b5fed35f71e10d98628} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+User} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper polymorphic cleanup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_user}{User}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_user_a06d8bae22f3c2ea6e2a3609bec495ecc}{deserialize}} (const std::\+string \&filename, unsigned line)
+\begin{DoxyCompactList}\small\item\em Deserializes a user from a specific line in a data file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_user_a946a8fffc060c9875dc58c23975d7093}\label{class_user_a946a8fffc060c9875dc58c23975d7093} 
+static constexpr char {\bfseries m\+\_\+\+DELIMITER} \{ \textquotesingle{}\$\textquotesingle{} \}
+\begin{DoxyCompactList}\small\item\em The character used to separate fields when saving to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_user_a3e4fa4572c62d592d4d65bc331d0b52d}{User}} (std::\+string username, std::\+string password, bool admin)
+\begin{DoxyCompactList}\small\item\em Protected constructor to initialize base user properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_user_a05de08d9140ebfa737ae984582a10188}\label{class_user_a05de08d9140ebfa737ae984582a10188} 
+std::\+string {\bfseries m\+\_\+username}
+\begin{DoxyCompactList}\small\item\em The user\textquotesingle{}s account name. \end{DoxyCompactList}\item 
+\Hypertarget{class_user_a57fa19ecb950fe9ebbb48a972910a0dd}\label{class_user_a57fa19ecb950fe9ebbb48a972910a0dd} 
+std::\+string {\bfseries m\+\_\+password}
+\begin{DoxyCompactList}\small\item\em The user\textquotesingle{}s password in plain text. \end{DoxyCompactList}\item 
+\Hypertarget{class_user_ae083699174159738ee4095915d70bcaa}\label{class_user_ae083699174159738ee4095915d70bcaa} 
+bool {\bfseries m\+\_\+admin}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the user has administrator privileges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An abstract base class representing a user in the library system. 
+
+This class holds common data for all users, such as username, password, and privilege level (admin status). It provides interfaces for serialization and deserialization. 
+
+\label{class_user_doc-constructors}
+\Hypertarget{class_user_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_user_a3e4fa4572c62d592d4d65bc331d0b52d}\index{User@{User}!User@{User}}
+\index{User@{User}!User@{User}}
+\doxysubsubsection{\texorpdfstring{User()}{User()}}
+{\footnotesize\ttfamily \label{class_user_a3e4fa4572c62d592d4d65bc331d0b52d} 
+User::\+\+User (\begin{DoxyParamCaption}\item[{std::\+string}]{username}{, }\item[{std::\+string}]{password}{, }\item[{bool}]{admin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Protected constructor to initialize base user properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The account username. \\
+\hline
+{\em password} & The account password. \\
+\hline
+{\em admin} & True if the user is an administrator, false otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_user_doc-func-members}
+\Hypertarget{class_user_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_user_a06d8bae22f3c2ea6e2a3609bec495ecc}\index{User@{User}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!User@{User}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily \label{class_user_a06d8bae22f3c2ea6e2a3609bec495ecc} 
+\doxymbox{\hyperlink{class_user}{User}} \texorpdfstring{$\ast$}{*} User::\+deserialize (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{, }\item[{unsigned}]{line}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Deserializes a user from a specific line in a data file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file to read from. \\
+\hline
+{\em line} & The line number (1-\/indexed) to parse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated pointer to a derived \doxylink{class_user}{User} object (e.\+g., \doxylink{class_client}{Client} or \doxylink{class_admin}{Admin}). 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller is responsible for managing the memory of the returned object. 
+\end{DoxyNote}
+\Hypertarget{class_user_aee6af833e24993ff1056538c2c34e99c}\index{User@{User}!getPassword@{getPassword}}
+\index{getPassword@{getPassword}!User@{User}}
+\doxysubsubsection{\texorpdfstring{getPassword()}{getPassword()}}
+{\footnotesize\ttfamily \label{class_user_aee6af833e24993ff1056538c2c34e99c} 
+const std::\+string \& User::\+get\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the password. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the user\textquotesingle{}s password. 
+\end{DoxyReturn}
+\Hypertarget{class_user_a0bdca63ed72fc8ffcee690a0119c2104}\index{User@{User}!getUsername@{getUsername}}
+\index{getUsername@{getUsername}!User@{User}}
+\doxysubsubsection{\texorpdfstring{getUsername()}{getUsername()}}
+{\footnotesize\ttfamily \label{class_user_a0bdca63ed72fc8ffcee690a0119c2104} 
+const std::\+string \& User::\+get\+Username (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the username. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference to the user\textquotesingle{}s username. 
+\end{DoxyReturn}
+\Hypertarget{class_user_a149f362a527d2d6024b15bd99e075f40}\index{User@{User}!isAdmin@{isAdmin}}
+\index{isAdmin@{isAdmin}!User@{User}}
+\doxysubsubsection{\texorpdfstring{isAdmin()}{isAdmin()}}
+{\footnotesize\ttfamily \label{class_user_a149f362a527d2d6024b15bd99e075f40} 
+bool User::\+is\+Admin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if the user is an administrator. 
+
+\begin{DoxyReturn}{Returns}
+True if the user is an admin, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_user_a1d895763c9a70427daca6e97b613543a}\index{User@{User}!serialize@{serialize}}
+\index{serialize@{serialize}!User@{User}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{class_user_a1d895763c9a70427daca6e97b613543a} 
+virtual void User::\+serialize (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Serializes the user\textquotesingle{}s data to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file where the user data should be appended.\\
+\hline
+\end{DoxyParams}
+This is a pure virtual function that must be implemented by derived classes. 
+
+Implemented in \doxymbox{\hyperlink{class_client_a400baea411552b6a6ac22748713b2b29}{Client}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Library/\+\+User/\+User.\+hpp\item 
+Library/\+\+User/\+User.\+cpp\end{DoxyCompactItemize}

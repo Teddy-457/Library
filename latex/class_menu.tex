@@ -1,0 +1,80 @@
+\doxysection{Menu Class Reference}
+\hypertarget{class_menu}{}\label{class_menu}\index{Menu@{Menu}}
+
+
+A singleton class that manages the interactive command-\/line interface.  
+
+
+
+
+{\ttfamily \+\#include $<$Menu.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_menu_a63ab2f09293dba94a040e7303c069f5e}\label{class_menu_a63ab2f09293dba94a040e7303c069f5e} 
+{\bfseries Menu} (const \doxymbox{\hyperlink{class_menu}{Menu}} \&)=delete
+\item 
+\Hypertarget{class_menu_a0e5500bfc645da2ede7cf89e2ea81002}\label{class_menu_a0e5500bfc645da2ede7cf89e2ea81002} 
+\doxymbox{\hyperlink{class_menu}{Menu}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_menu}{Menu}} \&)=delete
+\item 
+\Hypertarget{class_menu_a424e833dacce7d763251e1860dccb082}\label{class_menu_a424e833dacce7d763251e1860dccb082} 
+{\bfseries Menu} (\doxymbox{\hyperlink{class_menu}{Menu}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_menu_a8a369e9d39f8c81dff16ff94e2f21168}\label{class_menu_a8a369e9d39f8c81dff16ff94e2f21168} 
+\doxymbox{\hyperlink{class_menu}{Menu}} \& {\bfseries operator=} (\doxymbox{\hyperlink{class_menu}{Menu}} \&\&)=delete
+\item 
+\Hypertarget{class_menu_aec66e8695cecd5e88732d20ffd027921}\label{class_menu_aec66e8695cecd5e88732d20ffd027921} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Menu} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_menu_a2601f20008433aa2e21433f12a59c386}{menu}} (\doxymbox{\hyperlink{class_library}{Library}} \&library)
+\begin{DoxyCompactList}\small\item\em Starts the main interactive loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_menu}{Menu}} \& \doxymbox{\hyperlink{class_menu_ad73f0a450269dc0eb3ae81ec7358a963}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the singleton instance of the \doxylink{class_menu}{Menu}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A singleton class that manages the interactive command-\/line interface. 
+
+The \doxylink{class_menu}{Menu} class handles reading user input from the standard input, parsing commands, gathering necessary arguments, and delegating execution to the \doxylink{class_library}{Library} instance. 
+
+\label{class_menu_doc-func-members}
+\Hypertarget{class_menu_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_menu_ad73f0a450269dc0eb3ae81ec7358a963}\index{Menu@{Menu}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \label{class_menu_ad73f0a450269dc0eb3ae81ec7358a963} 
+\doxymbox{\hyperlink{class_menu}{Menu}} \& Menu::\+get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the singleton instance of the \doxylink{class_menu}{Menu}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the single static \doxylink{class_menu}{Menu} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_menu_a2601f20008433aa2e21433f12a59c386}\index{Menu@{Menu}!menu@{menu}}
+\index{menu@{menu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily \label{class_menu_a2601f20008433aa2e21433f12a59c386} 
+void Menu::\+menu (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_library}{Library}} \&}]{library}{}\end{DoxyParamCaption})}
+
+
+
+Starts the main interactive loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em library} & A reference to the \doxylink{class_library}{Library} instance to execute commands against.\\
+\hline
+\end{DoxyParams}
+This function loops indefinitely, prompting the user for commands, enforcing login and privilege constraints, and executing library operations until the user inputs the "{}exit"{} command. 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Library/\+\+Library\&menu/\+Menu.\+hpp\item 
+Library/\+\+Library\&menu/\+Menu.\+cpp\end{DoxyCompactItemize}

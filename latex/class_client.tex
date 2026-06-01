@@ -1,0 +1,182 @@
+\doxysection{Client Class Reference}
+\hypertarget{class_client}{}\label{class_client}\index{Client@{Client}}
+
+
+Represents a standard library user with regular privileges.  
+
+
+
+
+{\ttfamily \+\#include $<$Client.\+hpp$>$}
+
+Inheritance diagram for Client:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_client}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_client_a3d2cabd89d497461bb4604a5014ee75d}\label{class_client_a3d2cabd89d497461bb4604a5014ee75d} 
+{\bfseries Client} (const \doxymbox{\hyperlink{class_client}{Client}} \&)=delete
+\item 
+\Hypertarget{class_client_a4dc1df05decda1789fb3431063afd685}\label{class_client_a4dc1df05decda1789fb3431063afd685} 
+\doxymbox{\hyperlink{class_client}{Client}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_client}{Client}} \&)=delete
+\item 
+\Hypertarget{class_client_a6ee03e19b92f5238fca3203efbecfc37}\label{class_client_a6ee03e19b92f5238fca3203efbecfc37} 
+{\bfseries Client} (\doxymbox{\hyperlink{class_client}{Client}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_client_a7e7f6f1f2ff2bc2ae28c865c1c18af5d}\label{class_client_a7e7f6f1f2ff2bc2ae28c865c1c18af5d} 
+\doxymbox{\hyperlink{class_client}{Client}} \& {\bfseries operator=} (\doxymbox{\hyperlink{class_client}{Client}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_client_a3935f41dda0ee9b6d85b9d9764c9e224}\label{class_client_a3935f41dda0ee9b6d85b9d9764c9e224} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Client} () override=default
+\begin{DoxyCompactList}\small\item\em Default virtual destructor. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_client_a535baa329f04156e59a09e526035ddd5}{Client}} (std::\+string username, std::\+string password)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{class_client}{Client} user. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_client_a400baea411552b6a6ac22748713b2b29}{serialize}} (const std::\+string \&filename) const final
+\begin{DoxyCompactList}\small\item\em Serializes the \doxylink{class_client}{Client}\textquotesingle{}s data to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \& \doxymbox{\hyperlink{class_user_a0bdca63ed72fc8ffcee690a0119c2104}{get\+Username}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the username. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_user_aee6af833e24993ff1056538c2c34e99c}{get\+Password}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the password. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_user_a149f362a527d2d6024b15bd99e075f40}{is\+Admin}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the user is an administrator. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+User} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper polymorphic cleanup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_client}{Client}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_client_a021b8922f700795a2eee4abc1258582b}{deserialize}} (std::\+ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Deserializes a \doxylink{class_client}{Client} from an open file stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_user}{User}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_user_a06d8bae22f3c2ea6e2a3609bec495ecc}{deserialize}} (const std::\+string \&filename, unsigned line)
+\begin{DoxyCompactList}\small\item\em Deserializes a user from a specific line in a data file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}} (std::\+string username, std::\+string password, bool is\+\_\+admin)
+\begin{DoxyCompactList}\small\item\em Protected constructor for derived classes (like \doxylink{class_admin}{Admin}) to set the admin flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_user_a3e4fa4572c62d592d4d65bc331d0b52d}{User}} (std::\+string username, std::\+string password, bool admin)
+\begin{DoxyCompactList}\small\item\em Protected constructor to initialize base user properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr char {\bfseries m\+\_\+\+DELIMITER} \{ \textquotesingle{}\$\textquotesingle{} \}
+\begin{DoxyCompactList}\small\item\em The character used to separate fields when saving to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+std::\+string {\bfseries m\+\_\+username}
+\begin{DoxyCompactList}\small\item\em The user\textquotesingle{}s account name. \end{DoxyCompactList}\item 
+std::\+string {\bfseries m\+\_\+password}
+\begin{DoxyCompactList}\small\item\em The user\textquotesingle{}s password in plain text. \end{DoxyCompactList}\item 
+bool {\bfseries m\+\_\+admin}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the user has administrator privileges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a standard library user with regular privileges. 
+
+The \doxylink{class_client}{Client} class inherits from \doxylink{class_user}{User} and implements serialization which the \doxylink{class_admin}{Admin} class also inherits. Standard clients cannot add or remove users or books. 
+
+\label{class_client_doc-constructors}
+\Hypertarget{class_client_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_client_a8f7a1ff003f7d6298c527ce009bbdeab} 
+Client::\+\+Client (\begin{DoxyParamCaption}\item[{std::\+string}]{username}{, }\item[{std::\+string}]{password}{, }\item[{bool}]{is\+\_\+admin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Protected constructor for derived classes (like \doxylink{class_admin}{Admin}) to set the admin flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The account username. \\
+\hline
+{\em password} & The account password. \\
+\hline
+{\em is\+\_\+admin} & Boolean indicating if the user is an admin. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_client_a535baa329f04156e59a09e526035ddd5}\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_client_a535baa329f04156e59a09e526035ddd5} 
+Client::\+\+Client (\begin{DoxyParamCaption}\item[{std::\+string}]{username}{, }\item[{std::\+string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{class_client}{Client} user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The account username. \\
+\hline
+{\em password} & The account password.\\
+\hline
+\end{DoxyParams}
+Initializes the base \doxylink{class_user}{User} with the provided credentials and sets the admin flag to false. 
+
+\label{class_client_doc-func-members}
+\Hypertarget{class_client_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_client_a021b8922f700795a2eee4abc1258582b}\index{Client@{Client}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily \label{class_client_a021b8922f700795a2eee4abc1258582b} 
+\doxymbox{\hyperlink{class_client}{Client}} \texorpdfstring{$\ast$}{*} Client::\+deserialize (\begin{DoxyParamCaption}\item[{std::\+ifstream \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Deserializes a \doxylink{class_client}{Client} from an open file stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & A reference to an open input file stream positioned at the user\textquotesingle{}s data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated pointer to the newly created \doxylink{class_client}{Client}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller is responsible for deleting the returned \doxylink{class_client}{Client} object. 
+\end{DoxyNote}
+\Hypertarget{class_client_a400baea411552b6a6ac22748713b2b29}\index{Client@{Client}!serialize@{serialize}}
+\index{serialize@{serialize}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{class_client_a400baea411552b6a6ac22748713b2b29} 
+void Client::\+serialize (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filename}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Serializes the \doxylink{class_client}{Client}\textquotesingle{}s data to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file where the user data should be appended.\\
+\hline
+\end{DoxyParams}
+Writes the \doxylink{class_client}{Client}\textquotesingle{}s specific type identifier and properties to the file using the standard delimiter format. 
+
+Implements \doxymbox{\hyperlink{class_user_a1d895763c9a70427daca6e97b613543a}{User}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Library/\+\+User/\+Client.\+hpp\item 
+Library/\+\+User/\+Client.\+cpp\end{DoxyCompactItemize}

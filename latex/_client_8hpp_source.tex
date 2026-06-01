@@ -1,0 +1,30 @@
+\doxysection{Client.\+hpp}
+\hypertarget{_client_8hpp_source}{}\label{_client_8hpp_source}\index{Library/User/Client.hpp@{Library/User/Client.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}User.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_user_a3e4fa4572c62d592d4d65bc331d0b52d}{User}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00016\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}(std::string\ username,\ std::string\ password,\ \textcolor{keywordtype}{bool}\ is\_admin);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Deleted\ default\ constructor\ and\ copying/moving\ semantics}}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00021\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00022\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\&\ operator=(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00023\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}(\doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\&\ operator=(\doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}\&\&)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{class_client_a3935f41dda0ee9b6d85b9d9764c9e224}{\string~Client}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \ \ \ \ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}(std::string\ username,\ std::string\ password);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_client_a400baea411552b6a6ac22748713b2b29}{serialize}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \textcolor{keyword}{const}\ \textcolor{keyword}{final};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}}*\ \doxymbox{\hyperlink{class_client_a021b8922f700795a2eee4abc1258582b}{deserialize}}(std::ifstream\&\ file);}
+\DoxyCodeLine{00049\ \};}
+
+\end{DoxyCode}

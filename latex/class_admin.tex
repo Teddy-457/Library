@@ -1,0 +1,164 @@
+\doxysection{Admin Class Reference}
+\hypertarget{class_admin}{}\label{class_admin}\index{Admin@{Admin}}
+
+
+Represents a library user with administrator privileges.  
+
+
+
+
+{\ttfamily \+\#include $<$Admin.\+hpp$>$}
+
+Inheritance diagram for Admin:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_admin}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_admin_a42acdd2ed183c789acf1f0cb24aecb88}\label{class_admin_a42acdd2ed183c789acf1f0cb24aecb88} 
+{\bfseries Admin} (const \doxymbox{\hyperlink{class_admin}{Admin}} \&)=delete
+\item 
+\Hypertarget{class_admin_a23cfcd948e291b87975cc848e1b4b94d}\label{class_admin_a23cfcd948e291b87975cc848e1b4b94d} 
+\doxymbox{\hyperlink{class_admin}{Admin}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_admin}{Admin}} \&)=delete
+\item 
+\Hypertarget{class_admin_a1d600f52790781c00abd128eef810376}\label{class_admin_a1d600f52790781c00abd128eef810376} 
+{\bfseries Admin} (\doxymbox{\hyperlink{class_admin}{Admin}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_admin_a9d68cf89fcda100a19fed406aae61533}\label{class_admin_a9d68cf89fcda100a19fed406aae61533} 
+\doxymbox{\hyperlink{class_admin}{Admin}} \& {\bfseries operator=} (\doxymbox{\hyperlink{class_admin}{Admin}} \&\&) noexcept=delete
+\item 
+\Hypertarget{class_admin_a2f88034aa27d270f94e6379d1bdd0f0f}\label{class_admin_a2f88034aa27d270f94e6379d1bdd0f0f} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Admin} () override=default
+\begin{DoxyCompactList}\small\item\em Default virtual destructor. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_admin_a7b71717dfb2981b573c3f69a7f6f015f}{Admin}} (std::\+string username, std::\+string password)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{class_admin}{Admin} user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_client}{Client}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Client} (const \doxymbox{\hyperlink{class_client}{Client}} \&)=delete
+\item 
+\doxymbox{\hyperlink{class_client}{Client}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_client}{Client}} \&)=delete
+\item 
+{\bfseries Client} (\doxymbox{\hyperlink{class_client}{Client}} \&\&) noexcept=delete
+\item 
+\doxymbox{\hyperlink{class_client}{Client}} \& {\bfseries operator=} (\doxymbox{\hyperlink{class_client}{Client}} \&\&) noexcept=delete
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Client} () override=default
+\begin{DoxyCompactList}\small\item\em Default virtual destructor. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_client_a535baa329f04156e59a09e526035ddd5}{Client}} (std::\+string username, std::\+string password)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{class_client}{Client} user. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_client_a400baea411552b6a6ac22748713b2b29}{serialize}} (const std::\+string \&filename) const final
+\begin{DoxyCompactList}\small\item\em Serializes the \doxylink{class_client}{Client}\textquotesingle{}s data to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \& \doxymbox{\hyperlink{class_user_a0bdca63ed72fc8ffcee690a0119c2104}{get\+Username}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the username. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_user_aee6af833e24993ff1056538c2c34e99c}{get\+Password}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the password. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_user_a149f362a527d2d6024b15bd99e075f40}{is\+Admin}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the user is an administrator. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+User} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper polymorphic cleanup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_admin}{Admin}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_admin_a8b6387b72a081db0141c2e6877ab5cc9}{deserialize}} (std::\+ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Deserializes an \doxylink{class_admin}{Admin} from an open file stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \doxymbox{\hyperlink{class_client}{Client}}}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_client}{Client}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_client_a021b8922f700795a2eee4abc1258582b}{deserialize}} (std::\+ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Deserializes a \doxylink{class_client}{Client} from an open file stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_user}{User}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_user_a06d8bae22f3c2ea6e2a3609bec495ecc}{deserialize}} (const std::\+string \&filename, unsigned line)
+\begin{DoxyCompactList}\small\item\em Deserializes a user from a specific line in a data file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr char {\bfseries m\+\_\+\+DELIMITER} \{ \textquotesingle{}\$\textquotesingle{} \}
+\begin{DoxyCompactList}\small\item\em The character used to separate fields when saving to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_client}{Client}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_client_a8f7a1ff003f7d6298c527ce009bbdeab}{Client}} (std::\+string username, std::\+string password, bool is\+\_\+admin)
+\begin{DoxyCompactList}\small\item\em Protected constructor for derived classes (like \doxylink{class_admin}{Admin}) to set the admin flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_user_a3e4fa4572c62d592d4d65bc331d0b52d}{User}} (std::\+string username, std::\+string password, bool admin)
+\begin{DoxyCompactList}\small\item\em Protected constructor to initialize base user properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+std::\+string {\bfseries m\+\_\+username}
+\begin{DoxyCompactList}\small\item\em The user\textquotesingle{}s account name. \end{DoxyCompactList}\item 
+std::\+string {\bfseries m\+\_\+password}
+\begin{DoxyCompactList}\small\item\em The user\textquotesingle{}s password in plain text. \end{DoxyCompactList}\item 
+bool {\bfseries m\+\_\+admin}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the user has administrator privileges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a library user with administrator privileges. 
+
+The \doxylink{class_admin}{Admin} class inherits from \doxylink{class_client}{Client} but initializes the user with elevated privileges ({\ttfamily \doxylink{class_user_ae083699174159738ee4095915d70bcaa}{m\+\_\+admin} = true}). Administrators have the authority to add or remove books and manage other users in the library system. 
+
+\label{class_admin_doc-constructors}
+\Hypertarget{class_admin_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_admin_a7b71717dfb2981b573c3f69a7f6f015f}\index{Admin@{Admin}!Admin@{Admin}}
+\index{Admin@{Admin}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{Admin()}{Admin()}}
+{\footnotesize\ttfamily \label{class_admin_a7b71717dfb2981b573c3f69a7f6f015f} 
+Admin::\+\+Admin (\begin{DoxyParamCaption}\item[{std::\+string}]{username}{, }\item[{std::\+string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{class_admin}{Admin} user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The account username. \\
+\hline
+{\em password} & The account password.\\
+\hline
+\end{DoxyParams}
+Passes the credentials to the base \doxylink{class_client}{Client} constructor and flags the account as an administrator. 
+
+\label{class_admin_doc-func-members}
+\Hypertarget{class_admin_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_admin_a8b6387b72a081db0141c2e6877ab5cc9}\index{Admin@{Admin}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily \label{class_admin_a8b6387b72a081db0141c2e6877ab5cc9} 
+\doxymbox{\hyperlink{class_admin}{Admin}} \texorpdfstring{$\ast$}{*} Admin::\+deserialize (\begin{DoxyParamCaption}\item[{std::\+ifstream \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Deserializes an \doxylink{class_admin}{Admin} from an open file stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & A reference to an open input file stream positioned at the user\textquotesingle{}s data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated pointer to the newly created \doxylink{class_admin}{Admin}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller is responsible for deleting the returned \doxylink{class_admin}{Admin} object. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Library/\+\+User/\+Admin.\+hpp\item 
+Library/\+\+User/\+Admin.\+cpp\end{DoxyCompactItemize}
