@@ -42,7 +42,7 @@ void Library::open(const std::string& filename) {
 		return;
 	}
 
-	bool file_exists{Utilities::checkIfExists(filename)};
+	bool file_exists{ Utilities::checkIfExists(filename) };
 
 	if(file_exists) {
 		deserialize(filename);
