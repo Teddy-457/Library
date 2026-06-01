@@ -126,6 +126,13 @@ void Menu::menu(Library& library) {
             if (!subcom.empty()) {
                 bool found{ false };
                 for(const std::string& str: help_list) {
+                    if (subcom == "add") {
+                        std::cout << help_list[13];
+                        std::cout << help_list[14];
+                        std::cout << help_list[15];
+                        found = true;
+                        break;
+                    }
                     if (str.substr(str.find_first_not_of(' '), subcom.size()) == subcom) {
                         std::cout << str;
                         found = true;
